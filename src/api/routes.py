@@ -16,3 +16,8 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
+
+
+@api.route('/trial', methods=['GET'])
+def handle_hello():
+    return "This is working"
