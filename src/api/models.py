@@ -1,21 +1,22 @@
-from api.db import db
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
 
 
 class User(db.Model):
     __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key=True)
+    id =  db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(200), unique=True, nullable=False)
-    password = db.Column(db.String(100), unique=False, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
-    last_name = db.Column(db.String(100), unique=False, nullable=False)
-    phone_number = db.Column(db.String(150), unique=True, nullable=False)
-    #If no avatar provided an avatar will be generated.
-    avatar = db.Column(db.String(2000), unique=True, nullable=False)
-    # Relations
+    last_name = db.Column(db.String(100), unique=False, nullable=True)
+    phone_number = db.Column(db.String(150), unique=True)
+    avatar = db.Column(db.String(2000), unique=False)
+    password = db.Column(db.String(100), unique=False, nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    is_admin = db.Column(db.Boolean, default=False)
+    is_active = db.Column(db.Boolean(), default=False)
+
+    #Relations
     # address = db.relationship("AddressModel", back_populates="user")
-    vet_review= db.relationship("VetReviewModel", back_populates="user")
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
-    vet_favorite = db.relationship("VetFavoriteModel", back_populates="user")
 
     def __repr__(self):
         return f'<User {self.id} {self.email}>'
@@ -28,13 +29,16 @@ class User(db.Model):
             "last_name": self.last_name,
             "phone_number": self.phone_number,
             "avatar": self.avatar,
-            # "vet_favorite": self.vet_favorite,
-            "vet_review": self.vet_review,
             "is_active": self.is_active,
+            "is_admin": self.is_admin,
+            "created_at": self.created_at
 
             # do not serialize the password, its a security breach
         }
     
+
+    
+
 class VetModel(db.Model):
     __tablename__ = "vet"
     id = db.Column(db.Integer, primary_key=True)
@@ -49,8 +53,6 @@ class VetModel(db.Model):
     services =  db.Column(db.String(2000), unique=False, nullable=True)
     price_low = db.Column(db.Integer, unique=False, nullable=False)
     price_high = db.Column(db.Integer, unique=False, nullable=True)
-    vet_favorite = db.relationship("VetFavoriteModel", back_populates="vet")
-    vet_review = db.relationship("VetReviewModel", back_populates="vet")
 
     def __repr__(self):
         return f'<Vet {self.id} {self.email}>'
@@ -76,15 +78,16 @@ class VetModel(db.Model):
 class VetFavoriteModel(db.Model):
     __tablename__ = "vet_favorite"
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(
-        db.Integer, db.ForeignKey("user.id"), unique=False, nullable=False
-    )
-    user = db.relationship("User", back_populates="vet_favorite")
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'user.id'), unique=False, nullable=False)
     vet_id = db.Column(
         db.Integer, db.ForeignKey("vet.id"), unique=False, nullable=False
     )
     # One to many
-    vet = db.relationship("VetModel", back_populates="vet_favorite")
+    vet = db.relationship("VetModel")
+    user = db.relationship("User")
+
+    
 
     def __repr__(self):
         return f'<Favorite Vet {self.id}>'
@@ -108,12 +111,12 @@ class VetReviewModel(db.Model):
     user_id = db.Column(
         db.Integer, db.ForeignKey("user.id"), unique=False, nullable=False
     )
-    user = db.relationship("User", back_populates="vet_review")
+    user = db.relationship("User")
     vet_id = db.Column(
         db.Integer, db.ForeignKey("vet.id"), unique=False, nullable=False
     )
     # One to many
-    vet = db.relationship("VetModel", back_populates="vet_review")
+    vet = db.relationship("VetModel")
 
     def __repr__(self):
         return f'<Post: {self.id} >'
