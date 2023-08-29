@@ -119,7 +119,7 @@ class VetReviewModel(db.Model):
     vet = db.relationship("VetModel")
 
     def __repr__(self):
-        return f'<Post: {self.id} >'
+        return f'<Review: {self.id} >'
 
     def serialize(self):
         return {
