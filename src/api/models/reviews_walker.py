@@ -6,13 +6,13 @@ import uuid
 db = SQLAlchemy()
 
 
-class ReviewWalkers(db.Models):
+class ReviewWalkers(db.Model):
     __tablaname__ = "review_walkers"
     id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (128 - 32), primary_key=True)
     body = db.Column(db.String(250))
-    date = db.Column(db.Datetime, default = datetime.utcnow)
+    date = db.Column(db.DateTime, default = datetime.utcnow)
     title = db.Column (db.String(100))
-    rate = db.COlumn(db.Integer)
+    rate = db.Column(db.Integer)
     walker_id = db.Column(db.BigInteger, db.ForeignKey("walker.id"))
     walker = db.relationship("WalkerModel")
     user_id = db.Column(db.BigInteger, db.ForeignKey("user.id"))
