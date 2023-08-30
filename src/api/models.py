@@ -1,21 +1,24 @@
 from flask_sqlalchemy import SQLAlchemy
+
+from datetime import datetime
+
 db = SQLAlchemy()
 
 
 class User(db.Model):
     __tablename__ = "user"
-    id =  db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(200), unique=True, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
     last_name = db.Column(db.String(100), unique=False, nullable=True)
     phone_number = db.Column(db.String(150), unique=True)
     avatar = db.Column(db.String(2000), unique=False)
     password = db.Column(db.String(100), unique=False, nullable=False)
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
     is_admin = db.Column(db.Boolean, default=False)
     is_active = db.Column(db.Boolean(), default=False)
 
-    #Relations
+    # Relations
     # address = db.relationship("AddressModel", back_populates="user")
 
     def __repr__(self):
@@ -35,9 +38,7 @@ class User(db.Model):
 
             # do not serialize the password, its a security breach
         }
-    
 
-    
 
 class VetModel(db.Model):
     __tablename__ = "vet"
@@ -48,11 +49,12 @@ class VetModel(db.Model):
     last_name = db.Column(db.String(100), unique=False, nullable=False)
     phone_number = db.Column(db.String(150), unique=True, nullable=False)
     company_name = db.Column(db.String(100), unique=False, nullable=True)
-    description =  db.Column(db.String(2000), unique=False, nullable=False)
+    description = db.Column(db.String(2000), unique=False, nullable=False)
     avatar = db.Column(db.String(2000), unique=True, nullable=False)
-    services =  db.Column(db.String(2000), unique=False, nullable=True)
+    services = db.Column(db.String(2000), unique=False, nullable=True)
     price_low = db.Column(db.Integer, unique=False, nullable=False)
     price_high = db.Column(db.Integer, unique=False, nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f'<Vet {self.id} {self.email}>'
@@ -87,8 +89,6 @@ class VetFavoriteModel(db.Model):
     vet = db.relationship("VetModel")
     user = db.relationship("User")
 
-    
-
     def __repr__(self):
         return f'<Favorite Vet {self.id}>'
 
@@ -98,13 +98,14 @@ class VetFavoriteModel(db.Model):
             "user_id": self.user_id,
             "vet_id": self.vet_id,
         }
-    
+
+
 class VetReviewModel(db.Model):
     __tablename__ = "vet_review"
     id = db.Column(db.Integer, primary_key=True)
-    title =  db.Column(db.String(300), unique=False, nullable=False)
+    title = db.Column(db.String(300), unique=False, nullable=False)
     body = db.Column(db.String(3000), unique=False, nullable=False)
-    date = db.Column(db.Date, unique=False, nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
     rate_enum = db.Enum('1', '2', '3', '4', '5', name='rate_enum')
     rate = db.Column(rate_enum, nullable=False)
     # Relations
@@ -129,19 +130,19 @@ class VetReviewModel(db.Model):
             "date": self.date,
             "rate": self.rate,
             "user_id": self.user_id,
-            "vet_id": self.vet_id, 
+            "vet_id": self.vet_id,
         }
-
 
 
 class PostModel(db.Model):
     __tablename__ = "post"
     id = db.Column(db.Integer, primary_key=True)
-    title =  db.Column(db.String(300), unique=False, nullable=False)
+    title = db.Column(db.String(300), unique=False, nullable=False)
     body = db.Column(db.String(3000), unique=False, nullable=False)
-    date = db.Column(db.Date, unique=False, nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
     image = db.Column(db.String(3000), unique=False, nullable=False)
-    category_enum = db.Enum('Salud', 'Bienestar', 'Belleza', name='category_enum')
+    category_enum = db.Enum('Salud', 'Bienestar',
+                            'Belleza', name='category_enum')
     author = db.Column(db.String(200), unique=False, nullable=False)
     category = db.Column(category_enum, nullable=False)
 
@@ -159,4 +160,3 @@ class PostModel(db.Model):
             "author": self.author,
             "category": self.category
         }
-
