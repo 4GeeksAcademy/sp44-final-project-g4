@@ -1,13 +1,14 @@
 from flask_sqlalchemy import SQLAlchemy
 
 from datetime import datetime
+import uuid
 
 db = SQLAlchemy()
 
 
 class User(db.Model):
     __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (128 - 32), primary_key=True)
     email = db.Column(db.String(200), unique=True, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
     last_name = db.Column(db.String(100), unique=False, nullable=True)
@@ -42,7 +43,7 @@ class User(db.Model):
 
 class VetModel(db.Model):
     __tablename__ = "vet"
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (128 - 32), primary_key=True)
     email = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(200), unique=False, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
@@ -79,7 +80,7 @@ class VetModel(db.Model):
 
 class VetFavoriteModel(db.Model):
     __tablename__ = "vet_favorite"
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (128 - 32), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(
         'user.id'), unique=False, nullable=False)
     vet_id = db.Column(
@@ -102,7 +103,7 @@ class VetFavoriteModel(db.Model):
 
 class VetReviewModel(db.Model):
     __tablename__ = "vet_review"
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (128 - 32), primary_key=True)
     title = db.Column(db.String(300), unique=False, nullable=False)
     body = db.Column(db.String(3000), unique=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -136,7 +137,7 @@ class VetReviewModel(db.Model):
 
 class PostModel(db.Model):
     __tablename__ = "post"
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (128 - 32), primary_key=True)
     title = db.Column(db.String(300), unique=False, nullable=False)
     body = db.Column(db.String(3000), unique=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)

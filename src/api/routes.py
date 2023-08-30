@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, VetFavoriteModel, VetReviewModel, PostModel
 from api.utils import generate_sitemap, APIException
 
+
 api = Blueprint('api', __name__)
 
 
@@ -17,6 +18,8 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
+
+# User endpoints
 @api.route('/signup', methods=['POST'])
 def signup():
     request_body = request.json
@@ -63,6 +66,20 @@ def get_users():
             return response_body, 200
         else:
             return "Not Found", 404
+        
+
+@api.route('/users/<int:user_id>', methods=['DELETE']) 
+def delete_user(user_id):
+    # Note: here we need to improve the deletion function. Only an admin can delete any user, 
+    # and only a logged user can delete (calcell) hes own account.
+    user_to_delete = db.get_or_404(User, user_id)
+
+    try:
+        db.session.delete(user_to_delete)
+        db.session.commit()
+        return "User Deleted Successfully", 200
+    except:
+        return "User not found", 404
     
    
 
