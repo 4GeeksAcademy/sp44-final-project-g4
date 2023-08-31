@@ -39,4 +39,4 @@ class User(db.Model):
             "created_at": self.created_at
 
             # do not serialize the password, its a security breach
-        }
+
