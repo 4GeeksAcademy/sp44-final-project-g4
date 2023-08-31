@@ -8,7 +8,7 @@ db = SQLAlchemy()
 # USER MODEL
 class User(db.Model):
     __tablename__ = "user"
-    id = db.Column(db.BigInteger, default=uuid.uuid4().int >> (
+    id = db.Column(db.BigInteger, default= uuid.uuid4().int >> (
         128 - 32), primary_key=True)
     email = db.Column(db.String(200), unique=True, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
@@ -39,4 +39,4 @@ class User(db.Model):
             "created_at": self.created_at
 
             # do not serialize the password, its a security breach
-        }
+
