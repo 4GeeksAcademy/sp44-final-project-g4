@@ -33,22 +33,7 @@ def handle_get_groomers(id):
 
     if request.method == 'POST' :
         request_body = request.get_json()
-        groomers = GroomerModel(name = request_body["name"],
-                                last_name = request_body["last name"],
-                                company_name = request_body["company name"],
-                                description = request_body["description"],
-                                email = request_body["email"],
-                                password = request_body["password"],
-                                phone_number = request_body["phone number"],
-                                address = request_body["address"],
-                                average_rate = request_body["average rate"],
-                                services = request_body["services"],
-                                price_low = request_body["price low"],
-                                price_high = request_body["price high"],
-                                call_in = request_body["call in"],
-                                created_at = request_body[created_at],
-                                avatar =request_body["avatar"],
-                                )
+        groomers = GroomerModel(** request_body)
         db.session.add(groomer)
         db.session.commit()
         print(request_body)
@@ -126,10 +111,7 @@ def handle_get_groomers_favorites():
 
     if request.method == 'POST' :
         request_body = request.get_json()
-        groomersFavorites = GroomerFavoritesModel(user_id = request_body["user id"],
-                                                groomer_id = request_body["groomer id"],
-                                                created_at = request_body[created_at]
-                                                )
+        groomersFavorites = GroomerFavoritesModel(** request_body)
         db.session.add(groomersFavorites)
         db.session.commit()
         print(request_body)
@@ -160,14 +142,7 @@ def handle_get_groomers_reviews():
 
     if request.method == 'POST' :
         request_body = request.get_json()
-        groomersreviews = GroomerReviews(title = request_body["title"],
-                                        body = request_body["body"],
-                                        date = request_body["date"],
-                                        rate = request_body["rate"],
-                                        created_at = request_body[created_at],
-                                        user_id = request_body["user id"],
-                                        groomer_id = request_body["groomer id"]
-                                        )
+        groomersreviews = GroomerReviews(** request_body)
         db.session.add(groomersreviews)
         db.session.commit()
         print(request_body)
