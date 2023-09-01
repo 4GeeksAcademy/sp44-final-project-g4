@@ -36,10 +36,9 @@ class User(db.Model):
             "avatar": self.avatar,
             "is_active": self.is_active,
             "is_admin": self.is_admin,
-            "created_at": self.created_at
-
-            # do not serialize the password, its a security breach
+            "created_at": self.created_at     
         }
+      
     # VET MODEL
 class VetModel(db.Model):
     __tablename__ = "vet"

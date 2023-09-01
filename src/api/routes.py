@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, VetFavoriteModel, VetReviewModel, PostModel, VetModel
+
 from api.utils import generate_sitemap, APIException
 # from flask.views import MethodView
 from flask_jwt_extended import get_jwt_identity
