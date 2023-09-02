@@ -1,7 +1,8 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7913c832514688c0695a3b431f42c07a379eb610b80655c73420704e5a045fcc"
+            "sha256": "d793e084e97dc81492403789ea817f62055f3b44673e1a723b280d0d86fdad07"
+
         },
         "pipfile-spec": 6,
         "requires": {
@@ -18,11 +19,12 @@
     "default": {
         "alembic": {
             "hashes": [
-                "sha256:3db4ce81a9072e1b5aa44c2d202add24553182672a12daf21608d6f62a8f9cf9",
-                "sha256:d6c96c2482740592777c400550a523bc7a9aada4e210cae2e733354ddae6f6f8"
+
+                "sha256:03226222f1cf943deee6c85d9464261a6c710cd19b4fe867a3ad1f25afda610f",
+                "sha256:8e7645c32e4f200675e69f0745415335eb59a3663f5feb487abfa0b30c45888b"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==1.11.3"
+            "version": "==1.12.0"
         },
         "apispec": {
             "extras": [
@@ -34,6 +36,7 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==6.3.0"
+
         },
         "blinker": {
             "hashes": [
@@ -105,14 +108,8 @@
             ],
             "index": "pypi",
             "version": "==4.0.4"
-        },
-        "flask-smorest": {
-            "hashes": [
-                "sha256:4b016cefe406b3fbbc5f8071dbe8980892338fc0955d4b473056d8a4b567ae5f",
-                "sha256:7fde3f349d464c408c73b7cbbdb1884c1c36cc8c23b2562aba28d9bdfdd14cdc"
-            ],
-            "index": "pypi",
-            "version": "==0.42.1"
+
+
         },
         "flask-sqlalchemy": {
             "hashes": [
@@ -288,14 +285,7 @@
             "markers": "python_version >= '3.7'",
             "version": "==2.1.3"
         },
-        "marshmallow": {
-            "hashes": [
-                "sha256:5d2371bbe42000f2b3fb5eaa065224df7d8f8597bc19a1bbfa5bfe7fba8da889",
-                "sha256:684939db93e80ad3561392f47be0230743131560a41c5110684c16e21ade0a5c"
-            ],
-            "index": "pypi",
-            "version": "==3.20.1"
-        },
+
         "packaging": {
             "hashes": [
                 "sha256:994793af429502c4ea2ebf6bf664629d07c1a9fe974af92966e4b8d2df7edc61",
@@ -512,6 +502,7 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
             "version": "==1.26.16"
+
         },
         "webargs": {
             "hashes": [
@@ -520,6 +511,7 @@
             ],
             "markers": "python_full_version >= '3.7.2'",
             "version": "==8.3.0"
+
         },
         "werkzeug": {
             "hashes": [
