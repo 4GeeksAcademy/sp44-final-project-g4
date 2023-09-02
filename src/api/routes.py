@@ -22,9 +22,9 @@ def signup(user_type):
     request_body = request.json
 
     if user_type == "user":
-        password = request.json["password"]
-        hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        request_body["password"] = hashed
+        # password = request.json["password"]
+        # hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        # request_body["password"] = hashed
 
         user = User(**request_body) 
 
