@@ -2,6 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
+import bcrypt
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, VetFavoriteModel, VetReviewModel, PostModel, VetModel, WalkerModel, ReviewWalkers, FavoriteWalkers, GroomerModel, GroomerFavoritesModel, GroomerReviewsModel
 
@@ -21,13 +22,18 @@ def signup(user_type):
     request_body = request.json
 
     if user_type == "user":
+        # password = request.json["password"]
+        # hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        # request_body["password"] = hashed
+
         user = User(**request_body) 
 
         db.session.add(user)
         db.session.commit()
+
         response_body = {"message": "New User Successfully Created",
                          "status": "ok",
-                         "user": request_body}
+                         "user": request_body["email"]}
 
         if response_body:
             return response_body, 200
@@ -71,12 +77,9 @@ def greeting():
 
 # User endpoints
 
-
-@api.route('/users/<string:user_type>', methods=['GET'])
+@api.route('/users', methods=['GET'])
 @jwt_required()
-def get_all_users(user_type):
-# Route admin?
-    if user_type == 'user':
+def get_all_users():
         users = db.session.execute(
             db.select(User).order_by(User.name)).scalars()
         results = [item.serialize() for item in users]
@@ -89,6 +92,11 @@ def get_all_users(user_type):
         else:
             return "Not Found", 404
 
+
+
+# Incluir los demas pros.
+@api.route('/proffesional/<string:user_type>', methods=['GET'])
+def get_all_proffesionals(user_type):
     if user_type == 'vet':
         users = db.session.execute(
             db.select(VetModel).order_by(VetModel.name)).scalars()
@@ -103,20 +111,20 @@ def get_all_users(user_type):
             return "Not Found", 404
 
 
+# Incluir los demas pros.
 @api.route('/user/<int:id>/<string:user_type>', methods=['GET'])
-@jwt_required()
 def get_single_user(id, user_type):
     #Admin route?
 
-    if user_type == "user":
-        user = db.get_or_404(User, id)
-        response_body = {"status": "ok",
-                         "results": user.serialize()}
+    # if user_type == "user":
+    #     user = db.get_or_404(User, id)
+    #     response_body = {"status": "ok",
+    #                      "results": user.serialize()}
 
-        if response_body:
-            return response_body, 200
-        else:
-            return "Not Found", 404
+    #     if response_body:
+    #         return response_body, 200
+    #     else:
+    #         return "Not Found", 404
 
     if user_type == "vet":
         vet = db.get_or_404(VetModel, id)
@@ -130,6 +138,7 @@ def get_single_user(id, user_type):
                     "status": 404}
 
 
+# El Hadj
 @api.route('/users/<int:user_id>/<string:user_type>', methods=['DELETE'])
 @jwt_required()
 def delete_user(user_id, user_type):
@@ -156,42 +165,108 @@ def delete_user(user_id, user_type):
             return "User not found", 404
 
 
-@api.route('/favorite/<int:user_id>', methods=['POST', 'GET'])
+# This is OK.
+@api.route('/favorite/<int:user_id>/<string:user_type>', methods=['POST', 'GET'])
 @jwt_required()
-def get_user_vet_favorites(user_id, professional_type):
+def get_user_vet_favorites(user_id, user_type):
 
-    favorite = db.session.execute(
-        db.select(VetFavoriteModel).order_by(VetFavoriteModel.id)).scalars()
-    response = [item.serialize()
-                for item in favorite if item.user_id == user_id]
-    body = {"message": f'Favorite for User_id: {user_id}',
-            "results": response,
-            "status": "ok"}
+    if user_type == "vet":
+        if request.method == 'GET':
+            # THIS ONLY BRINGS ONE
+            favorite = db.session.execute(
+                db.select(VetReviewModel).order_by(VetReviewModel.id)).scalars()
+            result = [item.serialize()
+                        for item in favorite if item.vet_id == user_id]
+            response_body = {"message": f'Reviews for User_id: {user_id}',
+                             "results": result,
+                             "status": "ok"}
 
-    if body:
-        return body, 200
-    else:
-        return "Not Found", 404
+        if response_body:
+            return response_body, 200
+        else:
+            return "Not Found", 404
+
+    if user_type == "walker":
+        if request.method == 'GET':
+
+            favorite = db.session.execute(
+                db.select(ReviewWalkers).order_by(ReviewWalkers.id)).scalars()
+
+            result = [item.serialize()
+                        for item in favorite if item.walker_id == user_id]
+
+            response_body = {"message": "All reviews of the users",
+                             "status": "OK",
+                             "response": result}
+
+            return response_body, 200
+        
+    if user_type == "groomer":
+        if request.method == 'GET':
+
+            favorite = db.session.execute(
+                db.select(GroomerModel).order_by(GroomerModel.id)).scalars()
+
+            result = [item.serialize()
+                        for item in favorite if item.groomer_id == user_id]
+
+            response_body = {"message": "All reviews of the users",
+                             "status": "OK",
+                             "response": result}
+
+            return response_body, 200
 
 
-@api.route('/review/<int:user_id>', methods=['POST', 'GET'])
-@jwt_required()
-def get_user_vet_reviews(user_id):
 
-    if request.method == 'GET':
-        # THIS ONLY BRINGS ONE
-        review = db.session.execute(
-            db.select(VetReviewModel).order_by(VetReviewModel.id)).scalars()
-        response = [item.serialize()
-                    for item in review if item.user_id == user_id]
-        response_body = {"message": f'Reviews for User_id: {user_id}',
-                         "results": response,
-                         "status": "ok"}
+@api.route('/review/<int:user_id>/<string:user_type>', methods=['POST', 'GET'])
+# @jwt_required()
+# This is Ok
+def get_user_vet_reviews(user_id, user_type):
+    if user_type == "vet":
+        if request.method == 'GET':
+            # THIS ONLY BRINGS ONE
+            review = db.session.execute(
+                db.select(VetReviewModel).order_by(VetReviewModel.id)).scalars()
+            result = [item.serialize()
+                        for item in review if item.vet_id == user_id]
+            response_body = {"message": f'Reviews for User_id: {user_id}',
+                             "results": result,
+                             "status": "ok"}
 
-    if response_body:
-        return response_body, 200
-    else:
-        return "Not Found", 404
+        if response_body:
+            return response_body, 200
+        else:
+            return "Not Found", 404
+
+    if user_type == "walker":
+        if request.method == 'GET':
+
+            review = db.session.execute(
+                db.select(ReviewWalkers).order_by(ReviewWalkers.id)).scalars()
+
+            result = [item.serialize()
+                        for item in review if item.walker_id == user_id]
+
+            response_body = {"message": "All reviews of the users",
+                             "status": "OK",
+                             "response": result}
+
+            return response_body, 200
+        
+    if user_type == "groomer":
+        if request.method == 'GET':
+
+            review = db.session.execute(
+                db.select(GroomerModel).order_by(GroomerModel.id)).scalars()
+
+            result = [item.serialize()
+                        for item in review if item.groomer_id == user_id]
+
+            response_body = {"message": "All reviews of the users",
+                             "status": "OK",
+                             "response": result}
+
+            return response_body, 200
 
 
 @api.route('/posts', methods=['POST', 'GET'])
@@ -211,12 +286,6 @@ def get_posts():
 
 
     return jsonify(response), 200
-
-
-
-
-
-
 
 
 @api.route('/walkers', methods=['GET', 'POST'])
@@ -304,6 +373,7 @@ def handle_walker(id):
 
 
 @api.route('/reviews/', methods=['GET', 'POST'])
+@jwt_required()
 def handle_reviews():
 
     if request.method == 'GET':
@@ -506,4 +576,5 @@ def handle_get_groomers_reviews():
             return response_body, 200
         else:
             return "Not Found", 404
+
 
