@@ -4,6 +4,8 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import os
 import uuid
 import bcrypt
+from email_validator import validate_email, EmailNotValidError
+
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, VetFavoriteModel, VetReviewModel, PostModel, VetModel, WalkerModel, ReviewWalkers, FavoriteWalkers, GroomerModel, GroomerFavoritesModel, GroomerReviewsModel
 
@@ -20,12 +22,31 @@ api = Blueprint('api', __name__)
 
 @api.route('/signup/<string:user_type>', methods=['POST'])
 def signup(user_type):
-    # Here we need to improve the function so only emails in admin table can check "isAdmin: True".
-    # Also validations for email password and phone number.
-    # Id generation and password hashing.
     request_body = request.json
+
+
+    # Email Validation.
+    email = request_body["email"]
+
+    try:
+        emailinfo = validate_email(email, check_deliverability=False)
+    except EmailNotValidError as error:
+        return {
+            "message": str(error),
+            "code": 404
+        }
+    
+    email = emailinfo.normalized
+
+    # Generate id
     request_body["id"] = uuid.uuid4().int >> (128 - 32)  # Ask mentor Hector.
+
+    # Password Encryption and basic validation.
     password = request.json["password"]
+
+    if len(password) < 8:
+        return "Password must be at least 8 characters long."
+    
     hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     request_body["password"] = hashed
 
