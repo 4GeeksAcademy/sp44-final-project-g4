@@ -61,7 +61,7 @@ def signup(user_type):
         db.session.add(groomer)
         db.session.commit()
 
-        response_body = {"message": "New Vet Successfully Created",
+        response_body = {"message": "New Groomer Successfully Created",
                          "status": "ok",
                          "user": request_body}
 
@@ -77,7 +77,7 @@ def signup(user_type):
         db.session.add(walker)
         db.session.commit()
 
-        response_body = {"message": "New Vet Successfully Created",
+        response_body = {"message": "New Walker Successfully Created",
                          "status": "ok",
                          "user": request_body}
 
