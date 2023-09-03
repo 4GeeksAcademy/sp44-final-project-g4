@@ -14,7 +14,7 @@ from flask_jwt_extended import create_access_token
 
 api = Blueprint('api', __name__)
 
-
+# Endponit para crear nuevos usuarios y nuevos profecionales (vet/groomer/walker)
 @api.route('/signup/<string:user_type>', methods=['POST'])
 def signup(user_type):
     # Here we need to improve the function so only emails in admin table can check "isAdmin: True".
@@ -45,6 +45,7 @@ def signup(user_type):
 
         db.session.add(vet)
         db.session.commit()
+
         response_body = {"message": "New Vet Successfully Created",
                          "status": "ok",
                          "user": request_body}
@@ -53,6 +54,37 @@ def signup(user_type):
             return response_body, 200
         else:
             return "Vet could not be created"
+        
+    if user_type == "groomer":
+        groomer = GroomerModel(**request_body)
+
+        db.session.add(groomer)
+        db.session.commit()
+
+        response_body = {"message": "New Vet Successfully Created",
+                         "status": "ok",
+                         "user": request_body}
+
+        if response_body:
+            return response_body, 200
+        else:
+            return "Groomer could not be created"
+
+    
+    if user_type == "walker":
+        walker = WalkerModel(**request_body)
+
+        db.session.add(walker)
+        db.session.commit()
+
+        response_body = {"message": "New Vet Successfully Created",
+                         "status": "ok",
+                         "user": request_body}
+
+        if response_body:
+            return response_body, 200
+        else:
+            return "Walker could not be created"
 
     return "User type not correct", 404
 
@@ -78,7 +110,7 @@ def greeting():
 # User endpoints
 
 @api.route('/users', methods=['GET'])
-@jwt_required()
+#@jwt_required()
 def get_all_users():
         users = db.session.execute(
             db.select(User).order_by(User.name)).scalars()
@@ -94,10 +126,10 @@ def get_all_users():
 
 
 
-# EndPoint para optener todos los profesionales por grupo (vet/groomer/walker) ----> TERMINADO
-@api.route('/proffesional/<string:user_type>', methods=['GET'])
-def get_all_proffesionals(user_type):
-    if user_type == 'vet':
+# EndPoint para optener todos los profesionales por grupo (vet/groomer/walker) ----> TERMINADO --->daniel
+@api.route('/professional/<string:professional_type>', methods=['GET'])
+def get_all_proffesionals(professional_type):
+    if professional_type == 'vet':
         vets = db.session.execute(
             db.select(VetModel).order_by(VetModel.name)).scalars()
         results = [item.serialize() for item in vets]
@@ -110,7 +142,7 @@ def get_all_proffesionals(user_type):
         else:
             return "Not Found", 404
     
-    if user_type == 'groomer':
+    if professional_type == 'groomer':
         groomers = db.session.execute(
             db.select(GroomerModel).order_by(GroomerModel.name)).scalars()
         results = [item.serialize() for item in groomers]
@@ -123,7 +155,7 @@ def get_all_proffesionals(user_type):
         else:
             return "Not Found", 404
         
-    if user_type == 'walker':
+    if professional_type == 'walker':
         walkers = db.session.execute(
             db.select(WalkerModel).order_by(WalkerModel.name)).scalars()
         results = [item.serialize() for item in walkers]
@@ -137,9 +169,9 @@ def get_all_proffesionals(user_type):
             return "Not Found", 404
 
 
-# EndPoint para optener un profesional a través de su ID ----> TERMINADO (Faltaria solo resolver si el acceso a user será solo para el ADMIN)
-@api.route('/user/<int:id>/<string:user_type>', methods=['GET'])
-def get_single_user(id, user_type):
+# EndPoint para optener un profesional a través de su ID ----> TERMINADO (Faltaria solo resolver si el acceso a user será solo para el ADMIN) --->daniel
+@api.route('/professional/<int:id>/<string:professional_type>', methods=['GET'])
+def get_single_professional(id, professional_type):
     #Admin route?
 
     # if user_type == "user":
@@ -152,7 +184,7 @@ def get_single_user(id, user_type):
     #     else:
     #         return "Not Found", 404
 
-    if user_type == "vet":
+    if professional_type == "vet":
         vet = db.get_or_404(VetModel, id)
         response_body = {"status": "ok",
                          "results": vet.serialize()}
@@ -163,7 +195,7 @@ def get_single_user(id, user_type):
             return {"message": "Vet Id Not Found",
                     "status": 404}
         
-    if user_type == "groomer":
+    if professional_type == "groomer":
         groomer = db.get_or_404(GroomerModel, id)
         response_body = {"status": "ok",
                          "results": groomer.serialize()}
@@ -174,7 +206,7 @@ def get_single_user(id, user_type):
             return {"message": "Groomer Id Not Found",
                     "status": 404}
         
-    if user_type == "walker":
+    if professional_type == "walker":
         walker = db.get_or_404(WalkerModel, id)
         response_body = {"status": "ok",
                          "results": walker.serialize()}
@@ -184,6 +216,7 @@ def get_single_user(id, user_type):
         else:
             return {"message": "Walker Id Not Found",
                     "status": 404}
+
 
 
 # El Hadj
@@ -213,7 +246,7 @@ def delete_user(user_id, user_type):
             return "User not found", 404
         
 
-# EndPoint para optener los favorite de los profesional 
+# EndPoint para optener y crear los favorite de los profesional 
 # This is OK.
 @api.route('/favorite/<int:user_id>/<string:user_type>', methods=['POST', 'GET'])
 @jwt_required()
@@ -266,7 +299,7 @@ def get_user_vet_favorites(user_id, user_type):
             return response_body, 200
 
 
-# EndPoint para optener las reviews de los profesional 
+# EndPoint para optener y crear las reviews de los profesional 
 # This is Ok
 @api.route('/review/<int:user_id>/<string:user_type>', methods=['POST', 'GET'])
 # @jwt_required()
@@ -317,7 +350,7 @@ def get_user_vet_reviews(user_id, user_type):
 
             return response_body, 200
 
-
+# EndPoint para optener y crear los Posts
 @api.route('/posts', methods=['POST', 'GET'])
 def get_posts():
     if request.method == 'GET':
@@ -337,37 +370,7 @@ def get_posts():
     return jsonify(response), 200
 
 
-@api.route('/walkers', methods=['GET', 'POST'])
-def handle_walkers():
-    if request.method == 'GET':
-
-        walkers = db.session.execute(
-            db.select(WalkerModel).order_by(WalkerModel.name)).scalars()
-
-        result = [item.serialize() for item in walkers]
-
-        response_body = {"message": "List of walkers",
-                         "status": "OK",
-                         "response": result}
-
-        return response_body, 200
-
-    if request.method == 'POST':
-
-        request_body = request.get_json()
-
-        walker = WalkerModel(**request_body)
-
-        db.session.add(walker)
-        db.session.commit()
-
-        response_body = {"message": "New walker add",
-                         "status": "Ok",
-                         "response": request_body}
-
-        return response_body, 200
-
-
+# SI no me equivoco este endpoint se debe borrar por que hector ya los unifico en uno solo para todos profesionales
 @api.route('/walkers/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def handle_walker(id):
 
@@ -486,38 +489,7 @@ def handle_favorites():
 
         return response_body, 200
 
-
-@api.route('/groomers', methods=['POST', 'GET'])
-def handle_get_groomers(id):
-    if request.method == 'GET':
-        groomers: db.session.execute(
-            db.select(GroomerModel).order_by(GroomerModel.id)).scalars()
-        results = [item.serialize() for item in groomers]
-        response_body = {"message": " these are the Groomer endpoints",
-                         "results": results,
-                         "status": "ok"}
-
-        if response_body:
-            return response_body, 200
-        else:
-            return "Not Found", 404
-
-    if request.method == 'POST':
-        request_body = request.get_json()
-        groomers = GroomerModel(** request_body)
-        db.session.add(groomer)
-        db.session.commit()
-        print(request_body)
-        response_body = {"message": "Adding new groomer",
-                         "status": "ok",
-                         "new_groomers": request_body}
-
-        if response_body:
-            return response_body, 200
-        else:
-            return "Not Found", 404
-
-
+# SI no me equivoco este endpoint se debe borrar por que hector ya los unifico en uno solo para todos profesionales
 @api.route('/groomers/<int:id>', methods=['GET', 'PUT', 'DELETE'])
 def handle_groomers(id):
 
