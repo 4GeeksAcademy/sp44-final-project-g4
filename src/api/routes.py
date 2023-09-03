@@ -2,6 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
+import uuid
 import bcrypt
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, VetFavoriteModel, VetReviewModel, PostModel, VetModel, WalkerModel, ReviewWalkers, FavoriteWalkers, GroomerModel, GroomerFavoritesModel, GroomerReviewsModel
@@ -15,18 +16,22 @@ from flask_jwt_extended import create_access_token
 api = Blueprint('api', __name__)
 
 # Endponit para crear nuevos usuarios y nuevos profecionales (vet/groomer/walker)
+
+
 @api.route('/signup/<string:user_type>', methods=['POST'])
 def signup(user_type):
     # Here we need to improve the function so only emails in admin table can check "isAdmin: True".
     # Also validations for email password and phone number.
+    # Id generation and password hashing.
     request_body = request.json
+    request_body["id"] = uuid.uuid4().int >> (128 - 32)  # Ask mentor Hector.
+    password = request.json["password"]
+    hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    request_body["password"] = hashed
 
     if user_type == "user":
-        # password = request.json["password"]
-        # hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        # request_body["password"] = hashed
-
-        user = User(**request_body) 
+        user = User(**request_body)
+        user.password = hashed.decode('utf-8')
 
         db.session.add(user)
         db.session.commit()
@@ -42,6 +47,7 @@ def signup(user_type):
 
     if user_type == "vet":
         vet = VetModel(**request_body)
+        vet.password = hashed.decode('utf-8')
 
         db.session.add(vet)
         db.session.commit()
@@ -54,9 +60,10 @@ def signup(user_type):
             return response_body, 200
         else:
             return "Vet could not be created"
-        
+
     if user_type == "groomer":
         groomer = GroomerModel(**request_body)
+        groomer.password = hashed.decode('utf-8')
 
         db.session.add(groomer)
         db.session.commit()
@@ -70,9 +77,9 @@ def signup(user_type):
         else:
             return "Groomer could not be created"
 
-    
     if user_type == "walker":
         walker = WalkerModel(**request_body)
+        walker.password = hashed.decode('utf-8')
 
         db.session.add(walker)
         db.session.commit()
@@ -88,42 +95,56 @@ def signup(user_type):
 
     return "User type not correct", 404
 
+
 @api.route("/login", methods=["POST"])
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    if email != "test" or password != "test":
-        return jsonify({"msg": "Bad username or password"}), 401
+    if not email:
+        return jsonify({"msg": "Missing Email."}), 401
+    if not password:
+        return jsonify({"msg": "Missing Password."}), 401
+
+    user = db.session.execute(db.select(User).filter_by(email=email)).scalar_one()
+
+    if not user:
+        return "USer Not Found"
+
+    if bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8')):
+        print(f'Welcome back {email}')
+    else:
+        print("Password Does Not Match :(")
 
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
+
 
 @api.get("/hello")
 @jwt_required()
 def greeting():
 
     greet = {
-         "message": "hi there this route is protected by JWT"
+        "message": "hi there this route is protected by JWT"
     }
     return greet, 200
 
 # User endpoints
 
+
 @api.route('/users', methods=['GET'])
-#@jwt_required()
+# @jwt_required()
 def get_all_users():
-        users = db.session.execute(
-            db.select(User).order_by(User.name)).scalars()
-        results = [item.serialize() for item in users]
-        response_body = {"message": "all users",
-                         "results": results,
-                         "status": "ok"}
+    users = db.session.execute(
+        db.select(User).order_by(User.name)).scalars()
+    results = [item.serialize() for item in users]
+    response_body = {"message": "all users",
+                     "results": results,
+                     "status": "ok"}
 
-        if response_body:
-            return response_body, 200
-        else:
-            return "Not Found", 404
-
+    if response_body:
+        return response_body, 200
+    else:
+        return "Not Found", 404
 
 
 # EndPoint para optener todos los profesionales por grupo (vet/groomer/walker) ----> TERMINADO --->daniel
@@ -141,7 +162,7 @@ def get_all_proffesionals(professional_type):
             return response_body, 200
         else:
             return "Not Found", 404
-    
+
     if professional_type == 'groomer':
         groomers = db.session.execute(
             db.select(GroomerModel).order_by(GroomerModel.name)).scalars()
@@ -154,7 +175,7 @@ def get_all_proffesionals(professional_type):
             return response_body, 200
         else:
             return "Not Found", 404
-        
+
     if professional_type == 'walker':
         walkers = db.session.execute(
             db.select(WalkerModel).order_by(WalkerModel.name)).scalars()
@@ -172,7 +193,7 @@ def get_all_proffesionals(professional_type):
 # EndPoint para optener un profesional a través de su ID ----> TERMINADO (Faltaria solo resolver si el acceso a user será solo para el ADMIN) --->daniel
 @api.route('/professional/<int:id>/<string:professional_type>', methods=['GET'])
 def get_single_professional(id, professional_type):
-    #Admin route?
+    # Admin route?
 
     # if user_type == "user":
     #     user = db.get_or_404(User, id)
@@ -194,7 +215,7 @@ def get_single_professional(id, professional_type):
         else:
             return {"message": "Vet Id Not Found",
                     "status": 404}
-        
+
     if professional_type == "groomer":
         groomer = db.get_or_404(GroomerModel, id)
         response_body = {"status": "ok",
@@ -205,7 +226,7 @@ def get_single_professional(id, professional_type):
         else:
             return {"message": "Groomer Id Not Found",
                     "status": 404}
-        
+
     if professional_type == "walker":
         walker = db.get_or_404(WalkerModel, id)
         response_body = {"status": "ok",
@@ -226,8 +247,8 @@ def handle_proffesionals(user_type, user_id):
             vets = db.get_or_404(VetModel, id)
             print(vets)
             response_body = {"message": "vets filtered by ID",
-                            "status": "ok",
-                            "results": vets.serialize()}
+                             "status": "ok",
+                             "results": vets.serialize()}
 
             return response_body, 200
 
@@ -251,8 +272,8 @@ def handle_proffesionals(user_type, user_id):
             db.session.commit()
 
             response_body = {"message": "Update vets",
-                            "status": "ok",
-                            "vets": request_body}
+                             "status": "ok",
+                             "vets": request_body}
 
             return request_body, 200
 
@@ -261,20 +282,19 @@ def handle_proffesionals(user_type, user_id):
             db.session.delete(vets)
             db.session.commit()
             response_body = {"message": "DELETE vets",
-                            "status": "ok",
-                            "vets_deleting": id}
+                             "status": "ok",
+                             "vets_deleting": id}
 
             return response_body, 200
-
 
     if user_type == 'groomer':
         if request.method == 'GET':
             groomers = db.get_or_404(GroomerModel, id)
             print(groomers)
             response_body = {"message": "Groomers filtered by ID",
-                        "status": "ok",
-                        "results": groomers.serialize()
-                        }
+                             "status": "ok",
+                             "results": groomers.serialize()
+                             }
 
             return response_body, 200
 
@@ -298,8 +318,8 @@ def handle_proffesionals(user_type, user_id):
             db.session.commit()
 
             response_body = {"message": "Update groomers",
-                            "status": "ok",
-                            "groomers": request_body}
+                             "status": "ok",
+                             "groomers": request_body}
 
             return request_body, 200
 
@@ -308,18 +328,17 @@ def handle_proffesionals(user_type, user_id):
             db.session.delete(groomers)
             db.session.commit()
             response_body = {"message": "DELETE groomers",
-                            "status": "ok",
-                            "groomers_deleting": id}
+                             "status": "ok",
+                             "groomers_deleting": id}
 
             return response_body, 200
-
 
     if user_type == 'walker':
         if request.method == 'GET':
             walker = db.get_or_404(WalkerModel, id)
             response_body = {"message": "Walker filtered by ID",
-                            "status": "OK",
-                            "response": walker.serialize()}
+                             "status": "OK",
+                             "response": walker.serialize()}
 
             return response_body, 200
 
@@ -340,8 +359,8 @@ def handle_proffesionals(user_type, user_id):
             db.session.commit()
 
             response_body = {"message": "Walker update",
-                            "status": "OK",
-                            "response": request_body}
+                             "status": "OK",
+                             "response": request_body}
 
             return response_body, 200
 
@@ -350,8 +369,8 @@ def handle_proffesionals(user_type, user_id):
             db.session.delete(walker)
             db.session.commit()
             response_body = {"message": "Walker discharged",
-                            "status": "OK",
-                            "Walker discharged": id}
+                             "status": "OK",
+                             "Walker discharged": id}
 
             return response_body, 200
 
@@ -372,7 +391,6 @@ def get_posts():
         else:
             return "Not Found", 404
 
-
     return jsonify(response), 200
 
 
@@ -383,11 +401,12 @@ def get_user_favorites(user_id, user_type):
 
     if user_type == "vet":
         if request.method == 'GET':
-            favorites = db.session.execute(db.select(VetFavoriteModel).order_by(VetFavoriteModel.id)).scalars()
+            favorites = db.session.execute(
+                db.select(VetFavoriteModel).order_by(VetFavoriteModel.id)).scalars()
             result = [item.serialize() for item in favorites]
             response_body = {"message": "these are the vet favorites endpoints",
-                            "status": "OK",
-                            "response": result}
+                             "status": "OK",
+                             "response": result}
 
             if response_body:
                 return response_body, 200
@@ -401,8 +420,8 @@ def get_user_favorites(user_id, user_type):
             db.session.commit()
 
             response_body = {"message": "Adding new vet favorites",
-                            "status": "OK",
-                            "response": request_body}
+                             "status": "OK",
+                             "response": request_body}
 
             if response_body:
                 return response_body, 200
@@ -411,11 +430,12 @@ def get_user_favorites(user_id, user_type):
 
     if user_type == "walker":
         if request.method == 'GET':
-            favorites = db.session.execute(db.select(FavoriteWalkers).order_by(FavoriteWalkers.id)).scalars()
+            favorites = db.session.execute(
+                db.select(FavoriteWalkers).order_by(FavoriteWalkers.id)).scalars()
             result = [item.serialize() for item in favorites]
             response_body = {"message": "these are the walker favorites endpoints",
-                            "status": "OK",
-                            "response": result}
+                             "status": "OK",
+                             "response": result}
 
             if response_body:
                 return response_body, 200
@@ -429,22 +449,22 @@ def get_user_favorites(user_id, user_type):
             db.session.commit()
 
             response_body = {"message": "Adding new walker favorites",
-                            "status": "OK",
-                            "response": request_body}
+                             "status": "OK",
+                             "response": request_body}
 
             if response_body:
                 return response_body, 200
             else:
                 return "Not Found", 404
-        
+
     if user_type == "groomer":
         if request.method == 'GET':
             groomersFavorites: db.session.execute(db.select(
                 GroomerFavoritesModel).order_by(GroomerFavoritesModel.name)).scalars()
             results = [item.serialize() for item in groomersFavorites]
             response_body = {"message": "these are the groomer favorites endpoints",
-                            "results": results,
-                            "status": "ok"}
+                             "results": results,
+                             "status": "ok"}
 
             if response_body:
                 return response_body, 200
@@ -458,8 +478,8 @@ def get_user_favorites(user_id, user_type):
             db.session.commit()
             print(request_body)
             response_body = {"message": "Adding new groomers favorites",
-                            "status": "ok",
-                            "new_groomers_favorites": request_body}
+                             "status": "ok",
+                             "new_groomers_favorites": request_body}
 
             if response_body:
                 return response_body, 200
@@ -477,10 +497,10 @@ def get_user_reviews(user_id, user_type):
             review = db.session.execute(
                 db.select(VetReviewModel).order_by(VetReviewModel.id)).scalars()
             result = [item.serialize()
-                        for item in review if item.vet_id == user_id]
+                      for item in review if item.vet_id == user_id]
             response_body = {"message": 'All reviews of the users',
-                            "results": result,
-                            "status": "ok"}
+                             "results": result,
+                             "status": "ok"}
 
             if response_body:
                 return response_body, 200
@@ -493,8 +513,8 @@ def get_user_reviews(user_id, user_type):
             db.session.add(review)
             db.session.commit()
             response_body = {"message": "New review add",
-                            "status": "OK",
-                            "response": request_body}
+                             "status": "OK",
+                             "response": request_body}
 
             if response_body:
                 return response_body, 200
@@ -507,10 +527,10 @@ def get_user_reviews(user_id, user_type):
             review = db.session.execute(
                 db.select(ReviewWalkers).order_by(ReviewWalkers.id)).scalars()
             result = [item.serialize()
-                        for item in review if item.walker_id == user_id]
+                      for item in review if item.walker_id == user_id]
             response_body = {"message": "All reviews of the users",
-                            "status": "OK",
-                            "response": result}
+                             "status": "OK",
+                             "response": result}
 
             if response_body:
                 return response_body, 200
@@ -523,22 +543,22 @@ def get_user_reviews(user_id, user_type):
             db.session.add(review)
             db.session.commit()
             response_body = {"message": "New review add",
-                            "status": "OK",
-                            "response": request_body}
+                             "status": "OK",
+                             "response": request_body}
 
             if response_body:
                 return response_body, 200
             else:
                 return "Not Found", 404
-        
+
     if user_type == "groomer":
         if request.method == 'GET':
             groomersreviews: db.session.execute(
                 db.select(GroomerReviews).order_by(GroomerReviews.title)).scalars()
             results = [item.serialize() for item in groomersreviews]
             response_body = {"message": "All reviews of the users",
-                            "results": results,
-                            "status": "ok"}
+                             "results": results,
+                             "status": "ok"}
 
             if response_body:
                 return response_body, 200
@@ -552,8 +572,8 @@ def get_user_reviews(user_id, user_type):
             db.session.commit()
             print(request_body)
             response_body = {"message": "New review add",
-                            "status": "ok",
-                            "new_groomers_reviews": request_body}
+                             "status": "ok",
+                             "new_groomers_reviews": request_body}
 
             if response_body:
                 return response_body, 200

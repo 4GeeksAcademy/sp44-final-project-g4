@@ -8,17 +8,16 @@ db = SQLAlchemy()
 # USER MODEL
 class User(db.Model):
     __tablename__ = "user"
-    id = db.Column(db.BigInteger, default=uuid.uuid4().int >>
-                   (128 - 32), primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     email = db.Column(db.String(200), unique=True, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
     last_name = db.Column(db.String(100), unique=False, nullable=True)
     phone_number = db.Column(db.String(150), unique=True)
     avatar = db.Column(db.String(2000), unique=False)
-    password = db.Column(db.String(100), unique=False, nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
     is_active = db.Column(db.Boolean(), default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    password = db.Column(db.String(1000), unique=False, nullable=False)
 
 
 
@@ -35,17 +34,16 @@ class User(db.Model):
             "avatar": self.avatar,
             "is_active": self.is_active,
             "is_admin": self.is_admin,
-            "created_at": self.created_at     
+            "created_at": self.created_at,
+            "password": self.password    
         }
       
     # VET MODEL
 
 class VetModel(db.Model):
     __tablename__ = "vet"
-    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (
-        128 - 32), primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     email = db.Column(db.String(150), unique=True, nullable=False)
-    password = db.Column(db.String(200), unique=False, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
     last_name = db.Column(db.String(100), unique=False, nullable=False)
     phone_number = db.Column(db.String(150), unique=True, nullable=False)
@@ -56,6 +54,7 @@ class VetModel(db.Model):
     price_low = db.Column(db.Integer, unique=False, nullable=False)
     price_high = db.Column(db.Integer, unique=False, nullable=True, default=None)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    password = db.Column(db.String(1000), unique=False, nullable=False)
 
 
     def __repr__(self):
@@ -78,8 +77,7 @@ class VetModel(db.Model):
     
 class VetReviewModel(db.Model):
     __tablename__ = "vet_review"
-    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (
-        128 - 32), primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     title = db.Column(db.String(300), unique=False, nullable=False)
     body = db.Column(db.String(3000), unique=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -112,8 +110,7 @@ class VetReviewModel(db.Model):
     
 class VetFavoriteModel(db.Model):
     __tablename__ = "vet_favorite"
-    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (
-        128 - 32), primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     user_id = db.Column(db.BigInteger, db.ForeignKey(
         'user.id'), unique=False, nullable=False)
     vet_id = db.Column(
@@ -136,8 +133,7 @@ class VetFavoriteModel(db.Model):
 
 class Address(db.Model):
     __table_name__="AddressModel"
-    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (
-        128 - 32), primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     street = db.Column(db.String(400), unique=False, nullable=False)
     number = db.Column(db.Integer, unique=False, nullable=False)
     zip_code = db.Column(db.Integer, unique=False, nullable=False)
@@ -167,7 +163,7 @@ class GroomerModel(db.Model):
     company_name = db.Column(db.String(100), unique=True, nullable=True)
     description = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80),nullable=False)
+    password = db.Column(db.String(1000),nullable=False)
     phone_number = db.Column(db.String(10), nullable=False)
     address = db.Column(db.String(120), nullable=False)
     average_rate = db.Column(db.String(10), nullable=True)
@@ -257,12 +253,11 @@ class GroomerFavoritesModel(db.Model):
 
 class WalkerModel(db.Model):
     __tablename__ = "walker"
-    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (
-        128 - 32), primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     surname = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(1000), nullable=False)
     address = db.Column(db.String(100), nullable=False)
     phone_number = db.Column(db.String(20))
     description = db.Column(db.String(250))
@@ -289,8 +284,7 @@ class WalkerModel(db.Model):
 
 class PostModel(db.Model):
     __tablename__ = "post"
-    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (
-        128 - 32), primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     title = db.Column(db.String(300), unique=False, nullable=False)
     body = db.Column(db.String(3000), unique=False, nullable=False)
     image = db.Column(db.String(3000), unique=False, nullable=False)
@@ -318,8 +312,7 @@ class PostModel(db.Model):
     
 class ReviewWalkers(db.Model):
     __tablename__ = "review_walkers"
-    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (
-        128 - 32), primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     body = db.Column(db.String(250))
     date = db.Column(db.DateTime, default=datetime.utcnow)
     title = db.Column(db.String(100))
@@ -344,8 +337,7 @@ class ReviewWalkers(db.Model):
     
 class FavoriteWalkers(db.Model):
     __tablename__ = "favorite_walkers"
-    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (
-        128 - 32), primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)
     user_id = db.Column(db.BigInteger, db.ForeignKey("user.id"))
     user = db.relationship("User")
     walker_id = db.Column(db.BigInteger, db.ForeignKey("walker.id"))
