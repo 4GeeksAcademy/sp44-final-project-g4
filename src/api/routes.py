@@ -94,14 +94,40 @@ def get_all_users():
 
 
 
-# Incluir los demas pros.
+# EndPoint para optener todos los profesionales por grupo (vet/groomer/walker) ----> TERMINADO
 @api.route('/proffesional/<string:user_type>', methods=['GET'])
 def get_all_proffesionals(user_type):
     if user_type == 'vet':
-        users = db.session.execute(
+        vets = db.session.execute(
             db.select(VetModel).order_by(VetModel.name)).scalars()
-        results = [item.serialize() for item in users]
-        response_body = {"message": "all users",
+        results = [item.serialize() for item in vets]
+        response_body = {"message": "all Vets",
+                         "results": results,
+                         "status": "ok"}
+
+        if response_body:
+            return response_body, 200
+        else:
+            return "Not Found", 404
+    
+    if user_type == 'groomer':
+        groomers = db.session.execute(
+            db.select(GroomerModel).order_by(GroomerModel.name)).scalars()
+        results = [item.serialize() for item in groomers]
+        response_body = {"message": "all Groomers",
+                         "results": results,
+                         "status": "ok"}
+
+        if response_body:
+            return response_body, 200
+        else:
+            return "Not Found", 404
+        
+    if user_type == 'walker':
+        walkers = db.session.execute(
+            db.select(WalkerModel).order_by(WalkerModel.name)).scalars()
+        results = [item.serialize() for item in walkers]
+        response_body = {"message": "all Groomers",
                          "results": results,
                          "status": "ok"}
 
@@ -111,7 +137,7 @@ def get_all_proffesionals(user_type):
             return "Not Found", 404
 
 
-# Incluir los demas pros.
+# EndPoint para optener un profesional a través de su ID ----> TERMINADO (Faltaria solo resolver si el acceso a user será solo para el ADMIN)
 @api.route('/user/<int:id>/<string:user_type>', methods=['GET'])
 def get_single_user(id, user_type):
     #Admin route?
@@ -135,6 +161,28 @@ def get_single_user(id, user_type):
             return response_body, 200
         else:
             return {"message": "Vet Id Not Found",
+                    "status": 404}
+        
+    if user_type == "groomer":
+        groomer = db.get_or_404(GroomerModel, id)
+        response_body = {"status": "ok",
+                         "results": groomer.serialize()}
+
+        if response_body:
+            return response_body, 200
+        else:
+            return {"message": "Groomer Id Not Found",
+                    "status": 404}
+        
+    if user_type == "walker":
+        walker = db.get_or_404(WalkerModel, id)
+        response_body = {"status": "ok",
+                         "results": walker.serialize()}
+
+        if response_body:
+            return response_body, 200
+        else:
+            return {"message": "Walker Id Not Found",
                     "status": 404}
 
 
@@ -163,8 +211,9 @@ def delete_user(user_id, user_type):
             return "User Deleted Successfully", 200
         except:
             return "User not found", 404
+        
 
-
+# EndPoint para optener los favorite de los profesional 
 # This is OK.
 @api.route('/favorite/<int:user_id>/<string:user_type>', methods=['POST', 'GET'])
 @jwt_required()
@@ -217,10 +266,10 @@ def get_user_vet_favorites(user_id, user_type):
             return response_body, 200
 
 
-
+# EndPoint para optener las reviews de los profesional 
+# This is Ok
 @api.route('/review/<int:user_id>/<string:user_type>', methods=['POST', 'GET'])
 # @jwt_required()
-# This is Ok
 def get_user_vet_reviews(user_id, user_type):
     if user_type == "vet":
         if request.method == 'GET':

@@ -275,8 +275,15 @@ class WalkerModel(db.Model):
     
     def serialize(self):
         return {
-            "user_id": self.user_id,
-            "vet_id": self.vet_id,
+            "id": self.id,
+            "Name": self.name,
+            "Surname": self.surname,
+            "Email": self.email,
+            "Address": self.address,
+            "Phone Number": self.phone_number,
+            "Description": self.description,
+            "Price low": self.price_low,
+            "Price high": self.price_high
         }
 
 
