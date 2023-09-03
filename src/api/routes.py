@@ -4,6 +4,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import os
 import uuid
 import bcrypt
+import phonenumbers
 from email_validator import validate_email, EmailNotValidError
 
 from flask import Flask, request, jsonify, url_for, Blueprint
@@ -23,33 +24,33 @@ api = Blueprint('api', __name__)
 @api.route('/signup/<string:user_type>', methods=['POST'])
 def signup(user_type):
     request_body = request.json
-
-
     # Email Validation.
-    email = request_body["email"]
-
+    # Validate email.
     try:
+        email = request_body["email"]
         emailinfo = validate_email(email, check_deliverability=False)
+        email = emailinfo.normalized
     except EmailNotValidError as error:
         return {
             "message": str(error),
             "code": 404
         }
     
-    email = emailinfo.normalized
-
+    # Phone number verification
+    phone_number = request_body["phone_number"]
+    verification_phone = phonenumbers.parse(phone_number, "US")
+    if not phonenumbers.is_possible_number(verification_phone):
+        return "Phone Number Not Valid", 400
     # Generate id
     request_body["id"] = uuid.uuid4().int >> (128 - 32)  # Ask mentor Hector.
-
     # Password Encryption and basic validation.
     password = request.json["password"]
-
     if len(password) < 8:
         return "Password must be at least 8 characters long."
-    
     hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     request_body["password"] = hashed
 
+    # Create Users and Professionals
     if user_type == "user":
         user = User(**request_body)
         user.password = hashed.decode('utf-8')
