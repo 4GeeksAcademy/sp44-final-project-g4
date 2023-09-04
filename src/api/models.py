@@ -153,7 +153,6 @@ class GroomerModel(db.Model):
         return f'<groomer {self.name} {self.last_name} {self.company_name}>'
 
 
-
 class GroomerReviewsModel(db.Model):
     __tablename__ = "groomerreviews"
     id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (128 - 32), primary_key=True)
@@ -204,6 +203,7 @@ class GroomerFavoritesModel(db.Model):
             "user_id": self.user_id,
             "vet_id": self.vet_id,
         }
+
 
 class WalkerModel(db.Model):
     __tablename__ = "walker"

@@ -131,12 +131,13 @@ def login():
         db.select(User).filter_by(email=email)).scalar_one()
 
     if not user:
-        return "USer Not Found"
+        return "User Not Found"
 
     if bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8')):
         print(f'Welcome back {email}')
     else:
         print("Password Does Not Match :(")
+        return
 
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
@@ -162,13 +163,12 @@ def get_all_users():
 @jwt_required()
 def get_single_users(user_id):
     user = User.query.get_or_404(user_id)
+    # if login_session[user_id] == user.id:
     schema = UserSchema()
-
     if schema:
         return {"user": schema.dump(user)}
-
     else:
-        return "Not Found", 404
+            return "Not Found", 404
 
 
 # EndPoint para optener todos los profesionales por grupo (vet/groomer/walker) ----> TERMINADO --->daniel
