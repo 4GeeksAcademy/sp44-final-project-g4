@@ -1,7 +1,7 @@
 import os
 from flask_admin import Admin
 
-from .models import db, User, WalkerModel, ReviewWalkers, FavoriteWalkers, GroomerModel, GroomerReviewsModel, GroomerFavoritesModel, VetModel, VetFavoriteModel, VetReviewModel, PostModel, AddressModel, PetModel
+from .models import db, User, WalkerModel, ReviewWalkers, FavoriteWalkers, GroomerModel, GroomerReviewsModel, GroomerFavoritesModel, VetModel, VetFavoriteModel, VetReviewModel, PostModel, AddressModel, PostModel, PetModel 
 
 
 from flask_admin.contrib.sqla import ModelView
