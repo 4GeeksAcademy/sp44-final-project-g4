@@ -1,8 +1,11 @@
+from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import uuid
 
 db = SQLAlchemy()
+
+ma = Marshmallow()
 
 
 # USER MODEL
@@ -20,25 +23,10 @@ class User(db.Model):
     password = db.Column(db.String(1000), unique=False, nullable=False)
 
 
-
     def __repr__(self):
         return f'<User {self.id} {self.email}>'
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "email": self.email,
-            "name": self.name,
-            "last_name": self.last_name,
-            "phone_number": self.phone_number,
-            "avatar": self.avatar,
-            "is_active": self.is_active,
-            "is_admin": self.is_admin,
-            "created_at": self.created_at,
-            "password": self.password    
-        }
-      
-    # VET MODEL
+
 
 class VetModel(db.Model):
     __tablename__ = "vet"
@@ -48,6 +36,7 @@ class VetModel(db.Model):
     last_name = db.Column(db.String(100), unique=False, nullable=False)
     phone_number = db.Column(db.String(150), unique=True, nullable=False)
     company_name = db.Column(db.String(100), unique=False, nullable=True)
+    # address = db.Column(db.String(120), nullable=False)
     description = db.Column(db.String(2000), unique=False, nullable=False)
     avatar = db.Column(db.String(2000), unique=True, nullable=False)
     services = db.Column(db.String(2000), unique=False, nullable=True)
@@ -60,20 +49,6 @@ class VetModel(db.Model):
     def __repr__(self):
         return f'<Vet {self.id} {self.email}>'
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "email": self.email,
-            "name": self.name,
-            "last_name": self.last_name,
-            "phone_number": self.phone_number,
-            "company_name": self.company_name,
-            "description": self.description,
-            "avatar": self.avatar,
-            "services": self.services,
-            "price_low": self.price_low,
-            "price_high": self.price_high,
-        }
     
 class VetReviewModel(db.Model):
     __tablename__ = "vet_review"
@@ -173,32 +148,11 @@ class GroomerModel(db.Model):
     call_in = db.Column(db.Boolean(), nullable=False)
     avatar = db.Column(db.String(120), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    is_active = db.Column(db.Boolean(), nullable=False)
 
     def __repr__(self):
         return f'<groomer {self.name} {self.last_name} {self.company_name}>'
 
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "last_name": self.last_name,
-            "company_name": self.company_name,
-            "description": self.description,
-            "email": self.email,
-
-            "phone_number": self.phone_number,
-            "address": self.address,
-            "average_rate": self.average_rate,
-            "services": self.services,
-            "price_low": self.price_low,
-            "price_high": self.price_high,
-            "call_in": self.call_in,
-            "avatar": self.avatar,
-            "created_at": self.created_at,
-            "is_active": self.is_active
-        }
 
 class GroomerReviewsModel(db.Model):
     __tablename__ = "groomerreviews"
@@ -268,19 +222,6 @@ class WalkerModel(db.Model):
     def __repr__(self):
         return f'<Walker {self.name} {self.surname}'
     
-    def serialize(self):
-        return {
-            "id": self.id,
-            "Name": self.name,
-            "Surname": self.surname,
-            "Email": self.email,
-            "Address": self.address,
-            "Phone Number": self.phone_number,
-            "Description": self.description,
-            "Price low": self.price_low,
-            "Price high": self.price_high
-        }
-
 
 class PostModel(db.Model):
     __tablename__ = "post"
