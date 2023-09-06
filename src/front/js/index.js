@@ -10,7 +10,7 @@ import "../styles/index.css";
 import Layout from "./layout.jsx";
 
 //render your react application
-// ReactDOM.render(<Layout />, document.querySelector("#app"));
+//ReactDOM.render(<Layout />, document.querySelector("#app"));
 
 const container = document.getElementById('app');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
