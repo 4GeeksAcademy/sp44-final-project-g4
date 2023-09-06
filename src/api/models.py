@@ -8,7 +8,6 @@ db = SQLAlchemy()
 ma = Marshmallow()
 
 
-
 # USER MODEL
 class User(db.Model):
     __tablename__ = "user"
