@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: d54bc27e4bb0
+Revision ID: 9123966891cf
 Revises: 
-Create Date: 2023-09-02 13:23:43.838708
+Create Date: 2023-09-06 08:38:50.761345
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd54bc27e4bb0'
+revision = '9123966891cf'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,7 +25,7 @@ def upgrade():
     sa.Column('company_name', sa.String(length=100), nullable=True),
     sa.Column('description', sa.String(length=120), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
-    sa.Column('password', sa.String(length=80), nullable=False),
+    sa.Column('password', sa.String(length=1000), nullable=False),
     sa.Column('phone_number', sa.String(length=10), nullable=False),
     sa.Column('address', sa.String(length=120), nullable=False),
     sa.Column('average_rate', sa.String(length=10), nullable=True),
@@ -35,7 +35,6 @@ def upgrade():
     sa.Column('call_in', sa.Boolean(), nullable=False),
     sa.Column('avatar', sa.String(length=120), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('company_name'),
     sa.UniqueConstraint('email')
@@ -57,10 +56,10 @@ def upgrade():
     sa.Column('last_name', sa.String(length=100), nullable=True),
     sa.Column('phone_number', sa.String(length=150), nullable=True),
     sa.Column('avatar', sa.String(length=2000), nullable=True),
-    sa.Column('password', sa.String(length=100), nullable=False),
     sa.Column('is_admin', sa.Boolean(), nullable=True),
     sa.Column('is_active', sa.Boolean(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('password', sa.String(length=1000), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('phone_number')
@@ -68,7 +67,6 @@ def upgrade():
     op.create_table('vet',
     sa.Column('id', sa.BigInteger(), nullable=False),
     sa.Column('email', sa.String(length=150), nullable=False),
-    sa.Column('password', sa.String(length=200), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('last_name', sa.String(length=100), nullable=False),
     sa.Column('phone_number', sa.String(length=150), nullable=False),
@@ -79,6 +77,7 @@ def upgrade():
     sa.Column('price_low', sa.Integer(), nullable=False),
     sa.Column('price_high', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('password', sa.String(length=1000), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('avatar'),
     sa.UniqueConstraint('email'),
@@ -89,7 +88,7 @@ def upgrade():
     sa.Column('name', sa.String(length=20), nullable=False),
     sa.Column('surname', sa.String(length=50), nullable=False),
     sa.Column('email', sa.String(length=50), nullable=False),
-    sa.Column('password', sa.String(length=50), nullable=False),
+    sa.Column('password', sa.String(length=1000), nullable=False),
     sa.Column('address', sa.String(length=100), nullable=False),
     sa.Column('phone_number', sa.String(length=20), nullable=True),
     sa.Column('description', sa.String(length=250), nullable=True),
