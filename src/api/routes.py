@@ -52,20 +52,28 @@ def signup(user_type):
 
     # Create Users and Professionals
     if user_type == "user":
-        user = User(**request_body)
-        user.password = hashed.decode('utf-8')
+        email = request_body["email"]
+       
+        user = db.session.execute(db.select(User).filter_by(email=email)).scalar_one()
+        
+        if not user:
+            user = User(**request_body)
+            user.password = hashed.decode('utf-8')
 
-        db.session.add(user)
-        db.session.commit()
+            db.session.add(user)
+            db.session.commit()
 
-        response_body = {"message": "New User Successfully Created",
-                         "status": "ok",
-                         "user": request_body["email"]}
+            response_body = {"message": "New User Successfully Created",
+                             "status": "ok",
+                             "user": request_body["email"]}
 
-        if response_body:
-            return response_body, 200
-        else:
-            return "User could not be created"
+            return response_body
+        
+        response_body = {"message": "There was a problem",
+                             "status": 501,
+                             "error":  "Email already exist"}
+        
+        return response_body, 501
 
     if user_type == "vet":
         vet = VetModel(**request_body)

@@ -7,8 +7,8 @@ from marshmallow import EXCLUDE
 class UserSchema(ma.SQLAlchemyAutoSchema):
     name = String(required=True, validate=[validate.Length(min=2)])
     email = String(required=True, validate=[validate.Email()])
-    phone_number = String(require=True, validate=validate.Regexp('(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'))
-    avatar = String(require=True, validate=validate.URL())
+    # phone_number = String(require=True, validate=validate.Regexp('(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'))
+    # avatar = String(require=True, validate=validate.URL())
     class Meta:
         unknown = EXCLUDE
         model = User
