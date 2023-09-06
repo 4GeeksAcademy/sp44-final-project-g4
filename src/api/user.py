@@ -52,7 +52,3 @@ class WalkerSchema(ma.SQLAlchemyAutoSchema):
         exclude = ["password"]
         load_instance = True
 
-
-
-
-    

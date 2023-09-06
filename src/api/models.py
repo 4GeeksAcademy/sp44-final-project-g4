@@ -305,7 +305,3 @@ class FavoriteWalkers(db.Model):
             "author": self.author,
             "category": self.category
         }
-    
-    
-
-
