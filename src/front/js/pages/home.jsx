@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar } from "../component/navbar/Navbar.jsx";
+import { Navbar } from "../component/Navbar.jsx";
 
 
 export const Home = () => {

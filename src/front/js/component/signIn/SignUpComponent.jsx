@@ -7,11 +7,11 @@ export const SignUpComponent = () => {
     return (
         <>
             <div className="container text-center">
-                <button onClick={ () => setLogOption( 'professional' ) }>As User</button>
-                <button onClick={ () => setLogOption( 'user' ) } >As Professional</button>
+                <button onClick={ () => setLogOption( 'user' ) }>As User</button>
+                <button onClick={ () => setLogOption( 'professional' ) } >As Professional</button>
             </div>
-            { logOption === 'professional' && <UserForm /> }
-            { logOption === 'user' && <VetForm /> }
+            { logOption === 'professional' && <VetForm /> }
+            { logOption === 'user' && <UserForm /> }
 
         </>
     );
