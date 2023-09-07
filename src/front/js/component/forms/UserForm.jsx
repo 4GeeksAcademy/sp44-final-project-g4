@@ -10,10 +10,7 @@ export const UserForm = () => {
         name: '',
         last_name: '',
         email: '',
-        password: '',
-        pet: "",
-        location: "",
-        avatar: ''
+        password: ''
     } );
 
 
@@ -21,6 +18,7 @@ export const UserForm = () => {
     const handleSubmit = async ( event ) => {
         event.preventDefault();
         console.log( 'working' );
+        console.log( formState );
         signUp( event, formState, "user" )
             .then( data => {
                 console.log( data );
@@ -42,7 +40,7 @@ export const UserForm = () => {
                         <img className="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" />
                         <h1 className="h3 mb-3 fw-normal">Sign Up</h1>
 
-                        <div className="form-floating">
+                        <div className="form-floating mb-2">
                             <input
                                 name="name"
                                 value={ name }
@@ -56,7 +54,7 @@ export const UserForm = () => {
                             />
                             <label htmlFor="floatingInput">Name</label>
                         </div>
-                        <div className="form-floating">
+                        <div className="form-floating mb-2">
                             <input
                                 name="last_name"
                                 value={ last_name }
@@ -81,8 +79,7 @@ export const UserForm = () => {
                             <label htmlFor="floatingInput">Email address</label>
                             <p className="text-danger">{ emailError }</p>
                         </div>
-
-                        <div className="form-floating">
+                        <div className="form-floating mb-2">
                             <input
                                 name="password"
                                 value={ password }
@@ -93,7 +90,7 @@ export const UserForm = () => {
                                 placeholder="Password" />
                             <label htmlFor="floatingPassword">Password</label>
                         </div>
-                        <div className="form-floating">
+                        {/* <div className="form-floating">
                             <input
                                 name="location"
                                 value={ location }
@@ -103,20 +100,7 @@ export const UserForm = () => {
                                 id="floatingPassword"
                                 placeholder="Location" />
                             <label htmlFor="floatingPassword">Location</label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <div className="m-1 d-flex flex-column ">
-                                <label className="mb-2 bg-light p-2 rounded" htmlFor="floatingPassword">Profile Picture</label>
-
-                                <input
-                                    name="avatar"
-                                    value={ avatar }
-                                    onChange={ onInputChange }
-                                    type="text"
-                                    id="floatingPassword" />
-                            </div>
-                        </div>
-
+                        </div> */}
                         <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
                     </form>
                 </main>
