@@ -31,6 +31,7 @@ export const VetForm = () => {
         const userType = type.toLowerCase().trim();
         signUp( event, formState, userType )
             .then( data => {
+                // For development only.
                 alert( data.message );
             } );
         return;
