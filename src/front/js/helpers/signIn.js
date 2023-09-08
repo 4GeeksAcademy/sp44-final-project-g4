@@ -29,6 +29,8 @@ export const signIn = async (event, initialObject = {}) => {
 
             const result = localStorage.getItem("token");
             alert(result)
+
+            // Develoment, remove from localstore to try the funtion multiple times.
             localStorage.removeItem("token")
         }
 
