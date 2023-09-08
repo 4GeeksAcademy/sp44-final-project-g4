@@ -12,6 +12,7 @@ export const LoginForm = () => {
         event.preventDefault();
         signIn(event, formState)
             .then(data => {
+                // For development only.
                 if (data.code === 501) {
                     alert(data.msg)
                 } else {
