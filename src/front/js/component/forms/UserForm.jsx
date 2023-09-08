@@ -1,50 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from "../hooks/useForm.jsx";
 import { signUp } from '../../helpers/signUp.js';
-
+// import { Navigate } from "react-router-dom";
 
 export const UserForm = () => {
-    const [ emailError, setEmailError ] = useState( '' );
+    // const [loginRedirect, setLoginRedirect] = useState(false)
 
-    const { formState, onResetForm, onInputChange, name, email, password, last_name, avatar, location } = useForm( {
+
+    const { formState, onResetForm, onInputChange, name, email, password, last_name, avatar, location } = useForm({
         name: '',
         last_name: '',
         email: '',
         password: ''
-    } );
+    });
 
-
-
-    const handleSubmit = async ( event ) => {
+    const handleSubmit = async (event) => {
+        setLoginRedirect(false);
         event.preventDefault();
-        console.log( 'working' );
-        console.log( formState );
-        signUp( event, formState, "user" )
-            .then( data => {
-                console.log( data );
-                if ( data.status == 501 ) {
-                    setEmailError( data.error + " " + data.message );
-                    alert( data.error + " " + data.message );
+        console.log('working');
+        console.log(formState);
+        await signUp(event, formState, "user")
+            .then(data => {
+                console.log(data);
+                if (data.code == 501) {
+
+                    alert(data.message);
                 }
-            } );
+                alert(data.message);
+
+                // setLoginRedirect(true);
+            });
+
+
 
     };
 
 
     return (
         <>
+            {/* {loginRedirect && (
+                <Navigate replace to="/login" />
+            )} */}
             <div className="container w-50 ">
 
                 <main className="form-signin">
-                    <form onSubmit={ handleSubmit }>
+                    <form onSubmit={handleSubmit}>
                         <img className="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" />
                         <h1 className="h3 mb-3 fw-normal">Sign Up</h1>
 
                         <div className="form-floating mb-2">
                             <input
                                 name="name"
-                                value={ name }
-                                onChange={ onInputChange }
+                                value={name}
+                                onChange={onInputChange}
                                 type="text"
                                 className="form-control"
                                 id="floatingInput"
@@ -57,8 +65,8 @@ export const UserForm = () => {
                         <div className="form-floating mb-2">
                             <input
                                 name="last_name"
-                                value={ last_name }
-                                onChange={ onInputChange }
+                                value={last_name}
+                                onChange={onInputChange}
                                 type="text"
                                 className="form-control"
                                 id="floatingInput"
@@ -70,20 +78,20 @@ export const UserForm = () => {
                         <div className="form-floating">
                             <input
                                 name="email"
-                                value={ email }
-                                onChange={ onInputChange }
+                                value={email}
+                                onChange={onInputChange}
                                 type="email"
                                 className="form-control"
                                 id="floatingInput"
                                 placeholder="name@example.com" />
                             <label htmlFor="floatingInput">Email address</label>
-                            <p className="text-danger">{ emailError }</p>
+
                         </div>
                         <div className="form-floating mb-2">
                             <input
                                 name="password"
-                                value={ password }
-                                onChange={ onInputChange }
+                                value={password}
+                                onChange={onInputChange}
                                 type="password"
                                 className="form-control"
                                 id="floatingPassword"

@@ -29,7 +29,7 @@ def handle_marshmallow_error(e):
 def signup(user_type):
     request_body = request.json
     email = request_body["email"]
-    phone_number = request_body["phone_number"]
+    
 
     if user_type == 'user':
         schema = UserSchema()
@@ -73,6 +73,7 @@ def signup(user_type):
         return response_body
 
     if user_type == "vet":
+        phone_number = request_body["phone_number"]
         if VetModel.query.filter(VetModel.email == email).first():
             return {"msg": "Email already exist.......",
                     "code": 501}
@@ -93,6 +94,7 @@ def signup(user_type):
         return response_body
 
     if user_type == "groomer":
+        phone_number = request_body["phone_number"]
         if GroomerModel.query.filter(GroomerModel.email == email).first():
             return {"msg": "Email already exist.......",
                     "code": 501}
@@ -113,6 +115,7 @@ def signup(user_type):
         return response_body
 
     if user_type == "walker":
+        phone_number = request_body["phone_number"]
         if WalkerModel.query.filter(WalkerModel.email == email).first():
             return {"msg": "Email already exist.......",
                     "code": 501}
@@ -139,25 +142,26 @@ def signup(user_type):
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
+    
     if not email:
         return jsonify({"msg": "Missing Email."}), 401
     if not password:
         return jsonify({"msg": "Missing Password."}), 401
 
-    user = db.session.execute(
-        db.select(User).filter_by(email=email)).scalar_one()
+    user = User.query.filter(User.email == email).first()
 
-    if not user:
-        return "User Not Found"
-
-    if bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8')):
-        print(f'Welcome back {email}')
+    if user:
+        if bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8')):
+            access_token = create_access_token(identity=email)
+            print(f'Welcome back {email}')
+            return jsonify(access_token=access_token)
     else:
-        print("Password Does Not Match :(")
-        return
+        message_body = {
+            "msg": "User or Password Incorrect",
+            "code": 501
+        }
+        return message_body
 
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
 
 
 # Need to protect route only for admin

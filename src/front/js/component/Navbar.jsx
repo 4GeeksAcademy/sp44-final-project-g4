@@ -6,7 +6,7 @@ export const Navbar = () => {
     return (
         <>
             <div className="dropdown bg-success  d-flex justify-content-end">
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div className="btn-group" role="group" aria-label="Basic example">
                     <Link className="btn btn-primary text-center" to="/login">Login</Link>
                 </div>
 
