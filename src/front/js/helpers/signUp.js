@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const signUp = async (event, initialObject = {}, type) => {
-
+    // Development, default picture.
     initialObject.avatar = "https://www.shorturl.at/img/shorturl-icon.png";
 
     const myHeaders = new Headers();
