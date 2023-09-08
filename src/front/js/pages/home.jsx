@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Navbar } from "../component/navbar/Navbar.jsx"
-import { LowerView } from "../component/lower view/LowerView.jsx";
+import { LowerView } from "../component/lower_view/LowerView.jsx";
 
 
 export const Home = () => {
