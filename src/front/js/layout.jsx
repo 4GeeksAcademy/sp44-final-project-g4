@@ -4,7 +4,11 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home.jsx";
-import { PrivateView } from "./pages/privateView.jsx";
+import { SecondView } from "./pages/secondView.jsx";
+import { VetView } from "./pages/vetView.jsx";
+import { GroomerView } from "./pages/groomerView.jsx";
+import { WalkerView } from "./pages/walkerView.jsx";
+import { AdoptionView } from "./pages/adoptionView.jsx";
 import injectContext from "./store/appContext";
 
 
@@ -22,10 +26,10 @@ const Layout = () => {
                 <ScrollToTop>                    
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<PrivateView/>} path="/vet" />
-                        <Route element={<PrivateView/>} path="/groomer" /> 
-                        <Route element={<PrivateView/>} path="/walker" /> 
-                        <Route element={<PrivateView/>} path="/adoption" /> 
+                        <Route element={<VetView/>} path="/vet" />
+                        <Route element={<GroomerView/>} path="/groomer" /> 
+                        <Route element={<WalkerView/>} path="/walker" /> 
+                        <Route element={<AdoptionView/>} path="/adoption" /> 
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>                    
                 </ScrollToTop>

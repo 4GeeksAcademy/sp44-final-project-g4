@@ -1,4 +1,5 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ProfessionalView } from "./ProfessionalView.jsx";
 
 
@@ -19,11 +20,11 @@ export const ChangeOfView = () => {
                     <button className="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#adoption-tab-pane" type="button" role="tab" aria-controls="adoption-tab-pane" aria-selected="false">Adoption</button>
                 </li>
             </ul>
-            <div className="tab-content" id="myTabContent">
-                <div className="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0"><p><ProfessionalView /></p></div>
-                <div className="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"><p>Aqui se muestran los groomers</p></div>
-                <div className="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">Aqui se muestran los walker</div>
-                <div className="tab-pane fade" id="adoption-tab-pane" role="tabpanel" aria-labelledby="adoption-tab" tabindex="0">Aqui se muestran la pagina de adopcion</div>
+            <div className="selectIcons" id="professionalIcons">
+                <div className="iconVet fade show active" id="vet-icon" role="tabpanel" aria-labelledby="vet-tab" tabindex="0"></div>
+                <div className="iconGroomer fade" id="groomer-icon" role="tabpanel" aria-labelledby="groomer-tab" tabindex="1"></div>
+                <div className="iconWalker fade" id="walker-icon" role="tabpanel" aria-labelledby="walker-tab" tabindex="2"></div>
+                <div className="iconAdoption fade" id="adoption-icon" role="tabpanel" aria-labelledby="adoption-tab" tabindex="3">Aqui se muestran la pagina de adopcion</div>
             </div>
         </>
     )
