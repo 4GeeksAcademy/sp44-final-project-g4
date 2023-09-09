@@ -1,4 +1,4 @@
-import React from "react"; 
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
@@ -11,6 +11,10 @@ import { WalkerView } from "./pages/walkerView.jsx";
 import { AdoptionView } from "./pages/adoptionView.jsx";
 import injectContext from "./store/appContext";
 
+import { CardVet } from "./component/cards/CardVet.jsx";
+import { CardGroomer } from "./component/cards/CardGroomer.jsx";
+import { CardWalker } from "./component/cards/CardWalker.jsx";
+import { CardAdoption } from "./component/cards/CardAdoption.jsx";
 
 //create your first component
 const Layout = () => {
@@ -18,20 +22,20 @@ const Layout = () => {
     // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
 
-    if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
+    if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     return (
         <div>
             <BrowserRouter basename={basename}>
-                <ScrollToTop>                    
+                <ScrollToTop>
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<VetView/>} path="/vet" />
-                        <Route element={<GroomerView/>} path="/groomer" /> 
-                        <Route element={<WalkerView/>} path="/walker" /> 
-                        <Route element={<AdoptionView/>} path="/adoption" /> 
+                        <Route element={<VetView />} path="/vet" />
+                        <Route element={<GroomerView />} path="/groomer" />
+                        <Route element={<WalkerView />} path="/walker" />
+                        <Route element={<AdoptionView />} path="/adoption" />
                         <Route element={<h1>Not found!</h1>} />
-                    </Routes>                    
+                    </Routes>
                 </ScrollToTop>
             </BrowserRouter>
         </div>
