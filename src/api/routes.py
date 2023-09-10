@@ -335,7 +335,7 @@ def handle_proffesionals(user_type, user_id):
 def get_posts():
     if request.method == 'GET':
         posts = db.session.execute(
-            db.select(PostModel).order_by(PostModel.date)).scalars()
+            db.select(PostModel).order_by(PostModel.created_at)).scalars()
         results = [item.serialize() for item in posts]
         response = {"message": "All posts fetched successfully",
                     "results": results,
