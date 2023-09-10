@@ -1,6 +1,7 @@
 import React from "react";
-import { useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import { useParams } from "react-router-dom";
 import { Navbar } from "../component/navbar/Navbar.jsx"
 import { ChangeOfView } from "../component/secondView/ChangeOfView.jsx";
 import { ProfessionalView } from "../component/secondView/ProfessionalView.jsx";

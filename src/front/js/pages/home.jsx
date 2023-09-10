@@ -9,7 +9,8 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<>
+		<>    
+		{/* modificar el home */}
 			<div className="container">
 				<div className="navbar">
 				<h1>

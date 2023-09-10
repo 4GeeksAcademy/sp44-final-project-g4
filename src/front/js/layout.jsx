@@ -4,7 +4,6 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home.jsx";
-import { SecondView } from "./pages/secondView.jsx";
 import { VetView } from "./pages/vetView.jsx";
 import { GroomerView } from "./pages/groomerView.jsx";
 import { WalkerView } from "./pages/walkerView.jsx";
@@ -28,6 +27,7 @@ const Layout = () => {
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
+                    <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<VetView />} path="/vet" />
@@ -36,6 +36,7 @@ const Layout = () => {
                         <Route element={<AdoptionView />} path="/adoption" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
+                    <p>Footer</p>
                 </ScrollToTop>
             </BrowserRouter>
         </div>
