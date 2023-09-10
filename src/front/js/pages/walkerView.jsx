@@ -19,17 +19,17 @@ export const WalkerView = () => {
 						<Navbar />
 					</h1>
 				</div>
-				<div class="container-fluid text-center">
-					<div class="row-professional">
-						<div class="col-12">
+				<div className="container-fluid text-center">
+					<div className="row-professional">
+						<div className="col-12">
 							<ChangeOfView /> {/*Select Professional*/}
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-3">
+					<div className="row">
+						<div className="col-3">
 							Esta es la pagina de walker
 						</div>
-						<div class="col-9">
+						<div className="col-9">
 							<div className="selectView">
 								<ProfessionalView /> {/*Select View*/}
 							</div>
