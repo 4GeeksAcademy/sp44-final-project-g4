@@ -21,10 +21,10 @@ export const ProfessionalView = () => {
                         <li>
                             <div className="card mb-3" style={{ maxWidth: "540px" }}>
                                 <div className="row g-0">
-                                    <div className="col-md-4">
-                                        <img src="..." className="img-fluid rounded-start" alt="..."/>
+                                    <div className="col-4">
+                                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" className="img-fluid rounded-start" alt="profile picture"/>
                                     </div>
-                                    <div className="col-md-8">
+                                    <div className="col-8">
                                         <div className="card-body">
                                             <h5 className="card-title">Card title</h5>
                                             <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -37,8 +37,11 @@ export const ProfessionalView = () => {
                     </ul>
                 </div>
                 {/* div donde se renderiza el mapa */}
-                <div className="tab-pane fade" id="mapTab-pane" role="tabpanel" aria-labelledby="mapTab" tabIndex="1"><p>Aqui se muestra el mapa</p></div>
+                <div className="tab-pane fade" id="mapTab-pane" role="tabpanel" aria-labelledby="mapTab" tabIndex="1">
+                <img src="https://www.softandapps.info/wp-content/uploads/2016/05/Crear-mapas-online-Mapme.jpg" className="img-fluid rounded-start" style={{ maxHeight: "300px" }} alt="map picture"/>
+                </div>
             </div>
         </>
     )
 }
+
