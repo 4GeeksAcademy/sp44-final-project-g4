@@ -7,7 +7,7 @@
   background-repeat: no-repeat;
   background-size: cover; 
   background-position: 50% 70%;
-  /* otras propiedades como background-repeat y background-position */
+  text-align: center;
  }
 
  .container-jumbotron {
@@ -19,6 +19,11 @@
   
 .btn h5 {
     margin-top: 10px;
+}
+
+.jumbotron-card-p {
+  font-weight: 600;
+  font-size:large;
 }
 
 
@@ -110,5 +115,49 @@
 
 
 
-
-
+  
+  .cards-list {
+    display: flex;
+    z-index: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    display: flex;
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  
+  .card .card_image {
+    display: flex;
+    width: inherit;
+    height: inherit;
+    
+  }
+  
+  .card .card_image img {
+    width: inherit;
+    height: inherit;
+    border-radius: 15px;
+    object-fit: cover;
+  }
+  
+  
+  .card:hover {
+    transform: scale(0.9, 0.9);
+  }
+  
+  
+  @media all and (max-width: 500px) {
+    .card-list {
+      /* On small screens, we are no longer using row direction but column */
+      flex-direction: column;
+    }
+  }
