@@ -4,13 +4,13 @@ import { createRoot } from 'react-dom/client';
 // import ReactDOM from "react-dom";
 
 //include your index.scss file into the bundle
-import "../styles/index.css";
+import "../styles/styleHome.css";
 
 //import your own components
 import Layout from "./layout.jsx";
 
 //render your react application
-// ReactDOM.render(<Layout />, document.querySelector("#app"));
+//ReactDOM.render(<Layout />, document.querySelector("#app"));
 
 const container = document.getElementById('app');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
