@@ -1,7 +1,9 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar } from "../component/Navbar.jsx";
+import { Navbar } from "../component/navbar/Navbar.jsx"
+import { Jumbotron } from "../component/jumbotron/Jumbotron.jsx";
+
 
 
 export const Home = () => {
@@ -14,6 +16,9 @@ export const Home = () => {
 			</h1>
 
 			{/*Navbar */ }
+
+			{/*Jumbotron */}
+			<Jumbotron />
 
 			{/*END of Navbar */ }
 
