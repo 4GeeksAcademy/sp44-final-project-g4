@@ -4,6 +4,9 @@ import { InfographicComponent } from './footerComponents/InfographicComponent.js
 import { SocialMediaComponent } from './footerComponents/SocialMediaComponent.jsx'
 import { LogoComponent } from './footerComponents/LogoComponent.jsx'
 
+
+const dummyPicture = "https://free-url-shortener.rb.gy/url-shortener.png"
+
 export const Footer = () => {
     return (
 
@@ -11,7 +14,7 @@ export const Footer = () => {
             <div className='container text-center text-md-start'>
                 <div className='row text-center text-md-start'>
                     {/* Aqui poner el componente con el logo de la web*/}
-                    <LogoComponent />
+                    <LogoComponent image={dummyPicture} />
                     <InfographicComponent />
                     <DevelopersComponent />
                     <hr className='mb-2' />

@@ -9,8 +9,10 @@ export const Login = () => {
         <>
 
             <div className="container text-center">
-                {logOption === "signup" && <button onClick={() => setlogOption('signin')}>Signin</button>}
-                {logOption === "signin" && <button onClick={() => setlogOption('signup')} >Signup</button>}
+                {/* {logOption === "signup" && */}
+                <button onClick={() => setlogOption('signin')}>Signin</button>} 
+                {/* {logOption === "signin" && */}
+                <button onClick={() => setlogOption('signup')} >Signup</button>} 
             </div>
             {logOption === "signin" && <SignInComponent />}
             {logOption === "signup" && <SignUpComponent />}
