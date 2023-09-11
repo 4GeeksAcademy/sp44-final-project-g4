@@ -83,3 +83,5 @@ __pycache__/
 
 # ignore dbmigrations
 /migrations/
+
+home.jsx
