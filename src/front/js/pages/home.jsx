@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Navbar } from "../component/navbar/Navbar.jsx"
 import { Jumbotron } from "../component/jumbotron/Jumbotron.jsx";
+import { Modal } from "../component/jumbotron/jumbotronComponents/Modal.jsx";
 
 
 export const Home = () => {
@@ -19,6 +20,7 @@ export const Home = () => {
 
 			{/*Jumbotron */}
 			<Jumbotron />
+			<Modal />
 
 			{/*Select Professional*/}
 
