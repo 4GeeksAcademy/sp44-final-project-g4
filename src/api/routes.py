@@ -5,7 +5,7 @@ import os
 import uuid
 import bcrypt
 from marshmallow import ValidationError
-from flask import session as login_session
+from flask import session as login_session, abort
 
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, VetFavoriteModel, VetReviewModel, PostModel, VetModel, WalkerModel, ReviewWalkers, FavoriteWalkers, GroomerModel, GroomerFavoritesModel, GroomerReviewsModel
@@ -20,13 +20,16 @@ api = Blueprint('api', __name__)
 
 @api.errorhandler(ValidationError)
 def handle_marshmallow_error(e):
-    return e.messages, 400
+    return {"msg": jsonify(e.messages),
+            "code": 400}
 # Endponit para crear nuevos usuarios y nuevos profecionales (vet/groomer/walker)
 
 
 @api.route('/signup/<string:user_type>', methods=['POST'])
 def signup(user_type):
     request_body = request.json
+    email = request_body["email"]
+    
 
     if user_type == 'user':
         schema = UserSchema()
@@ -52,6 +55,11 @@ def signup(user_type):
 
     # Create Users and Professionals
     if user_type == "user":
+
+        if User.query.filter(User.email == email).first():
+            return {"msg": "Email already exist.",
+                    "code": 501}
+
         user = User(**request_body)
         user.password = hashed.decode('utf-8')
 
@@ -59,15 +67,20 @@ def signup(user_type):
         db.session.commit()
 
         response_body = {"message": "New User Successfully Created",
-                         "status": "ok",
+                         "code": 200,
                          "user": request_body["email"]}
 
-        if response_body:
-            return response_body, 200
-        else:
-            return "User could not be created"
+        return response_body
 
     if user_type == "vet":
+        phone_number = request_body["phone_number"]
+        if VetModel.query.filter(VetModel.email == email).first():
+            return {"msg": "Email already exist.......",
+                    "code": 501}
+        if VetModel.query.filter(VetModel.phone_number == phone_number).first():
+            return {"msg": "Phone number already exist.",
+                    "code": 501}
+
         vet = VetModel(**request_body)
         vet.password = hashed.decode('utf-8')
 
@@ -75,15 +88,20 @@ def signup(user_type):
         db.session.commit()
 
         response_body = {"message": "New Vet Successfully Created",
-                         "status": "ok",
+                         "status": 200,
                          "user": request_body["email"]}
 
-        if response_body:
-            return response_body, 200
-        else:
-            return "Vet could not be created"
+        return response_body
 
     if user_type == "groomer":
+        phone_number = request_body["phone_number"]
+        if GroomerModel.query.filter(GroomerModel.email == email).first():
+            return {"msg": "Email already exist.......",
+                    "code": 501}
+        if GroomerModel.query.filter(GroomerModel.phone_number == phone_number).first():
+            return {"msg": "Phone number already exist.",
+                    "code": 501}
+            
         groomer = GroomerModel(**request_body)
         groomer.password = hashed.decode('utf-8')
 
@@ -91,15 +109,20 @@ def signup(user_type):
         db.session.commit()
 
         response_body = {"message": "New Groomer Successfully Created",
-                         "status": "ok",
-                         "user": request_body}
+                         "status": 200,
+                         "user": request_body["email"]}
 
-        if response_body:
-            return response_body, 200
-        else:
-            return "Groomer could not be created"
+        return response_body
 
     if user_type == "walker":
+        phone_number = request_body["phone_number"]
+        if WalkerModel.query.filter(WalkerModel.email == email).first():
+            return {"msg": "Email already exist.......",
+                    "code": 501}
+        if WalkerModel.query.filter(WalkerModel.phone_number == phone_number).first():
+            return {"msg": "Phone number already exist.",
+                    "code": 501}
+            
         walker = WalkerModel(**request_body)
         walker.password = hashed.decode('utf-8')
 
@@ -107,13 +130,10 @@ def signup(user_type):
         db.session.commit()
 
         response_body = {"message": "New Walker Successfully Created",
-                         "status": "ok",
-                         "user": request_body}
+                         "status": 200,
+                         "user": request_body["email"]}
 
-        if response_body:
-            return response_body, 200
-        else:
-            return "Walker could not be created"
+        return response_body
 
     return "User type not correct", 404
 
@@ -122,25 +142,26 @@ def signup(user_type):
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
+    
     if not email:
         return jsonify({"msg": "Missing Email."}), 401
     if not password:
         return jsonify({"msg": "Missing Password."}), 401
 
-    user = db.session.execute(
-        db.select(User).filter_by(email=email)).scalar_one()
+    user = User.query.filter(User.email == email).first()
 
-    if not user:
-        return "User Not Found"
-
-    if bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8')):
-        print(f'Welcome back {email}')
+    if user:
+        if bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8')):
+            access_token = create_access_token(identity=email)
+            print(f'Welcome back {email}')
+            return jsonify(access_token=access_token)
     else:
-        print("Password Does Not Match :(")
-        return
+        message_body = {
+            "msg": "User or Password Incorrect",
+            "code": 501
+        }
+        return message_body
 
-    access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
 
 
 # Need to protect route only for admin
@@ -168,7 +189,7 @@ def get_single_users(user_id):
     if schema:
         return {"user": schema.dump(user)}
     else:
-            return "Not Found", 404
+        return "Not Found", 404
 
 
 # EndPoint para optener todos los profesionales por grupo (vet/groomer/walker) ----> TERMINADO --->daniel
@@ -267,7 +288,6 @@ def handle_proffesionals(user_type, user_id):
             db.session.commit()
 
         return {"msg": "Vet Deleted."}
-    
 
     if user_type == 'groomer':
 
@@ -315,7 +335,7 @@ def handle_proffesionals(user_type, user_id):
 def get_posts():
     if request.method == 'GET':
         posts = db.session.execute(
-            db.select(PostModel).order_by(PostModel.date)).scalars()
+            db.select(PostModel).order_by(PostModel.created_at)).scalars()
         results = [item.serialize() for item in posts]
         response = {"message": "All posts fetched successfully",
                     "results": results,
@@ -346,7 +366,7 @@ def get_user_favorites(user_id, user_type):
                 return response_body, 200
             else:
                 return "Not Found", 404
-            
+
         if request.method == 'POST':
             request_body = request.get_json()
             vet_favorites = VetFavoriteModel(**request_body)

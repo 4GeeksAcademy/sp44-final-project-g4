@@ -11,6 +11,7 @@ export const Jumbotron = () => {
     };
 
     return (
+
         <div className="jumbotron jumbotron-fluid px-2 py-5">
             <div className="container container-jumbotron py-3 px-4">
                 <h1 className="card-title-jumbotron"><b>All</b> the services <b>for your pet</b> in one place</h1>
@@ -52,8 +53,8 @@ export const Jumbotron = () => {
                     <h5>Find a professional</h5></a>
 
                 <Modal showModal={showModal} handleClose={handleClose} />
-
             </div>
         </div>
+
     )
 }

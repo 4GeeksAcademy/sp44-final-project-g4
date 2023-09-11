@@ -1,0 +1,115 @@
+{
+    "searchParameters": {
+        "q": "dog walker in new york",
+        "page": 2,
+        "type": "places",
+        "engine": "google"
+    },
+    "places": [
+        {
+            "position": 1,
+            "title": "Paws on Pine",
+            "category": "Dog walker",
+            "phoneNumber": "(917) 887-5221",
+            "website": "http://pawsonpine.com/",
+            "cid": "2660755922407958388"
+        },
+        {
+            "position": 2,
+            "title": "Dog Walking-N-More",
+            "address": "240 E 82nd St, New York, NY 10028",
+            "latitude": 40.775307399999996,
+            "longitude": -73.95400149999999,
+            "rating": 5,
+            "ratingCount": 47,
+            "category": "Dog walker",
+            "phoneNumber": "(631) 747-4544",
+            "website": "http://www.dogwalkingnmore.com/",
+            "cid": "17847248077322898778"
+        },
+        {
+            "position": 3,
+            "title": "POOCHi",
+            "address": "111 Murray Street, New York, NY 10007",
+            "latitude": 40.7153456,
+            "longitude": -74.0127582,
+            "rating": 4.8,
+            "ratingCount": 21,
+            "category": "Dog walker",
+            "phoneNumber": "(212) 772-2181",
+            "website": "https://www.poochinyc.com/",
+            "cid": "9310904455583856479"
+        },
+        {
+            "position": 4,
+            "title": "Play Pals NYC",
+            "address": "67 8th Ave, New York, NY 10014",
+            "latitude": 40.739353799999996,
+            "longitude": -74.003198,
+            "rating": 5,
+            "ratingCount": 25,
+            "category": "Dog walker",
+            "phoneNumber": "(443) 413-6973",
+            "website": "http://www.playpalsnyc.com/",
+            "cid": "11338504399773819197"
+        },
+        {
+            "position": 5,
+            "title": "Delighted Pets, Inc.",
+            "address": "Inc., 1060 Park Ave, New York, NY 10028",
+            "latitude": 40.7812272,
+            "longitude": -73.9570273,
+            "rating": 5,
+            "ratingCount": 102,
+            "category": "Dog walker",
+            "phoneNumber": "(917) 426-7991",
+            "website": "http://www.delightedpetsnyc.com/",
+            "cid": "17617814890012690338"
+        },
+        {
+            "position": 6,
+            "title": "Wags and Biscuits",
+            "category": "Dog walker",
+            "phoneNumber": "(302) 354-2144",
+            "website": "http://www.wagsandbiscuits.com/",
+            "cid": "13496291340298859889"
+        },
+        {
+            "position": 7,
+            "title": "Manhattan Paws Dog Walkers NYC Service",
+            "category": "Dog walker",
+            "phoneNumber": "(917) 442-8577",
+            "website": "http://www.manhattanpawalkers.com/",
+            "cid": "8946656921900372674"
+        },
+        {
+            "position": 8,
+            "title": "Pawfect Day",
+            "address": "276 5th Ave #704, New York, NY 10001",
+            "latitude": 40.7459329,
+            "longitude": -73.986777,
+            "rating": 4.6,
+            "ratingCount": 21,
+            "category": "Dog walker",
+            "phoneNumber": "(917) 456-0330",
+            "website": "http://www.pawfectday.com/",
+            "cid": "7912804716022919928"
+        },
+        {
+            "position": 9,
+            "title": "Wendy's Pet Care NYC",
+            "category": "Pet sitter",
+            "phoneNumber": "(646) 734-2917",
+            "website": "http://www.wendyspetcare.com/",
+            "cid": "9181989182485575498"
+        },
+        {
+            "position": 10,
+            "title": "Hudson's Hounds NYC",
+            "category": "Dog walker",
+            "phoneNumber": "(917) 740-7035",
+            "website": "http://www.hudsonshoundsnyc.com/specialsfornewclients",
+            "cid": "12183214977221184295"
+        }
+    ]
+}
