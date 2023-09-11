@@ -1,10 +1,8 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar } from "../component/navbar/Navbar.jsx"
 import { ChangeOfView } from "../component/secondView/ChangeOfView.jsx";
 import { ProfessionalView } from "../component/secondView/ProfessionalView.jsx";
-// import { LowerView } from "../component/lower_view/LowerView.jsx";
 
 
 export const AdoptionView = () => {
@@ -16,7 +14,6 @@ export const AdoptionView = () => {
 				<div className="navbar">
 					<h1>
 						Esta es la pagina de adopcion
-						<Navbar />
 					</h1>
 				</div>
 				<div className="container-fluid text-center">
@@ -35,10 +32,6 @@ export const AdoptionView = () => {
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="footer">
-					{/*Footer*/}
-					<p>Footer</p>
 				</div>
 			</div>
 		</>

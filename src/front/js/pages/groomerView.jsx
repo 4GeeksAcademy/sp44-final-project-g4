@@ -2,10 +2,8 @@ import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
-import { Navbar } from "../component/navbar/Navbar.jsx"
 import { ChangeOfView } from "../component/secondView/ChangeOfView.jsx";
 import { ProfessionalView } from "../component/secondView/ProfessionalView.jsx";
-// import { LowerView } from "../component/lower_view/LowerView.jsx";
 
 
 export const GroomerView = () => {
@@ -17,7 +15,6 @@ export const GroomerView = () => {
 				<div className="navbar">
 					<h1>
 						Esta es la pagina de groomer
-						<Navbar />
 					</h1>
 				</div>
 				<div className="container-fluid text-center">
@@ -36,10 +33,6 @@ export const GroomerView = () => {
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="footer">
-					{/*Footer*/}
-					<p>Footer</p>
 				</div>
 			</div>
 		</>

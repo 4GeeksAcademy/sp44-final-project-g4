@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar } from "../component/navbar/Navbar.jsx"
+// import { Navbar } from "../component/navbar/Navbar.jsx"
 import { ChangeOfView } from "../component/secondView/ChangeOfView.jsx";
 import { ProfessionalView } from "../component/secondView/ProfessionalView.jsx";
 // import { LowerView } from "../component/lower_view/LowerView.jsx";
@@ -16,7 +16,7 @@ export const SecondView = () => {
 				<div className="navbar">
 					<h1>
 						Spain 44 final project
-						<Navbar />
+						{/* <Navbar /> */}
 					</h1>
 				</div>
 				<div class="container-fluid text-center">

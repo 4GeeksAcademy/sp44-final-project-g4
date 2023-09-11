@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar } from "../component/navbar/Navbar.jsx"
+// import { Navbar } from "../component/navbar/Navbar.jsx"
 import { LowerView } from "../component/lower_view/LowerView.jsx";
 
 
@@ -15,7 +15,7 @@ export const Home = () => {
 				<div className="navbar">
 				<h1>
 					Spain 44 final project
-					<Navbar />
+					{/* <Navbar /> */}
 				</h1>
 				</div>
 				<div className="jumbotron">

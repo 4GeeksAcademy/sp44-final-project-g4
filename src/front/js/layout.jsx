@@ -8,6 +8,7 @@ import { VetView } from "./pages/vetView.jsx";
 import { GroomerView } from "./pages/groomerView.jsx";
 import { WalkerView } from "./pages/walkerView.jsx";
 import { AdoptionView } from "./pages/adoptionView.jsx";
+import { ProfessionalProfile } from "./pages/professionalProfile.jsx";
 import injectContext from "./store/appContext";
 
 import { CardVet } from "./component/cards/CardVet.jsx";
@@ -34,9 +35,10 @@ const Layout = () => {
                         <Route element={<GroomerView />} path="/groomer" />
                         <Route element={<WalkerView />} path="/walker" />
                         <Route element={<AdoptionView />} path="/adoption" />
+                        <Route element={<ProfessionalProfile />} path="/professionalProfile" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    <p>Footer</p>
+                    {/* <Footer /> */}
                 </ScrollToTop>
             </BrowserRouter>
         </div>
