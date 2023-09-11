@@ -13,7 +13,7 @@ export const MapComponent = ({ type }) => {
     const [lng] = useState(-74.00597);
     const [lat] = useState(40.71427);
     const [zoom] = useState(12);
-    const [API_KEY] = useState('6EQmKaS0rvlVuV87v1aZ');
+    const [API_KEY] = useState('api key here');
 
     useEffect(() => {
         if (map.current) return; // stops map from intializing more than once
