@@ -7,8 +7,9 @@ import { Home } from "./pages/home.jsx";
 import injectContext from "./store/appContext";
 import { Login } from "./pages/Login.jsx";
 import { Navbar } from "./component/Navbar.jsx";
-
-
+import { VetView } from './pages/vetView.jsx'
+import { NewView } from "./pages/NewView.jsx";
+import { Footer } from './component/footer/Footer.jsx'
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -23,12 +24,12 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-
-
-                       
-                     
-
+                        {/* <Route to="/list" element={<Home/>}/>
+                        <Route element={<Home />} path="/" /> */}
+                        <Route element={<VetView />} path="/vet" />
+                        <Route element={<NewView />} path="/view" />
                     </Routes>
+                    {/* <Footer /> */}
                 </ScrollToTop>
             </BrowserRouter>
         </div>
@@ -37,5 +38,5 @@ const Layout = () => {
 
 
 
-export default injectContext( Layout );
+export default injectContext(Layout);
 

@@ -46,10 +46,10 @@ export const Jumbotron = () => {
                     </div>
                 </div>
 
-                <a className="btn custom-btn glow-on-hover btn-4 btn-lg my-5" 
-                href="#" 
-                role="button" 
-                onClick={() => setShowModal(true)}>
+                <a className="btn custom-btn glow-on-hover btn-4 btn-lg my-5"
+                    href="#"
+                    role="button"
+                    onClick={() => setShowModal(true)}>
                     <h5>Find a professional</h5></a>
 
                 <Modal showModal={showModal} handleClose={handleClose} />

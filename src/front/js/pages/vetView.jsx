@@ -1,28 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar } from "../component/navbar/Navbar.jsx"
+// import { Navbar } from "../component/navbar/Navbar.jsx"
 import { ChangeOfView } from "../component/secondView/ChangeOfView.jsx";
 import { ProfessionalView } from "../component/secondView/ProfessionalView.jsx";
 // import { LowerView } from "../component/lower_view/LowerView.jsx";
 
-
 export const VetView = () => {
+	const [viewType, setViewType] = useState('vet')
 	const { store, actions } = useContext(Context);
+
+	const handleProfessional = (e, type) => {
+		setViewType(type)
+
+	}
+
 
 	return (
 		<>
-			<div classNName="containerSecond">
-				<div className="navbar">
-					<h1>
-						Esta es la pagina de vet
-						<Navbar />
-					</h1>
-				</div>
+			<div className="containerSecond">
 				<div className="container-fluid text-center">
 					<div className="row-professional">
 						<div className="col-12">
-							<ChangeOfView /> {/*Select Professional*/}
+							<ChangeOfView professionalType={handleProfessional} /> {/*Select Professional*/}
 						</div>
 					</div>
 					<div className="row">
@@ -31,15 +31,15 @@ export const VetView = () => {
 						</div>
 						<div className="col-9">
 							<div className="selectView">
-								<ProfessionalView /> {/*Select View*/}
+								<ProfessionalView type={viewType} /> {/*Select View*/}
 							</div>
 						</div>
 					</div>
 				</div>
-				<div className="footer">
-					{/*Footer*/}
+				{/* <div className="footer">
+					
 					<p>Footer</p>
-				</div>
+				</div> */}
 			</div>
 		</>
 	);
