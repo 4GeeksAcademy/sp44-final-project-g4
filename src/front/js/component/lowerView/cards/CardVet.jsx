@@ -16,7 +16,7 @@ export const CardVet = () => {
                 </div>
                 <div className="carousel-inner"> 
                     <div className="carousel-item active" data-bs-interval="10000">{/*vet */}
-                        <Link to={`/vet/`}>
+                        <Link to={`/views/`}>
                             <img src="https://media.istockphoto.com/id/879799122/es/foto/m%C3%A9dico-veterinario-en-la-cl%C3%ADnica.jpg?s=612x612&w=0&k=20&c=uGr78sxDxPETpNyEiObttRXiDVim0fbA49MiQm3Wv_I=" className="d-block w-100" alt="gato" />
                         </Link>
                         <div className="carousel-caption d-none d-md-block">
@@ -24,7 +24,7 @@ export const CardVet = () => {
                         </div>
                     </div>
                     <div className="carousel-item" data-bs-interval="2000"> {/*vet */}
-                        <Link to={`/vet/`}>
+                        <Link to={`/views/`}>
                             <img src="https://cdn.pixabay.com/photo/2022/08/10/17/10/woman-7377662_1280.jpg" className="d-block w-100" alt="paseador"/>
                         </Link>    
                         <div className="carousel-caption d-none d-md-block">
@@ -32,7 +32,7 @@ export const CardVet = () => {
                         </div>
                     </div>
                     <div className="carousel-item"> {/*vet */}
-                        <Link to={`/vet/`}>
+                        <Link to={`/views/`}>
                             <img src="https://media.istockphoto.com/id/1407301621/es/foto/peluquero-masculino-profesional-haciendo-corte-de-pelo-de-perro-yorkshire-terrier-en-sal%C3%B3n-de.jpg?s=612x612&w=0&k=20&c=1z-GWMbMdF1czKW4sCRd-FvRoSdQl6XOu8if54klMnc=" className="d-block w-100" alt="peluquero"/>
                         </Link>
                         <div className="carousel-caption d-none d-md-block">
@@ -40,7 +40,7 @@ export const CardVet = () => {
                         </div>
                     </div>
                     <div className="carousel-item"> {/*vet */}
-                        <Link to={`/vet/`}>
+                        <Link to={`/views/`}>
                             <img src="https://cdn.pixabay.com/photo/2021/11/22/15/48/dog-6816752_1280.jpg" className="d-block w-100" alt="adopcion"/>
                         </Link>
                         <div className="carousel-caption d-none d-md-block">
