@@ -14,6 +14,7 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import create_access_token
+from geopy.geocoders import Nominatim
 
 api = Blueprint('api', __name__)
 
@@ -80,6 +81,15 @@ def signup(user_type):
         if VetModel.query.filter(VetModel.phone_number == phone_number).first():
             return {"msg": "Phone number already exist.",
                     "code": 501}
+        
+        address_vet =  request_body["address"]
+        geolocator = Nominatim(user_agent="the_addres_vet")
+        location = geolocator.geocode(address_vet)
+
+        latitude = location.latitude
+        longitude = location.longitude
+        request_body["latitude"] = latitude
+        request_body["longitude"] = longitude
 
         vet = VetModel(**request_body)
         vet.password = hashed.decode('utf-8')
@@ -89,7 +99,9 @@ def signup(user_type):
 
         response_body = {"message": "New Vet Successfully Created",
                          "status": 200,
-                         "user": request_body["email"]}
+                         "user": request_body["email"],
+                         "latitud": request_body["latitude"],
+                         "logitud": request_body["longitude"]}
 
         return response_body
 
@@ -102,6 +114,15 @@ def signup(user_type):
             return {"msg": "Phone number already exist.",
                     "code": 501}
             
+        address_groomer =  request_body["address"]
+        geolocator = Nominatim(user_agent="the_addres_groomer")
+        location = geolocator.geocode(address_groomer)
+
+        latitude = location.latitude
+        longitude = location.longitude
+        request_body["latitude"] = latitude
+        request_body["longitude"] = longitude
+
         groomer = GroomerModel(**request_body)
         groomer.password = hashed.decode('utf-8')
 
@@ -110,7 +131,9 @@ def signup(user_type):
 
         response_body = {"message": "New Groomer Successfully Created",
                          "status": 200,
-                         "user": request_body["email"]}
+                         "user": request_body["email"],
+                         "latitud": request_body["latitude"],
+                         "logitud": request_body["longitude"]}
 
         return response_body
 
@@ -123,6 +146,15 @@ def signup(user_type):
             return {"msg": "Phone number already exist.",
                     "code": 501}
             
+        address_walker =  request_body["address"]
+        geolocator = Nominatim(user_agent="the_addres_walker")
+        location = geolocator.geocode(address_walker)
+
+        latitude = location.latitude
+        longitude = location.longitude
+        request_body["latitude"] = latitude
+        request_body["longitude"] = longitude
+
         walker = WalkerModel(**request_body)
         walker.password = hashed.decode('utf-8')
 
@@ -131,7 +163,9 @@ def signup(user_type):
 
         response_body = {"message": "New Walker Successfully Created",
                          "status": 200,
-                         "user": request_body["email"]}
+                         "user": request_body["email"],
+                         "latitud": request_body["latitude"],
+                         "logitud": request_body["longitude"]}
 
         return response_body
 
