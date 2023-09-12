@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 
 export const ProfessionalProfile = () => {
@@ -92,8 +92,3 @@ export const ProfessionalProfile = () => {
         </>
     )
 }
-
-
-// id = db.Column(db.BigInteger, primary_key=True)
-//     avatar = db.Column(db.String(2000), unique=True, nullable=False)
-//     created_at = db.Column(db.DateTime, default=datetime.utcnow)

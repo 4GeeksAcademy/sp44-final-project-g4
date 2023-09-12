@@ -1,8 +1,8 @@
 import React from "react";
-import { CardVet } from "../cards/CardVet.jsx";
-import { CardGroomer } from "../cards/CardGroomer.jsx";
-import { CardWalker } from "../cards/CardWalker.jsx";
-import { CardAdoption } from "../cards/CardAdoption.jsx";
+import { CardVet } from "./cards/CardVet.jsx";
+import { CardGroomer } from "./cards/CardGroomer.jsx";
+import { CardWalker } from "./cards/CardWalker.jsx";
+import { CardAdoption } from "./cards/CardAdoption.jsx";
 
 
 
