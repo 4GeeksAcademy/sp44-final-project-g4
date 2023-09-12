@@ -19,6 +19,7 @@ export const Footer = () => {
                     <DevelopersComponent />
                     <hr className='mb-2' />
                     <SocialMediaComponent />
+                    
                 </div>
             </div>
         </footer>
