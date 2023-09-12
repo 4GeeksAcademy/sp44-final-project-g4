@@ -25,16 +25,10 @@ export const ChangeOfView = () => {
                 </li>
                 <li className="nav-item" role="presentation">
                     <Link to={`/adoption/`}>
-                        <button className="nav-link" id="adoptionTab" data-bs-toggle="tab" data-bs-target="#adoptionTab-pane" type="button" role="tab" aria-controls="adoptionTab-pane" aria-selected="false"><img src="src/front/img/Adopcion.png" alt="adopcion" /></button>
+                        <button className="nav-link" id="adoptionTab" data-bs-toggle="tab" data-bs-target="#adoptionTab-pane" type="button" role="tab" aria-controls="adoptionTab-pane" aria-selected="false"><img src="src/front/img/Adopcion.png" alt="adoption" /></button>
                     </Link>
                 </li>
             </ul>
-            <div className="selectIcons" id="professionalIcons">
-                <div className="iconVet fade show active" id="vet-icon" role="tabpanel" aria-labelledby="vet-tab" tabIndex="0"></div>
-                <div className="iconGroomer fade" id="groomer-icon" role="tabpanel" aria-labelledby="groomer-tab" tabIndex="1"></div>
-                <div className="iconWalker fade" id="walker-icon" role="tabpanel" aria-labelledby="walker-tab" tabIndex="2"></div>
-                <div className="iconAdoption fade" id="adoption-icon" role="tabpanel" aria-labelledby="adoption-tab" tabIndex="3">Aqui se muestran la pagina de adopcion</div>
-            </div>
         </>
     )
 }

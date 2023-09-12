@@ -5,19 +5,15 @@ import { ChangeOfView } from "../component/secondView/ChangeOfView.jsx";
 import { ProfessionalView } from "../component/secondView/ProfessionalView.jsx";
 
 
-export const VetView = () => {
+
+export const SecondView = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<>
-			<div classNName="containerSecond">
-				<div className="navbar">
-					<h1>
-						Esta es la pagina de vet
-					</h1>
-				</div>
+			<div className="containerSecond">
 				<div className="container-fluid text-center">
-					<div className="row-professional">
+					<div className="row-">
 						<div className="col-12">
 							<ChangeOfView /> {/*Select Professional*/}
 						</div>
@@ -37,3 +33,4 @@ export const VetView = () => {
 		</>
 	);
 };
+

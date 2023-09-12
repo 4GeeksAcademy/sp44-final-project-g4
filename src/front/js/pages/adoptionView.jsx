@@ -13,7 +13,7 @@ export const AdoptionView = () => {
 			<div className="containerSecond">
 				<div className="navbar">
 					<h1>
-						Esta es la pagina de adopcion
+						Esta es la pagina de adoption
 					</h1>
 				</div>
 				<div className="container-fluid text-center">
@@ -24,7 +24,7 @@ export const AdoptionView = () => {
 					</div>
 					<div className="row">
 						<div className="col-3">
-							Esta es la pagina de adopcion
+							Esta es la pagina de adoption
 						</div>
 						<div className="col-9">
 							<div className="selectView">

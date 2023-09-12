@@ -4,17 +4,12 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home.jsx";
-import { VetView } from "./pages/vetView.jsx";
-import { GroomerView } from "./pages/groomerView.jsx";
-import { WalkerView } from "./pages/walkerView.jsx";
-import { AdoptionView } from "./pages/adoptionView.jsx";
-import { ProfessionalProfile } from "./pages/professionalProfile.jsx";
+import { SecondView } from "./pages/SecondView.jsx";
+import { ProfessionalProfile } from "./pages/ProfessionalProfile.jsx";
 import injectContext from "./store/appContext";
 
-import { CardVet } from "./component/cards/CardVet.jsx";
-import { CardGroomer } from "./component/cards/CardGroomer.jsx";
-import { CardWalker } from "./component/cards/CardWalker.jsx";
-import { CardAdoption } from "./component/cards/CardAdoption.jsx";
+
+
 
 //create your first component
 const Layout = () => {
@@ -31,11 +26,7 @@ const Layout = () => {
                     {/* <Navbar /> */}
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<VetView />} path="/vet" />
-                        <Route element={<GroomerView />} path="/groomer" />
-                        <Route element={<WalkerView />} path="/walker" />
-                        <Route element={<AdoptionView />} path="/adoption" />
-                        <Route element={<ProfessionalProfile />} path="/professionalProfile" />
+                        <Route element={<SecondView />} path="/vet" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     {/* <Footer /> */}
