@@ -1,13 +1,13 @@
 import React from "react";
-import { useContext } from "react";
-import { Context } from "../store/appContext";
+// import { useContext } from "react";
+// import { Context } from "../store/appContext";
 import { ChangeOfView } from "../component/secondView/ChangeOfView.jsx";
 import { ProfessionalView } from "../component/secondView/ProfessionalView.jsx";
 
 
 
 export const SecondView = () => {
-	const { store, actions } = useContext(Context);
+	// const { store, actions } = useContext(Context);
 
 	return (
 		<>
