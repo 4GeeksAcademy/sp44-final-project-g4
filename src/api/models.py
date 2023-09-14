@@ -46,7 +46,8 @@ class VetModel(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     password = db.Column(db.String(1000), unique=False, nullable=False)
     call_in = db.Column(db.Boolean(), nullable=True)
-    
+    latitude = db.Column(db.Float(), nullable=True)
+    longitude = db.Column(db.Float(), nullable=True)
     
 
 
@@ -128,6 +129,8 @@ class GroomerModel(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     password = db.Column(db.String(1000), unique=False, nullable=False)
     call_in = db.Column(db.Boolean(), nullable=True)
+    latitude = db.Column(db.Float(), nullable=True)
+    longitude = db.Column(db.Float(), nullable=True)
    
 
     def __repr__(self):
@@ -204,6 +207,9 @@ class WalkerModel(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     password = db.Column(db.String(1000), unique=False, nullable=False)
     call_in = db.Column(db.Boolean(), nullable=True)
+    latitude = db.Column(db.Float(), nullable=True)
+    longitude = db.Column(db.Float(), nullable=True)
+
 
     def __repr__(self):
         return f'<Walker {self.name} {self.surname}'
