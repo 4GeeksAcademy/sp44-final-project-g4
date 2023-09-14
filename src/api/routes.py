@@ -82,12 +82,13 @@ def signup(user_type):
             return {"msg": "Phone number already exist.",
                     "code": 501}
         
-        address_vet =  request_body["address"]
+        address_vet =  request_body["address"] #+ ", New York, NY " + str(request_body["zip_code"]) + ", USA"
         geolocator = Nominatim(user_agent="the_addres_vet")
-        location = geolocator.geocode(address_vet)
+        location = geolocator.geocode(address_vet, timeout=None)
 
         latitude = location.latitude
         longitude = location.longitude
+        
         request_body["latitude"] = latitude
         request_body["longitude"] = longitude
 
@@ -114,9 +115,9 @@ def signup(user_type):
             return {"msg": "Phone number already exist.",
                     "code": 501}
             
-        address_groomer =  request_body["address"]
+        address_groomer =  request_body["address"]  #+ ", New York, NY " + str(request_body["zip_code"]) + ", USA"
         geolocator = Nominatim(user_agent="the_addres_groomer")
-        location = geolocator.geocode(address_groomer)
+        location = geolocator.geocode(address_groomer, timeout=None)
 
         latitude = location.latitude
         longitude = location.longitude
@@ -146,9 +147,9 @@ def signup(user_type):
             return {"msg": "Phone number already exist.",
                     "code": 501}
             
-        address_walker =  request_body["address"]
+        address_walker =  request_body["address"]  #+ ", New York, NY " + str(request_body["zip_code"]) + ", USA"
         geolocator = Nominatim(user_agent="the_addres_walker")
-        location = geolocator.geocode(address_walker)
+        location = geolocator.geocode(address_walker, timeout=None)
 
         latitude = location.latitude
         longitude = location.longitude
