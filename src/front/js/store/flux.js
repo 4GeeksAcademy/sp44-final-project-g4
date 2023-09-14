@@ -1,6 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {},
+		store: {
+			vet : [],
+		},
 		actions: {
 			fetchData : async (urlKey, storageKey,) => {
 				try {
@@ -63,9 +65,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 		throw new Error(`Error fetching ${urlKey}: ${error.message}`);
 			// 	}
 			// },
-			VetSerpApip: fetch("https://api.serpapi.com/search?engine=google&q=bardo&location=madrid&language=es&api_key=1de844b2ccd1771a9620a23061c03a50113635222097504a9ae34cb79157bc36")
-			.then(response => response.json())
-			.then(data => console.log(data)),
+			// VetSerpApip: fetch("https://api.serpapi.com/search?engine=google&q=bardo&location=madrid&language=es&api_key=1de844b2ccd1771a9620a23061c03a50113635222097504a9ae34cb79157bc36")
+			// .then(response => response.json())
+			// .then(data => console.log(data)),
 		}
 	};
 };

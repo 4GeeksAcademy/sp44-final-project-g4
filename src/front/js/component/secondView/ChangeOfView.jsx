@@ -17,9 +17,9 @@ export const ChangeOfView = () => {
                 </li>
                 <li className="nav-item" role="presentation">
                     <Link to={`/views/`}>
-                        <button className="nav-link" id="groomerTab" data-bs-toggle="tab" 
-                        data-bs-target="#groomerTab-pane" type="button" role="tab" 
-                        aria-controls="groomerTab-pane" aria-selected="false"></button>
+                        <button className="nav-link" id="groomerTab"  
+                        type="button" 
+                        ></button>
                     </Link>
                 </li>
                 <li className="nav-item" role="presentation">

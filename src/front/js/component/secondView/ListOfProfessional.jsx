@@ -7,23 +7,25 @@ export const ListOfProfessional = () => {
     const [professionals, setProfessionals] = useState([]);
     
 
-    const ComponentDidMount = () => {
-        const fetchData = async () => {
+
+        const fetchDataPimiento = async () => {
             try {
-                const data = await actions.fetchDataVet();
+                const data = await actions.fetchData("vet", "vet");
                 setProfessionals(data);
+                return data
             } catch (error) {
                 console.error("Error al cargar datos:", error);
             };
+            
         };
+        const output = fetchDataPimiento();
+        
+        console.log(output)
 
-        fetchData();
-    };
-    
     const handleOnErrorImg = (e) => {
         e.target.src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
     };
-
+    
     return (
         <>
             <ul>

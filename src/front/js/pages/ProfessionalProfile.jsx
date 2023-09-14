@@ -7,6 +7,7 @@ export const ProfessionalProfile = () => {
 
     return (
         <>
+            <h3>Professional Profile</h3>
             <div className="row p-3">
                 <div className="col-3">
                     <p>Aqui puede ir otra cosa</p>
@@ -85,6 +86,7 @@ export const ProfessionalProfile = () => {
                         </div>
                         <div className="col-12">
                             <button className="btn btn-primary" type="submit">Edit Profile</button>
+                            <button className="btn btn-secondary " type="submit">Save</button>
                         </div>
                     </form>
                 </div>

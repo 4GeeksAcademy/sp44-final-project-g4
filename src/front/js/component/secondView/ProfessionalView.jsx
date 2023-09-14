@@ -1,6 +1,7 @@
 import React from "react";
 import { MapOfProfessional } from "./MapOfProfessional.jsx";
 import { ListOfProfessional } from "./ListOfProfessional.jsx";
+import { ChangeOfView } from "./ChangeOfView.jsx";
 
 
 
