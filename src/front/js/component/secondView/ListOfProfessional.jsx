@@ -8,19 +8,15 @@ export const ListOfProfessional = () => {
     
 
 
-        const fetchDataPimiento = async () => {
-            try {
-                const data = await actions.fetchData("vet", "vet");
-                setProfessionals(data);
-                return data
-            } catch (error) {
-                console.error("Error al cargar datos:", error);
-            };
-            
+        const fetchDataPimiento = () => {
+            actions.fetchData("vet", "vet")
+            .then(data => {
+                console.log(typeof data)
+                setProfessionals(data.results)
+            })
         };
         const output = fetchDataPimiento();
-        
-        console.log(output)
+        console.log (output)
 
     const handleOnErrorImg = (e) => {
         e.target.src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";

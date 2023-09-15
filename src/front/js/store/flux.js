@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			vet : [],
+			
 		},
 		actions: {
 			fetchData : async (urlKey, storageKey,) => {
@@ -18,12 +18,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 							const data = await response.json();
 							setStore({ [storageKey]: data.results });
 							localStorage.setItem(storageKey, JSON.stringify(data));
+							return data
 						} else {
 							throw new Error(`Error: ${response.status} - ${response.statusText}`);
 						}
 					} else {
-						const localData = JSON.parse(localStorage.getItem(storageKey));
-						setStore({ [storageKey]: localData.results });
+						const localData = localStorage.getItem(storageKey);
+						return localData
+						// setStore({ [storageKey]: localData.results });
 					}
 				} catch (error) {
 					throw new Error(`Error fetching ${urlKey}: ${error.message}`);
