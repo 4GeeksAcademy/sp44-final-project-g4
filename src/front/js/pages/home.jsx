@@ -1,8 +1,10 @@
 import React from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-// import { Navbar } from "../component/Navbar.jsx"
+import { Navbar } from "../component/Navbar.jsx"
 import { Jumbotron } from "../component/jumbotron/Jumbotron.jsx";
+import { LowerView } from "../component/lower_view/LowerView.jsx";
+import { UserView } from "./UserView.jsx";
 
 
 
@@ -11,15 +13,14 @@ export const Home = () => {
 
 	return (
 		<>
-			<h1>
-				Spain 44 final project
-			</h1>
 
-			{/*Navbar */}
 
-			{/*Jumbotron */}
 			<Jumbotron />
-			<Modal />
+			
+
+			<LowerView />
+			
+			
 
 			{/*END of Navbar */}
 
@@ -27,8 +28,6 @@ export const Home = () => {
 
 			{/*Select Professional*/}
 
-			{/*Footer*/}
-			{/* <Footer /> */}
 		</>
 	);
 };
