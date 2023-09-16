@@ -2,7 +2,7 @@ import React from "react";
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 
-export const ProfessionalProfile = () => {
+export const ProfessionalForm = () => {
     const { store, actions } = useContext(Context);
 
     return (

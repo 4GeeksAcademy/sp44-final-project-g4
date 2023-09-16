@@ -11,7 +11,7 @@ export const ListOfProfessional = () => {
 
 
 
-    const fetchDataPimiento = () => {
+    const fetchDataProfessional= () => {
         actions.fetchData( state, state )
             .then( data => {
                 console.log( data );
@@ -19,7 +19,7 @@ export const ListOfProfessional = () => {
             } );
     };
     useEffect( () => {
-        fetchDataPimiento();
+        fetchDataProfessional();
 
     }, [] );
 
