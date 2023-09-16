@@ -6,9 +6,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			fetchData : async (urlKey, storageKey,) => {
 				try {
-					if (!localStorage.getItem(storageKey)) {
-						const host = "https://reimagined-journey-x7pq5jx4jjq2pvww-3001.app.github.dev/"; // URL base
-						const url = `${host}/api/professional/${urlKey}/`;
+					if(!localStorage.getItem(storageKey)){
+						
+						const host = "https://glowing-robot-jv4p56prx47fj6vp-3001.preview.app.github.dev"; // URL base
+						const url = `${host}/api/professional/${urlKey}`;
 						const request = {
 							method: 'GET',
 							redirect: 'follow'
@@ -18,14 +19,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 							const data = await response.json();
 							setStore({ [storageKey]: data.results });
 							localStorage.setItem(storageKey, JSON.stringify(data));
+							localStorage.removeItem(storageKey)
 							return data
 						} else {
 							throw new Error(`Error: ${response.status} - ${response.statusText}`);
 						}
+					
 					} else {
-						const localData = localStorage.getItem(storageKey);
-						return localData
-						// setStore({ [storageKey]: localData.results });
+						const data = JSON.parse(localStorage.getItem(storageKey));
+						return data
 					}
 				} catch (error) {
 					throw new Error(`Error fetching ${urlKey}: ${error.message}`);

@@ -177,7 +177,7 @@ def get_all_proffesionals(professional_type):
     if professional_type == 'vet':
         vets = db.session.execute(
             db.select(VetModel).order_by(VetModel.name)).scalars()
-        schema = UserSchema(many=True)
+        schema = VetSchema(many=True)
         if schema:
             return {"results": schema.dump(vets),
                     "code": 200}
@@ -200,7 +200,7 @@ def get_all_proffesionals(professional_type):
     if professional_type == 'walker':
         walker = db.session.execute(
             db.select(WalkerModel).order_by(WalkerModel.name)).scalars()
-        schema = WalkerModel(many=True)
+        schema = WalkerSchema(many=True)
 
         if schema:
             return {"results": schema.dump(walker),

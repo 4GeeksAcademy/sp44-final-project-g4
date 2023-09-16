@@ -6,21 +6,20 @@ import { LowerView } from "../component/lowerView/LowerView.jsx";
 
 
 export const Home = () => {
-	const { store, actions } = useContext(Context);
+	const { store, actions } = useContext( Context );
 
 	return (
-		<>    
-		
+		<>
 			<div className="container">
 				<div className="jumbotron">
-					<Link to={`/professionalprofile/`}>
+					<Link to={ `/professionalprofile/` }>
 						<button className="btn-btn-secondary">Professional Profile</button>
 					</Link>
 				</div>
 				<div className="lowerView">
 					<LowerView />
 				</div>
-				
+
 			</div>
 		</>
 	);

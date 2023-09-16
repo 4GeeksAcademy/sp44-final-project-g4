@@ -41,11 +41,11 @@ class GroomerSchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
 
 class WalkerSchema(ma.SQLAlchemyAutoSchema):
-    name = String(required=True, validate=[validate.Length(min=4)])
-    last_name = String(required=True, validate=[validate.Length(min=4)])
-    email = String(required=True, validate=[validate.Email()])
-    phone_number = String(require=True, validate=validate.Regexp('(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'))
-    avatar = String(validate=validate.URL())
+    # name = String(required=True, validate=[validate.Length(min=4)])
+    # last_name = String(required=True, validate=[validate.Length(min=4)])
+    # email = String(required=True, validate=[validate.Email()])
+    # phone_number = String(require=True, validate=validate.Regexp('(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'))
+    # avatar = String(validate=validate.URL())
     class Meta:
         unknown = EXCLUDE
         model = WalkerModel
