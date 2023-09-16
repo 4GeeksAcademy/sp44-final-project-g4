@@ -24,12 +24,13 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-                        {/* <Route to="/list" element={<Home/>}/>
-                        <Route element={<Home />} path="/" /> */}
+                        <Route to="/list" element={<Home/>}/>
+                        <Route element={<Login/>} path="/login" />
+                        <Route element={<Home />} path="/home" />
                         <Route element={<VetView />} path="/vet" />
                         <Route element={<NewView />} path="/view" />
                     </Routes>
-                    {/* <Footer /> */}
+                    <Footer />
                 </ScrollToTop>
             </BrowserRouter>
         </div>
