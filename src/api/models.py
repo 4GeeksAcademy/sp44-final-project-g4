@@ -15,7 +15,7 @@ class User(db.Model):
     email = db.Column(db.String(200), unique=True, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
     last_name = db.Column(db.String(100), unique=False, nullable=True)
-    phone_number = db.Column(db.String(150), unique=True)
+    phone_number = db.Column(db.String(150), unique=True, nullable=True)
     avatar = db.Column(db.String(2000), unique=False)
     is_admin = db.Column(db.Boolean, default=False)
     is_active = db.Column(db.Boolean(), default=False)
@@ -34,16 +34,21 @@ class VetModel(db.Model):
     email = db.Column(db.String(150), unique=True, nullable=False)
     name = db.Column(db.String(100), unique=False, nullable=False)
     last_name = db.Column(db.String(100), unique=False, nullable=False)
-    phone_number = db.Column(db.String(150), unique=True, nullable=False)
+    phone_number = db.Column(db.String(150), unique=True, nullable=True)
     company_name = db.Column(db.String(100), unique=False, nullable=True)
-    # address = db.Column(db.String(120), nullable=False)
-    description = db.Column(db.String(2000), unique=False, nullable=False)
-    avatar = db.Column(db.String(2000), unique=True, nullable=False)
+    address = db.Column(db.String(500), nullable=True)
+    zip_code = db.Column(db.Integer, nullable=True)
+    description = db.Column(db.String(2000), unique=False)
+    avatar = db.Column(db.String(2000), unique=False, nullable=True)
     services = db.Column(db.String(2000), unique=False, nullable=True)
     price_low = db.Column(db.Integer, unique=False, nullable=False)
     price_high = db.Column(db.Integer, unique=False, nullable=True, default=None)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     password = db.Column(db.String(1000), unique=False, nullable=False)
+    call_in = db.Column(db.Boolean(), nullable=True)
+    latitude = db.Column(db.Float(), nullable=True)
+    longitude = db.Column(db.Float(), nullable=True)
+    
 
 
     def __repr__(self):
@@ -106,48 +111,27 @@ class VetFavoriteModel(db.Model):
         }
 
 
-class Address(db.Model):
-    __table_name__="AddressModel"
-    id = db.Column(db.BigInteger, primary_key=True)
-    street = db.Column(db.String(400), unique=False, nullable=False)
-    number = db.Column(db.Integer, unique=False, nullable=False)
-    zip_code = db.Column(db.Integer, unique=False, nullable=False)
-    user_id = db.Column(
-        db.BigInteger, db.ForeignKey("user.id"), unique=False, nullable=False
-    )
-    user = db.relationship("User")
-
-    def __repr__(self):
-        return f'<Adress: {self.id} {self.user_id}>'
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "street": self.street,
-            "body": self.body,
-            "number": self.number,
-            "zip_code": self.zip_code,
-            "user_id": self.user_id,
-        }
-
 class GroomerModel(db.Model):
     __tablename__ = "groomer"
-    id = db.Column(db.BigInteger, default=lambda: uuid.uuid4().int >> (128 - 32), primary_key=True)
-    name = db.Column(db.String(70),  nullable=False)
-    last_name = db.Column(db.String(70), nullable=False)
-    company_name = db.Column(db.String(100), unique=True, nullable=True)
-    description = db.Column(db.String(120), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(1000),nullable=False)
-    phone_number = db.Column(db.String(10), nullable=False)
-    address = db.Column(db.String(120), nullable=False)
-    average_rate = db.Column(db.String(10), nullable=True)
-    services = db.Column(db.String(100), nullable=False)
-    price_low = db.Column(db.Integer, nullable=False)
-    price_high = db.Column(db.Integer, nullable=True)
-    call_in = db.Column(db.Boolean(), nullable=False)
-    avatar = db.Column(db.String(120), nullable=True)
+    id = db.Column(db.BigInteger, primary_key=True)
+    email = db.Column(db.String(150), unique=True, nullable=False)
+    name = db.Column(db.String(100), unique=False, nullable=False)
+    last_name = db.Column(db.String(100), unique=False, nullable=False)
+    phone_number = db.Column(db.String(150), unique=True, nullable=True)
+    company_name = db.Column(db.String(100), unique=False, nullable=True)
+    address = db.Column(db.String(500), nullable=True)
+    zip_code = db.Column(db.Integer, nullable=True)
+    description = db.Column(db.String(2000), unique=False)
+    avatar = db.Column(db.String(2000), unique=False, nullable=True)
+    services = db.Column(db.String(2000), unique=False, nullable=True)
+    price_low = db.Column(db.Integer, unique=False, nullable=False)
+    price_high = db.Column(db.Integer, unique=False, nullable=True, default=None)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    password = db.Column(db.String(1000), unique=False, nullable=False)
+    call_in = db.Column(db.Boolean(), nullable=True)
+    latitude = db.Column(db.Float(), nullable=True)
+    longitude = db.Column(db.Float(), nullable=True)
+   
 
     def __repr__(self):
         return f'<groomer {self.name} {self.last_name} {self.company_name}>'
@@ -208,16 +192,24 @@ class GroomerFavoritesModel(db.Model):
 class WalkerModel(db.Model):
     __tablename__ = "walker"
     id = db.Column(db.BigInteger, primary_key=True)
-    name = db.Column(db.String(20), nullable=False)
-    surname = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(1000), nullable=False)
-    address = db.Column(db.String(100), nullable=False)
-    phone_number = db.Column(db.String(20))
-    description = db.Column(db.String(250))
-    price_low = db.Column(db.Integer, nullable=False)
-    price_high = db.Column(db.Integer)
-    average_rate = db.Column(db.Integer)
+    email = db.Column(db.String(150), unique=True, nullable=False)
+    name = db.Column(db.String(100), unique=False, nullable=False)
+    last_name = db.Column(db.String(100), unique=False, nullable=False)
+    phone_number = db.Column(db.String(150), unique=True, nullable=True)
+    company_name = db.Column(db.String(100), unique=False, nullable=True)
+    address = db.Column(db.String(500), nullable=True)
+    zip_code = db.Column(db.Integer, nullable=True)
+    description = db.Column(db.String(2000), unique=False)
+    avatar = db.Column(db.String(2000), unique=False, nullable=True)
+    services = db.Column(db.String(2000), unique=False, nullable=True)
+    price_low = db.Column(db.Integer, unique=False, nullable=False)
+    price_high = db.Column(db.Integer, unique=False, nullable=True, default=None)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    password = db.Column(db.String(1000), unique=False, nullable=False)
+    call_in = db.Column(db.Boolean(), nullable=True)
+    latitude = db.Column(db.Float(), nullable=True)
+    longitude = db.Column(db.Float(), nullable=True)
+
 
     def __repr__(self):
         return f'<Walker {self.name} {self.surname}'

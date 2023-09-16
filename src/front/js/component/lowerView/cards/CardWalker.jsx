@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"; // Importa Link desde react-router-dom
 
 export const CardWalker = () => {
 
+
     return (
         <>
             <div id="carouselWalker" className="carousel carousel-dark slide">

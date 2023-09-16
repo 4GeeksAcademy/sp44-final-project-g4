@@ -23,6 +23,7 @@ bcrypt = "*"
 marshmallow-sqlalchemy = "*"
 flask-marshmallow = "*"
 flask-login = "*"
+geopy = "*"
 
 [requires]
 python_version = "3.10"

@@ -5,6 +5,7 @@ import { ChangeOfView } from "../component/secondView/ChangeOfView.jsx";
 import { ProfessionalView } from "../component/secondView/ProfessionalView.jsx";
 
 
+
 export const AdoptionView = () => {
 	const { store, actions } = useContext(Context);
 
