@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
-import { Home } from "./pages/home.jsx";
+import { Home } from "./pages/Home.jsx";
+import { SecondView } from "./pages/SecondView.jsx";
+import { ProfessionalProfile } from "./pages/ProfessionalProfile.jsx";
 import injectContext from "./store/appContext";
-import { Login } from "./pages/Login.jsx";
-import { Navbar } from "./component/Navbar.jsx";
-import { VetView } from './pages/vetView.jsx'
-import { NewView } from "./pages/NewView.jsx";
-import { Footer } from './component/footer/Footer.jsx'
+
+
+
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -24,10 +24,10 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-                        {/* <Route to="/list" element={<Home/>}/>
-                        <Route element={<Home />} path="/" /> */}
-                        <Route element={<VetView />} path="/vet" />
-                        <Route element={<NewView />} path="/view" />
+                        <Route element={<Home />} path="/" />
+                        <Route element={<SecondView />} path="/views" />
+                        <Route element={<ProfessionalProfile />} path="professionalprofile" />
+                        <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     {/* <Footer /> */}
                 </ScrollToTop>

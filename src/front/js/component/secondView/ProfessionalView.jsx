@@ -1,6 +1,8 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MapComponent } from '../map/MapComponent.jsx'
+import { MapOfProfessional } from "./MapOfProfessional.jsx";
+import { ListOfProfessional } from "./ListOfProfessional.jsx";
+import { ChangeOfView } from "./ChangeOfView.jsx";
+
 
 
 export const ProfessionalView = ({ type }) => {
@@ -17,16 +19,13 @@ export const ProfessionalView = ({ type }) => {
             <div className="tab-content" id="myTabContent">
                 {/* div del listado de profesionales */}
                 <div className="tab-pane fade show active" id="listTab-pane" role="tabpanel" aria-labelledby="listTab" tabIndex="0">
-                    <ul>
-                        <li>
-                            {type === 'vet' && <VetCard/>}
-                            {type === 'walker' && <WalkerCard/>}
-                        </li>
-                    </ul>
+                <h2 className="card-title">List Of Professional</h2>
+                    <ListOfProfessional />
                 </div>
                 {/* div donde se renderiza el mapa */}
-                <div className="tab-pane fade m-3" id="mapTab-pane" role="tabpanel" aria-labelledby="mapTab" tabIndex="1">
-                    <MapComponent type={type} />
+                <div className="tab-pane fade" id="mapTab-pane" role="tabpanel" aria-labelledby="mapTab" tabIndex="1">
+                <h2 className="card-title">Map Of Professional</h2>
+                    <MapOfProfessional />
                 </div>
             </div>
         </>
