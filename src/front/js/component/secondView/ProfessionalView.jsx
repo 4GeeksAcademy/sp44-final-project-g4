@@ -5,8 +5,8 @@ import { ChangeOfView } from "./ChangeOfView.jsx";
 
 
 
-export const ProfessionalView = () => {
-    return(
+export const ProfessionalView = ({ type }) => {
+    return (
         <>
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item" role="presentation">

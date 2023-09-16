@@ -1,0 +1,133 @@
+{
+    "searchParameters": {
+        "q": "pet groomer in new york",
+        "page": 2,
+        "type": "places",
+        "engine": "google"
+    },
+    "places": [
+        {
+            "position": 1,
+            "title": "A Cut Above Pet Stylists",
+            "address": "143 W 69th St, New York, NY 10023",
+            "latitude": 40.7761972,
+            "longitude": -73.9816501,
+            "rating": 4.5,
+            "ratingCount": 124,
+            "category": "Pet groomer",
+            "phoneNumber": "(212) 877-7778",
+            "website": "http://www.acutabovegrooming.com/",
+            "cid": "390480339662089578"
+        },
+        {
+            "position": 2,
+            "title": "Walter's Pet Styles",
+            "address": "201-C E 33rd St, New York, NY 10016",
+            "latitude": 40.744996799999996,
+            "longitude": -73.9781971,
+            "rating": 4.3,
+            "ratingCount": 50,
+            "category": "Pet groomer",
+            "phoneNumber": "(212) 725-0000",
+            "website": "http://www.walterspetstyles.com/",
+            "cid": "16389487457450072573"
+        },
+        {
+            "position": 3,
+            "title": "Bark Place NYC",
+            "address": "1404 1st Ave., New York, NY 10021",
+            "latitude": 40.769221699999996,
+            "longitude": -73.9546943,
+            "rating": 4.4,
+            "ratingCount": 124,
+            "category": "Pet groomer",
+            "phoneNumber": "(212) 737-3510",
+            "website": "https://barkplacenyc.com/",
+            "cid": "9257313545932296863"
+        },
+        {
+            "position": 4,
+            "title": "Little B's In-Home Grooming",
+            "category": "Pet groomer",
+            "phoneNumber": "(646) 641-5771",
+            "website": "https://little-bs-in-home-grooming.business.site/",
+            "cid": "13758984955292935578"
+        },
+        {
+            "position": 5,
+            "title": "Shake and Tail Dog Grooming",
+            "address": "330 E 11th St, New York, NY 10003",
+            "latitude": 40.729626499999995,
+            "longitude": -73.9848998,
+            "rating": 4.5,
+            "ratingCount": 42,
+            "category": "Pet groomer",
+            "phoneNumber": "(646) 797-7152",
+            "website": "https://www.shakeandtailny.com/",
+            "cid": "10978753788207035736"
+        },
+        {
+            "position": 6,
+            "title": "Shaggie Pets Grooming Salon",
+            "address": "121 Douglass St, Brooklyn, NY 11231",
+            "latitude": 40.682835499999996,
+            "longitude": -73.9904979,
+            "rating": 4.8,
+            "ratingCount": 83,
+            "category": "Pet groomer",
+            "phoneNumber": "(347) 599-2522",
+            "cid": "14060999832438290521"
+        },
+        {
+            "position": 7,
+            "title": "Pet Groom New York City in Home - House Calls Dog & Cat Grooming",
+            "address": "10 Sheridan Square, New York, NY 10014",
+            "latitude": 40.733323899999995,
+            "longitude": -74.0021707,
+            "rating": 4.9,
+            "ratingCount": 27,
+            "category": "Pet groomer",
+            "phoneNumber": "(212) 920-5585",
+            "website": "http://www.petgroomnewyork.com/",
+            "cid": "11611533183203244518"
+        },
+        {
+            "position": 8,
+            "title": "The Bark Shoppe",
+            "address": "100 St Nicholas Ave, New York, NY 10026",
+            "latitude": 40.802437399999995,
+            "longitude": -73.9523336,
+            "rating": 4.3,
+            "ratingCount": 321,
+            "category": "Pet groomer",
+            "phoneNumber": "(646) 590-1902",
+            "website": "http://www.thebarkshoppe.com/",
+            "cid": "10463033005863855225"
+        },
+        {
+            "position": 9,
+            "title": "The Seaport Paw",
+            "address": "38 Peck Slip, New York, NY 10038",
+            "latitude": 40.707497599999996,
+            "longitude": -74.0016474,
+            "rating": 4.4,
+            "ratingCount": 100,
+            "category": "Pet groomer",
+            "phoneNumber": "(212) 732-2275",
+            "website": "http://theseaportpaw.com/",
+            "cid": "1614383227207122762"
+        },
+        {
+            "position": 10,
+            "title": "QQ Pet's Grooming",
+            "address": "175 W 107th St, New York, NY 10025",
+            "latitude": 40.8010944,
+            "longitude": -73.96473809999999,
+            "rating": 4.8,
+            "ratingCount": 64,
+            "category": "Pet groomer",
+            "phoneNumber": "(646) 709-0100",
+            "cid": "6120184822060865140"
+        }
+    ]
+}

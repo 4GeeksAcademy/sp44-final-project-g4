@@ -5,10 +5,10 @@ from marshmallow.fields import validate
 from marshmallow import EXCLUDE
 
 class UserSchema(ma.SQLAlchemyAutoSchema):
-    name = String(required=True, validate=[validate.Length(min=2)])
-    email = String(required=True, validate=[validate.Email()])
-    phone_number = String(require=True, validate=validate.Regexp('(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'))
-    avatar = String(require=True, validate=validate.URL())
+    # name = String(required=True, validate=[validate.Length(min=2)])
+    # email = String(required=True, validate=[validate.Email()])
+    # phone_number = String(require=True, validate=validate.Regexp('(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'))
+    # avatar = String(require=True, validate=validate.URL())
     class Meta:
         unknown = EXCLUDE
         model = User
@@ -16,11 +16,11 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         # exclude = ["id", "password"]
 
 class VetSchema(ma.SQLAlchemyAutoSchema):
-    name = String(required=True, validate=[validate.Length(min=4)])
-    last_name = String(required=True, validate=[validate.Length(min=4)])
-    email = String(required=True, validate=[validate.Email()])
-    phone_number = String(require=True, validate=validate.Regexp('(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'))
-    avatar = String(validate=validate.URL())
+    # name = String(required=True, validate=[validate.Length(min=4)])
+    # last_name = String(required=True, validate=[validate.Length(min=4)])
+    # email = String(required=True, validate=[validate.Email()])
+    # phone_number = String(require=True, validate=validate.Regexp('(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'))
+    # avatar = String(validate=validate.URL())
     
     class Meta:
         unknown = EXCLUDE
@@ -29,15 +29,14 @@ class VetSchema(ma.SQLAlchemyAutoSchema):
         # exclude = ["password"]
 
 class GroomerSchema(ma.SQLAlchemyAutoSchema):
-    name = String(required=True, validate=[validate.Length(min=4)])
-    last_name = String(required=True, validate=[validate.Length(min=4)])
-    email = String(required=True, validate=[validate.Email()])
-    phone_number = String(require=True, validate=validate.Regexp('(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'))
-    avatar = String(validate=validate.URL())
+    # name = String(required=True, validate=[validate.Length(min=4)])
+    # last_name = String(required=True, validate=[validate.Length(min=4)])
+    # email = String(required=True, validate=[validate.Email()])
+    # phone_number = String(require=True, validate=validate.Regexp('(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})'))
+    # avatar = String(validate=validate.URL())
     class Meta:
         unknown = EXCLUDE
         model = GroomerModel
-        exclude = ["password"]
         load_instance = True
 
 class WalkerSchema(ma.SQLAlchemyAutoSchema):
@@ -49,6 +48,5 @@ class WalkerSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         unknown = EXCLUDE
         model = WalkerModel
-        exclude = ["password"]
         load_instance = True
 

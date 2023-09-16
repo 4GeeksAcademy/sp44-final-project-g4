@@ -19,7 +19,6 @@ export const Home = () => {
 				<div className="lowerView">
 					<LowerView />
 				</div>
-
 			</div>
 		</>
 	);
