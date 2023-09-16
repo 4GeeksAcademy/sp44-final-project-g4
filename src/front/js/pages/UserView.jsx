@@ -67,7 +67,7 @@ export const UserView = () => {
 						</div>
 
 						<div className="mt-5 text-center">
-							<a className="btn custom-btn glow-on-hover btn-4 btn-lg my-5"
+							<a className="btn custom-btn-jumbotron-home glow-on-hover btn-4 btn-lg my-5" id='btn-jumbotron-home'
 								href="#"
 								role="button"
 								onClick="#">
