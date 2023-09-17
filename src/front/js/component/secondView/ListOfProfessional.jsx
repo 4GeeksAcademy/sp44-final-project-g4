@@ -46,9 +46,10 @@ export const ListOfProfessional = () => {
                                 <div className="col-8">
                                     <div className="card-body">
                                         <h5 className="card-title">{ professional.name } { professional.last_name }</h5>
-                                        <p className="card-text">Description: { professional.description }</p>
-                                        <p className="card-text">Phone number: { professional.phone_number }</p>
-                                        <p className="card-text">Email: { professional.email }</p>
+                                        <p className="card-text">Addres: { professional.addres }</p>
+                                        <p className="card-text">Services: { professional.services }</p>
+                                        <p className="card-text">Price Low: { professional.price_low }</p>
+                                        <p className="card-text">Price High: { professional.price_high }</p>
                                     </div>
                                 </div>
                             </div>
