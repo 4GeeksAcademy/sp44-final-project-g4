@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Navbar } from "./component/Navbar.jsx"
+import { Footer } from "./component/footer/Footer.jsx"
 import { Home } from "./pages/Home.jsx";
 import { SecondView } from "./pages/SecondView.jsx";
 import { ProfessionalProfile } from "./pages/ProfessionalProfile.jsx";
@@ -30,7 +31,7 @@ const Layout = () => {
                         <Route element={<ProfessionalProfile />} path="professionalprofile" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    {/* <Footer /> */}
+                    <Footer />
                 </ScrollToTop>
             </BrowserRouter>
         </div>
