@@ -9,25 +9,24 @@ export const ProfessionalProfile = () => {
     return (
         <>
             <div className="container text-center mb-3">
+                <h3> Professional Profile </h3>
                 <div className="row row-cols-2">
-                    <div className="col  border-end border-3">
+                    <div className="col-3  border-end border-3">
                         <Avatar />
                     </div>
-                    <div className="col">
+                    <div className="col-9" style= {{paddingLeft: "0", paddingRight: "0"}}>
                         <Profile />
                     </div>
-                    <div className="col  border-end border-3">
+                    <div className="col-3  border-end border-3">
                         <Description />
                     </div>
-                    <div className="col">
+                    <div className="col-9 mt-2">
                         <Reviews />
                     </div>
                 </div>
             </div>
-            <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+            <div className="d-grid gap-2 d-md-flex justify-content-md-end" style= {{paddingRight: "7rem"}}>
                 <button type="button" className="btn btn-primary">Edit Profile</button>
-                <div className="vr"></div>
-                <button type="button" className="btn btn-success">Save Change</button>
             </div>
         </>
     )
