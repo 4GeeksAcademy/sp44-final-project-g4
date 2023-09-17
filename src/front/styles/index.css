@@ -1,6 +1,7 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+
 html {
   height: 100vh;
 }
@@ -10,6 +11,26 @@ body {
 }
 .pet-background {
   background: url("https://img.freepik.com/free-vector/cute-playful-footprint-pattern-background-fauna-fun_1017-44713.jpg?w=1380&t=st=1694950178~exp=1694950778~hmac=c4ea9bffb1b022aceedef2d2bf9c234df9be86b7523c4aa270219c9c0321ee95");
+
+
+.jumbotron {
+  background-image: url('https://images.unsplash.com/photo-1545529468-42764ef8c85f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80'); 
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: 50% 70%;
+  text-align: center;
+ }
+
+ .container-jumbotron {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+ }
+  
+  
+.btn h5 {
+    margin-top: 10px;
+
 }
 
 .project-light {
@@ -28,6 +49,7 @@ border: 1px solid rgba(249, 214, 40, 0.56);
   color:#5b2dff !important;
 }
 
+
 .project-blue{
 background: rgba(40, 145, 249, 0.74);
 border-radius: 16px;
@@ -41,4 +63,5 @@ border: 1px solid rgba(40, 145, 249, 0.56);
   background:#5B2448 !important;
 }
 /* Color classes */
+
 
