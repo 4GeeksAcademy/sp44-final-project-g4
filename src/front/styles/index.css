@@ -8,276 +8,37 @@ html {
 body {
   height: 100%;
 }
-
-
-
-.jumbotron {
-  background-image: url('https://images.unsplash.com/photo-1545529468-42764ef8c85f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80'); 
-  background-repeat: no-repeat;
-  background-size: cover; 
-  background-position: 50% 70%;
-  text-align: center;
- }
-
- .container-jumbotron {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
- }
-  
-  
-.btn h5 {
-    margin-top: 10px;
+.pet-background {
+  background: url("https://img.freepik.com/free-vector/cute-playful-footprint-pattern-background-fauna-fun_1017-44713.jpg?w=1380&t=st=1694950178~exp=1694950778~hmac=c4ea9bffb1b022aceedef2d2bf9c234df9be86b7523c4aa270219c9c0321ee95");
 }
 
-.jumbotron-card-p {
-  font-weight: 600;
-  font-size:large;
+.project-light {
+  background: #FFF8F0 !important;
 }
 
-
-.custom-btn {
-    width: 230px;
-    height: 50px;
-    color: #000000;
-    border-radius: 4px;
-    font-weight: 600;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-     7px 7px 20px 0px rgba(0,0,0,.1),
-     4px 4px 5px 0px rgba(0,0,0,.1);
-    outline: none;
-  }
-
-
-.btn-4 {
-    background-color: #4dccc6;
-  background-image: linear-gradient(315deg, #4dccc6 0%, #96e4df 74%);
-    line-height: 42px;
-    padding: 0;
-    border: none;
-  }
-.btn-4:hover{
-    background-color: #89d8d3;
-    background-image: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
-  }
-.btn-4 span {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-.btn-4:before,
-.btn-4:after {
-    position: absolute;
-    content: "";
-    right: 0;
-    top: 0;
-     box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
-                -4px -4px 6px 0 rgba(116, 125, 136, .2), 
-      inset -4px -4px 6px 0 rgba(255,255,255,.9),
-      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
-    transition: all 0.3s ease;
-  }
-.btn-4:before {
-    height: 0%;
-    width: .1px;
-  }
-.btn-4:after {
-    width: 0%;
-    height: .1px;
-  }
-.btn-4:hover:before {
-    height: 100%;
-  }
-.btn-4:hover:after {
-    width: 100%;
-  }
-.btn-4 span:before,
-.btn-4 span:after {
-    position: absolute;
-    content: "";
-    left: 0;
-    bottom: 0;
-    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.9),
-                -4px -4px 6px 0 rgba(116, 125, 136, .2), 
-      inset -4px -4px 6px 0 rgba(255,255,255,.9),
-      inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
-    transition: all 0.3s ease;
-  }
-.btn-4 span:before {
-    width: .1px;
-    height: 0%;
-  }
-.btn-4 span:after {
-    width: 0%;
-    height: .1px;
-  }
-.btn-4 span:hover:before {
-    height: 100%;
-  }
-.btn-4 span:hover:after {
-    width: 100%;
-  }
-
-
-
-
-  
-  .cards-list {
-    display: flex;
-    z-index: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .card {
-    display: flex;
-    margin: 20px auto;
-    width: 150px;
-    height: 150px;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: 0.4s;
-  }
-  
-  .card .card_image {
-    display: flex;
-    width: inherit;
-    height: inherit;
-    
-  }
-  
-  .card .card_image img {
-    width: inherit;
-    height: inherit;
-    border-radius: 15px;
-    object-fit: cover;
-  }
-  
-  
-  .card:hover {
-    transform: scale(0.9, 0.9);
-  }
-  
-  
-  @media all and (max-width: 500px) {
-    .card-list {
-      /* On small screens, we are no longer using row direction but column */
-      flex-direction: column;
-    }
-  }
-
-#modal-jumbotron {
-  background-color: rgba(255, 248, 233, 0.7);
-  margin-top: 70%;
+.project-yellow{
+background: rgba(249, 214, 40, 0.74);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(249, 214, 40, 0.56);
+}
+.icon-blue{
+  color:#5b2dff !important;
 }
 
-@keyframes glowing {
-    0% { background-position: 0 0; }
-    50% { background-position: 400% 0; }
-    100% { background-position: 0 0; }
-
+.project-blue{
+background: rgba(40, 145, 249, 0.74);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(40, 145, 249, 0.56);
 }
 
-body{
-  background-color: rgb(245, 240, 240);
-  margin: 0; /* Eliminar márgenes predeterminados del body */
-  padding: 0; /* Eliminar relleno predeterminado del body */
+.project-purple{
+  background:#5B2448 !important;
 }
-.container{
-  display: flex;
-  flex-wrap: wrap;
-  background-color: grey;
-  margin: 0 auto;
-  width: 100%; /* Cambiar el ancho al 100% para que coincida con el body */
-  max-width: 87.5rem;
-  height: 100vh !important;
-  min-height: 100vh;
-  /* max-height: 56.25rem; */
-  justify-content: center;
-  margin: 0; /* Eliminar márgenes predeterminados del body */
-  padding: 0
-}
-.container-fluid{
-  height: 100%;
-  /* max-height: 33.75rem; */
-  background-color: blueviolet;
-}
-
-.jumbotron{
-  background-color: aqua;
-  width: 100%; /* Cambiar el ancho al 100% para que coincida con el body */
-  max-width: 87.5rem;
-  height: 100%;
-  max-height: 22.5rem;
-  margin: 0; /* Eliminar márgenes predeterminados del body */
-  padding: 0;
-  align-items: center;
-  
-}
-img{
-  width: 100%; /* Cambiar el ancho al 100% para que coincida con el body */
-  max-width: 87.5rem;
-  height: 100%;
-  max-height: 22.5rem;
-}
-.lowerView{
-  display: flexbox;
-  background-color: bisque;
-  width: 100%; /* Cambiar el ancho al 100% para que coincida con el body */
-  max-width: 87.5rem;
-  height: 100%;
-  max-height: 22.5rem;
-  margin: 0; /* Eliminar márgenes predeterminados del body */
-  padding: 0;
-}
-.footer{
-  background-color: gold;
-  width: 100%; 
-  max-width: 87.5rem;
-  height: 100%;
-  max-height: 5.625rem;
-  margin: 0; /* Eliminar márgenes predeterminados del body */
-  padding: 0;
-}
-.containerSecond{
-  background-color: grey;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  width: 100%; /* Cambiar el ancho al 100% para que coincida con el body */
-  max-width: 87.5rem;
-  justify-content: center;
-  margin: 0; /* Eliminar márgenes predeterminados del body */
-  padding: 0;
-  height: 100vh;
-}
-.selectView{
-  background-color: rgb(60, 164, 248);
-  width: 100%; /* Cambiar el ancho al 100% para que coincida con el body */
-  max-width: 87.5rem;
-  justify-content: center;
-  align-items: center;
-}
-.nav-tabs {
-  border-bottom: none;
-}
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
-  justify-content: center;
-}
-.row-professional {
-  height: 40px;
-  margin-bottom: 5px;
-}
-
+/* Color classes */
 
