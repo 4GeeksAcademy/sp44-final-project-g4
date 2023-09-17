@@ -24,10 +24,12 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
+
                         <Route element={ <Home /> } path="/" />
                         {/* <Route element={<SecondView />} path="/views" />
                         <Route element={<ProfessionalProfile />} path="professionalprofile" />
                         <Route element={<h1>Not found!</h1>} /> */}
+
                     </Routes>
                     {/* <Footer /> */ }
                 </ScrollToTop>
@@ -39,4 +41,5 @@ const Layout = () => {
 
 
 export default injectContext( Layout );
+
 
