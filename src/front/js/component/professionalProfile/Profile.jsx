@@ -4,7 +4,7 @@ import React from "react";
 export const Profile = () => {
     return(
         <>
-            <div className="profile">
+            <div className="text-start">
                 <ul>
                     <p>nombre y apellido</p>
                     <p>Email:</p>
