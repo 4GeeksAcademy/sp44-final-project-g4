@@ -2,11 +2,11 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
+import injectContext from "./store/appContext";
 
 import { Home } from "./pages/Home.jsx";
-import { SecondView } from "./pages/SecondView.jsx";
-import { ProfessionalProfile } from "./pages/ProfessionalProfile.jsx";
-import injectContext from "./store/appContext";
+import { Navbar } from "./component/Navbar.jsx";
+
 
 
 
@@ -25,10 +25,10 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
 
-                        <Route element={<Home />} path="/" />
-                        <Route element={<SecondView />} path="/views" />
+                        <Route element={ <Home /> } path="/" />
+                        {/* <Route element={<SecondView />} path="/views" />
                         <Route element={<ProfessionalProfile />} path="professionalprofile" />
-                        <Route element={<h1>Not found!</h1>} />
+                        <Route element={<h1>Not found!</h1>} /> */}
 
                     </Routes>
                     {/* <Footer /> */ }
@@ -37,4 +37,9 @@ const Layout = () => {
         </div>
     );
 };
+
+
+
+export default injectContext( Layout );
+
 
