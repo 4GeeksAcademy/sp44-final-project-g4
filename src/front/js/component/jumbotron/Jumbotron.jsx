@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
-import { Modal } from './jumbotronComponents/Modal.jsx'
-
+import React, { useState } from 'react';
+import { Modal } from './jumbotronComponents/Modal.jsx';
 
 
 export const Jumbotron = () => {
-    const [showModal, setShowModal] = useState(false);
+    const [ showModal, setShowModal ] = useState( false );
 
     const handleClose = () => {
-        setShowModal(false);
+        setShowModal( false );
     };
 
     return (
@@ -49,12 +48,12 @@ export const Jumbotron = () => {
                 <a className="btn custom-btn-jumbotron-home glow-on-hover btn-4 btn-lg my-5" id='btn-jumbotron-home'
                     href="#"
                     role="button"
-                    onClick={() => setShowModal(true)}>
+                    onClick={ () => setShowModal( true ) }>
                     <h5>Find a professional</h5></a>
 
-                <Modal showModal={showModal} handleClose={handleClose} />
+                <Modal showModal={ showModal } handleClose={ handleClose } />
             </div>
         </div>
 
-    )
-}
+    );
+};
