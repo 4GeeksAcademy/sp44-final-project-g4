@@ -6,8 +6,9 @@ export const Description =() => {
     return(
         <>
             <div className="card-body">
-                <p>Aqui va la descripción del profesional</p>
-                {/* <p>{Professional.id.description}</p> */}
+                <p>Description:
+                    {professional.description}
+                </p>
             </div>
         </>
     )

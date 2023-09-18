@@ -1,12 +1,17 @@
 import React from "react";
 
+const handleOnErrorImg = ( e ) => {
+    e.target.src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
+};
 
 export const Avatar = () => {
     return(
         <>
             <div className="rounded float-start">
-                <img src="https://images.pexels.com/photos/2023384/pexels-photo-2023384.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
-                className="w-75 p-3 " alt="foto de perfil profesional"/>
+                <img src={professional.avatar}
+                    alt="profile picture"
+                    onError={handleOnErrorImg}
+                    className="w-75 p-3" />
             </div>
         </>
     )

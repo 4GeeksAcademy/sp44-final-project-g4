@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Avatar } from "../component/professionalProfile/Avatar.jsx";
 import { Profile } from "../component/professionalProfile/Profile.jsx";
 import { Description } from "../component/professionalProfile/Description.jsx";
 import { Reviews } from "../component/professionalProfile/Reviews.jsx";
-
+import { useLocation } from "react-router-dom";
 
 export const ProfessionalProfile = () => {
+    const { state } = useLocation();
     return (
         <>
             <div className="container text-center mb-3">
