@@ -12,7 +12,7 @@ body {
 }
 .pet-background {
   background: url("https://img.freepik.com/free-vector/cute-playful-footprint-pattern-background-fauna-fun_1017-44713.jpg?w=1380&t=st=1694950178~exp=1694950778~hmac=c4ea9bffb1b022aceedef2d2bf9c234df9be86b7523c4aa270219c9c0321ee95");
-
+}
 
 .jumbotron {
   background-image: url('https://images.unsplash.com/photo-1545529468-42764ef8c85f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80'); 
@@ -29,9 +29,9 @@ body {
  }
 
 /* JUMBOTRON */
-body{
+/* body{
     background: url("https://media1.thehungryjpeg.com/thumbs/800_3500499_c4522c9bdbb778bbdb48f258ff2d30010315d6b3.jpg")
-}
+} */
 #jumbotron-home {
     background-image: url('https://images.unsplash.com/photo-1545529468-42764ef8c85f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80'); 
     background-repeat: no-repeat;

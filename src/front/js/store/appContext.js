@@ -2,24 +2,28 @@ import React, { useState, useEffect } from "react";
 import getState from "./flux.js";
 
 
-export const Context = React.createContext(null);
+export const Context = React.createContext( null );
 
 const injectContext = PassedComponent => {
+
+
 	const StoreWrapper = props => {
 		//this will be passed as the contenxt value
-		const [state, setState] = useState(
-			getState({
+		const [ state, setState ] = useState(
+			getState( {
 				getStore: () => state.store,
 				getActions: () => state.actions,
 				setStore: updatedStore =>
-					setState({
-						store: Object.assign(state.store, updatedStore),
+					setState( {
+						store: Object.assign( state.store, updatedStore ),
 						actions: { ...state.actions }
-					})
-			})
+					} )
+			} )
 		);
 
-		useEffect(() => {
+		useEffect( () => {
+			state.actions.getAllProfessionals()
+				.then( data => console.log( data ) );
 			/**
 			 * EDIT THIS!
 			 * This function is the equivalent to "window.onLoad", it only runs once on the entire application lifetime
@@ -29,14 +33,14 @@ const injectContext = PassedComponent => {
 			//  state.actions.fetchDataVet(); // <---- calling this function from the flux.js actions
 			// state.actions.fetchDataGroomer();
 			// state.actions.fetchDataWalker();
-		}, []);
+		}, [] );
 
 		// The initial value for the context is not null anymore, but the current state of this component,
 		// the context will now have a getStore, getActions and setStore functions available, because they were declared
 		// on the state of this component
 		return (
-			<Context.Provider value={state}>
-				<PassedComponent {...props} />
+			<Context.Provider value={ state }>
+				<PassedComponent { ...props } />
 			</Context.Provider>
 		);
 	};
