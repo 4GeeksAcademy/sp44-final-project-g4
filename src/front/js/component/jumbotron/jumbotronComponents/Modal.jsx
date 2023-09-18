@@ -8,15 +8,15 @@ export const Modal = ({ showModal, handleClose }) => {
 
                 <div className="modal-content" id='modal-jumbotron'>
 
-                    <div className="modal-header" closeButton>
+                    <div className="modal-header">
                         <h5 className="modal-title">Select your city</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleClose}></button>
                     </div>
 
                     <div className="modal-body">
-                        <div class="search">
-                            <input type="text" class="search__input" placeholder="Please type your city..."/>
-                                <div class="search__icon">
+                        <div className="search">
+                            <input type="text" className="search__input" placeholder="Please type your city..."/>
+                                <div className="search__icon">
                                     <ion-icon name="search"></ion-icon>
                                 </div>
                         </div>

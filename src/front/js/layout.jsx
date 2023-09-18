@@ -6,6 +6,9 @@ import injectContext from "./store/appContext";
 
 import { Home } from "./pages/Home.jsx";
 import { Navbar } from "./component/Navbar.jsx";
+import { Footer } from './component/footer/Footer.jsx'; 
+import { UserView } from "./pages/UserView.jsx";
+import { SecondView } from "./pages/SecondView.jsx";
 
 
 
@@ -26,12 +29,11 @@ const Layout = () => {
                     <Routes>
 
                         <Route element={ <Home /> } path="/" />
-                        {/* <Route element={<SecondView />} path="/views" />
-                        <Route element={<ProfessionalProfile />} path="professionalprofile" />
-                        <Route element={<h1>Not found!</h1>} /> */}
+                        <Route element={<SecondView />} path="/views" />
+                        <Route element={<UserView />} path="/user-view" />
 
                     </Routes>
-                    {/* <Footer /> */ }
+                    { <Footer /> }
                 </ScrollToTop>
             </BrowserRouter>
         </div>
