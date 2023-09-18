@@ -1,38 +1,64 @@
-const getState = ({ getStore, getActions, setStore }) => {
+
+const getState = ( { getStore, getActions, setStore } ) => {
 	return {
 		store: {
-			
+
 		},
 		actions: {
-			fetchData : async (urlKey, storageKey,) => {
+			fetchData: async ( urlKey, storageKey, ) => {
 				try {
-					if(!localStorage.getItem(storageKey)){
-						
+					if ( !localStorage.getItem( storageKey ) ) {
+
 						const host = "https://glowing-robot-jv4p56prx47fj6vp-3001.preview.app.github.dev"; // URL base
-						const url = `${host}/api/professional/${urlKey}`;
+						const url = `${ host }/api/professional/${ urlKey }`;
 						const request = {
 							method: 'GET',
 							redirect: 'follow'
 						};
-						const response = await fetch(url, request);
-						if (response.ok) {
+						const response = await fetch( url, request );
+						if ( response.ok ) {
 							const data = await response.json();
-							setStore({ [storageKey]: data.results });
-							localStorage.setItem(storageKey, JSON.stringify(data));
-							localStorage.removeItem(storageKey)
-							return data
+							setStore( { [ storageKey ]: data.results } );
+							localStorage.setItem( storageKey, JSON.stringify( data ) );
+							localStorage.removeItem( storageKey );
+							return data;
 						} else {
-							throw new Error(`Error: ${response.status} - ${response.statusText}`);
+							throw new Error( `Error: ${ response.status } - ${ response.statusText }` );
 						}
-					
+
 					} else {
-						const data = JSON.parse(localStorage.getItem(storageKey));
-						return data
+						const data = JSON.parse( localStorage.getItem( storageKey ) );
+						return data;
 					}
-				} catch (error) {
-					throw new Error(`Error fetching ${urlKey}: ${error.message}`);
+				} catch ( error ) {
+					throw new Error( `Error fetching ${ urlKey }: ${ error.message }` );
 				}
 			},
+			getAllProfessionals: async () => {
+				Promise.all( [
+					fetch( "https://supreme-disco-v6vq9wq97xg36g7j-3001.preview.app.github.dev/api/professional/vet" ),
+					fetch( "https://supreme-disco-v6vq9wq97xg36g7j-3001.preview.app.github.dev/api/professional/groomer" ),
+					fetch( "https://supreme-disco-v6vq9wq97xg36g7j-3001.preview.app.github.dev/api/professional/walker" )
+				] )
+					.then( responses => {
+						return Promise.all( responses.map( response => response.json() ) );
+					} )
+					.then( data => {
+						setStore( { vets: data[ 0 ].results } );
+						setStore( { vets: data[ 1 ].results } );
+						setStore( { vets: data[ 2 ].results } );
+						localStorage.setItem( "vets", JSON.stringify( data[ 0 ].results ) );
+						localStorage.setItem( "groomers", JSON.stringify( data[ 1 ].results ) );
+						localStorage.setItem( "walkers", JSON.stringify( data[ 2 ].results ) );
+						console.log( data[ 0 ] );
+						console.log( data[ 1 ] );
+						console.log( data[ 2 ] );
+
+					} );
+
+			}
+
+
 
 			// VetSerpApip: fetch("https://api.serpapi.com/search?engine=google&q=bardo&location=madrid&language=es&api_key=1de844b2ccd1771a9620a23061c03a50113635222097504a9ae34cb79157bc36")
 			// .then(response => response.json())
