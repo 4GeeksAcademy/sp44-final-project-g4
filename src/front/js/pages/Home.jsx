@@ -5,8 +5,7 @@ import { Context } from "../store/appContext";
 import { Jumbotron } from "../component/jumbotron/Jumbotron.jsx"
 import { LowerView } from "../component/lowerView/LowerView.jsx";
 import { Jumbotron } from "../component/jumbotron/Jumbotron.jsx";
-import Mapcomponent from "../component/map/MapComponent.jsx";
-import { getAllVets } from "../helpers/getAllVets.js";
+
 
 export const Home = () => {
 	const { store, actions } = useContext( Context );
@@ -17,6 +16,11 @@ export const Home = () => {
 			<div className="container">
 
 				<Jumbotron />
+				<LowerView />
+				
+
+
+				
 				<div className="jumbotron">
 					<Link to={ `/professionalprofile/` }>
 						<button className="btn-btn-secondary">Professional Profile</button>
@@ -27,6 +31,7 @@ export const Home = () => {
 					<LowerView />
 				</div> */}
 				<Mapcomponent type="groomers" />
+
 			</div>
 		</>
 	);

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar } from "../component/Navbar.jsx"
+import { Navbar } from "../component/Navbar.jsx";
+import { UserForm } from "../component/forms/UserForm.jsx"
 
 
 export const UserView = () => {
@@ -9,8 +10,8 @@ export const UserView = () => {
 
 
 	const handleClose = () => {
-
 	};
+
 
 	// Define una variable de estado para cada campo de entrada
 	const [name, setName] = useState("");
@@ -43,49 +44,85 @@ export const UserView = () => {
 	};
 
 	return (
-		<div className="container rounded bg-white mt-5 mb-5">
-			<div className="row">
-				<div className="col-md-3 border-right">
-					<div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" width="150px" src="https://media.istockphoto.com/id/1201041782/es/foto/alpaca.jpg?s=612x612&w=0&k=20&c=6jmsHGAzm7_AvnwsgLDhSrMK_4eTD2FMUdPcsRtkygc=" /><span className="font-weight-bold">Pepito</span><span className="text-black-50">pepito@gmail.com</span><span> </span></div>
-				</div>
-				<div className="col-md-5 border-right">
-					<div className="p-3 py-5">
-						<div className="d-flex justify-content-between align-items-center mb-3">
-							<h4 className="text-right">Personal Info</h4>
-						</div>
-						<div className="row mt-2">
-							<div className="col-md-6"><label className="labels">Name</label><input type="text" className="form-control" placeholder="first name" value={name} onChange={handleChange} /></div>
-							<div className="col-md-6"><label className="labels">Last Name</label><input type="text" className="form-control" value={userLastname} placeholder="last name" onChange={handleChange} /></div>
-						</div>
-						<div className="row mt-3">
-							<div className="col-md-12"><label className="labels">Email</label><input type="text" className="form-control" placeholder="enter your email" value={userEmail} onChange={handleChange} /></div>
-							<div className="col-md-12"><label className="labels">Mobile Number</label><input type="text" className="form-control" placeholder="enter mobile number" value={mobileNumber} onChange={handleChange} /></div>
-						</div>
+		<div className="container bg-white mt-5 mb-5" id="container-user-profile" style={{ justifyContent: "center" }}>
 
-						<div className="row mt-3">
+			<div className="page-content" id="page-content-user-profile" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
-						</div>
+				<div className="col-xl-6 col-md-12">
+					<div className="card user-card-full" id="user-card-yulia">
+						<div className="row m-l-0 m-r-0">
+							<div className="col-sm-4 bg-c-lite-green user-profile">
+								<div className="card-block text-center text-white">
+									<div className="m-b-25">
+										<img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="User-Profile-Image" />
+									</div>
 
-						<div className="mt-5 text-center">
-							<a className="btn custom-btn-jumbotron-home glow-on-hover btn-4 btn-lg my-5" id='btn-jumbotron-home'
-								href="#"
-								role="button"
-								onClick="#">
-								<h5>Save Changes</h5></a>
+									<h6>Pepito</h6>
+									<p>USER</p>
+									<i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+
+								</div>
+
+								<div className="btn-change-avatar" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+									<a className="btn custom-btn-jumbotron-home glow-on-hover btn-4  my-2" id='btn-jumbotron-home'
+										href="#"
+										role="button"
+										onClick="#">
+										<h5>Change Avatar</h5></a>
+								</div>
+
+								<div className="btn-change-passwors-user-profile" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+									<a className="btn custom-btn-jumbotron-home glow-on-hover btn-4 btn-lg" id='btn-jumbotron-home'
+										href="#"
+										role="button"
+										onClick="#">
+										<h5>Change Password</h5></a>
+								</div>
+
+							</div>
+							<div className="col-sm-8">
+								<div className="card-block">
+									<h6 className="m-b-20 p-b-5 b-b-default f-w-600">Contact</h6>
+									<div className="row">
+										<div className="col-sm-6">
+											<p className="m-b-10 f-w-600">Email</p>
+											<h6 className="text-muted f-w-400">rntng@gmail.com</h6>
+										</div>
+										<div className="col-sm-6">
+											<p className="m-b-10 f-w-600">Phone</p>
+											<h6 className="text-muted f-w-400">989799896777777777777777777777898</h6>
+										</div>
+									</div>
+									<h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Information</h6>
+									<div className="row">
+										<div className="col-sm-6">
+											<p className="m-b-10 f-w-600">Name</p>
+											<h6 className="text-muted f-w-400">Pepito</h6>
+										</div>
+										<div className="col-sm-6">
+											<p className="m-b-10 f-w-600">Last Name</p>
+											<h6 className="text-muted f-w-400">Jiménez</h6>
+										</div>
+
+										<div className="btn-change-personal-info" style={{ display: "flex", justifyContent: "center", alignItems: "center" }} id="change-personal-info-user">
+											<a className="btn custom-btn-jumbotron-home glow-on-hover btn-4 btn-lg my-5" id='btn-jumbotron-home'
+												href="#"
+												role="button"
+												onClick="#">
+												<h5>Change personal info</h5></a>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div className="col-md-4">
-					<div className="p-5 py-5">
-						<div className="d-flex justify-content-between align-items-center experience">
-
-						</div>
-						<div className="col-md-12"></div>
-					</div>
-				</div>
 			</div>
 		</div>
+
 
 	);
 };
