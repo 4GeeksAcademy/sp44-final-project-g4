@@ -8,10 +8,10 @@ const getState = ( { getStore, getActions, setStore } ) => {
 			fetchData: async ( urlKey, storageKey, ) => {
 				try {
 
-					if(!localStorage.getItem(storageKey)){
-						
+					if ( !localStorage.getItem( storageKey ) ) {
+
 						const host = "https://ideal-space-goggles-9r547pw47qq2p5vr-3001.app.github.dev"; // URL base
-						const url = `${host}/api/professional/${urlKey}`;
+						const url = `${ host }/api/professional/${ urlKey }`;
 
 						const request = {
 							method: 'GET',
@@ -38,9 +38,9 @@ const getState = ( { getStore, getActions, setStore } ) => {
 			},
 			getAllProfessionals: async () => {
 				Promise.all( [
-					fetch( "https://supreme-disco-v6vq9wq97xg36g7j-3001.preview.app.github.dev/api/professional/vet" ),
-					fetch( "https://supreme-disco-v6vq9wq97xg36g7j-3001.preview.app.github.dev/api/professional/groomer" ),
-					fetch( "https://supreme-disco-v6vq9wq97xg36g7j-3001.preview.app.github.dev/api/professional/walker" )
+					fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/vet" ),
+					fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/groomer" ),
+					fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/walker" )
 				] )
 					.then( responses => {
 						return Promise.all( responses.map( response => response.json() ) );

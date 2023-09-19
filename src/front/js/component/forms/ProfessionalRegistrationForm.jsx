@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from "../hooks/useForm.jsx";
 import { signUp } from '../../helpers/signUp.js';
-
+import { ImageUpload } from './ImageUpload.jsx';
 export const ProfessionalForm = () => {
     const [ type, setType ] = useState( '' );
-    const { formState, onResetForm, onInputChange, name, email, password, last_name, avatar, description, price_low, phone_number, address, zip_code, company_name, services, price_high } = useForm( {
+    const [ userImage, setUserImage ] = useState( '' );
+    const { formState, onResetForm, onInputChange, name, email, password, last_name, description, price_low, phone_number, address, zip_code, company_name, services, price_high } = useForm( {
         name: '',
         last_name: '',
         email: '',
         password: '',
         phone_number: '',
         description: '',
-        avatar: '',
         price_low: '',
         price_high: '',
         address: '',
@@ -19,6 +19,11 @@ export const ProfessionalForm = () => {
         company_name: '',
         services: ''
     } );
+
+    const handleImage = ( url ) => {
+        setUserImage( url );
+        console.log( url );
+    };
 
     const handleType = ( { target } ) => {
         setType( target.value );
@@ -29,7 +34,7 @@ export const ProfessionalForm = () => {
         event.preventDefault();
 
         const userType = type.toLowerCase().trim();
-        signUp( event, formState, userType )
+        signUp( event, formState, userType, userImage )
             .then( data => {
                 // For development only.
                 alert( data.message );
@@ -43,6 +48,7 @@ export const ProfessionalForm = () => {
         <>
             <div className="row p-3 container m-3">
                 <h3>Professional Profile</h3>
+                <ImageUpload getImageUrl={ handleImage } />
                 <div className="form-floating mb-2">
                     <input
                         name="professional-type"
@@ -61,7 +67,7 @@ export const ProfessionalForm = () => {
                 <div className="col-9">
                     <form className="row g-3 needs-validation" onSubmit={ handleSubmit }>
                         <div className="col-md-4 position-relative">
-                            <label for="firstName" className="form-label">First name</label>
+                            <label htmlFor="firstName" className="form-label">First name</label>
                             <input
                                 name="name"
                                 value={ name }
@@ -72,7 +78,7 @@ export const ProfessionalForm = () => {
                                 required />
                         </div>
                         <div className="col-md-4 position-relative">
-                            <label for="lastName" className="form-label">Last name</label>
+                            <label htmlFor="lastName" className="form-label">Last name</label>
                             <input
                                 name="last_name"
                                 value={ last_name }
@@ -82,7 +88,7 @@ export const ProfessionalForm = () => {
                                 id="lastName" />
                         </div>
                         <div className="col-md-4 position-relative">
-                            <label for="email" className="form-label">Email</label>
+                            <label htmlFor="email" className="form-label">Email</label>
                             <div className="input-group has-validation">
                                 <input
                                     name="email"
@@ -97,7 +103,7 @@ export const ProfessionalForm = () => {
                             </div>
                         </div>
                         <div className="col-md-4 position-relative">
-                            <label for="email" className="form-label">Email</label>
+                            <label htmlFor="email" className="form-label">Password</label>
                             <div className="input-group has-validation">
                                 <input
                                     name="password"
@@ -112,7 +118,7 @@ export const ProfessionalForm = () => {
                             </div>
                         </div>
                         <div className="col-md-2 position-relative">
-                            <label for="phoneNumber" className="form-label">Phone Number</label>
+                            <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
                             <input
                                 name="phone_number"
                                 value={ phone_number }
@@ -123,67 +129,58 @@ export const ProfessionalForm = () => {
                                 required />
                         </div>
                         <div className="col-md-4 position-relative">
-                            <label for="companyName" className="form-label">Company Name</label>
+                            <label htmlFor="companyName" className="form-label">Company Name</label>
                             <input
                                 type="text"
-                                name="address"
-                                value={ address }
+                                name="company_name"
+                                value={ company_name }
                                 onChange={ onInputChange }
                                 className="form-control"
                                 id="companyName" />
                         </div>
-                        <div class="col-md-6 position-relative">
-                            <label for="avatar" className="form-label">Avatar</label>
-                            <input
-                                name="avatar"
-                                value={ avatar }
-                                onChange={ onInputChange }
-                                type="text"
-                                className="form-control"
-                                id="avatar"
-                                required />
-                            <div className="invalid-feedback">Avatar</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
+
+                        <div className="mb-3">
+                            <label htmlFor="description" className="form-label">Description</label>
                             <textarea
-                                name="services"
-                                value={ services }
+                                name="description"
+                                value={ description }
                                 onChange={ onInputChange }
-                                class="form-control"
+                                className="form-control"
                                 id="description"
                                 placeholder="Tell something about your services..."
                                 required></textarea>
-                            <div class="invalid-feedback">
+                            <div className="invalid-feedback">
                                 Tell something about your services...
                             </div>
                         </div>
                         <div className="col-md-2 position-relative">
-                            <label for="city" className="form-label">Address
+                            <label htmlFor="city" className="form-label">Address
                             </label>
                             <input
                                 type="text"
                                 name="address"
                                 value={ address }
+                                onChange={ onInputChange }
                                 className="form-control"
                                 id="address"
                                 required />
                         </div>
                         <div className="col-md-2 position-relative">
-                            <label for="zipCode" className="form-label">Zip Code</label>
+                            <label htmlFor="zipCode" className="form-label">Zip Code</label>
                             <input
                                 type="number"
                                 name="zip_code"
                                 value={ zip_code }
+                                onChange={ onInputChange }
                                 className="form-control"
                                 id="zipCode"
                                 required />
                         </div>
                         <div className="col-md-4 position-relative">
-                            <label for="service" className="form-label">Services</label>
+                            <label htmlFor="service" className="form-label">Services</label>
                             <input
-                                name="company_name"
-                                value={ company_name }
+                                name="services"
+                                value={ services }
                                 onChange={ onInputChange }
                                 type="text"
                                 className="form-control"
@@ -191,7 +188,7 @@ export const ProfessionalForm = () => {
                                 required />
                         </div>
                         <div className="col-md-2 position-relative">
-                            <label for="priceLow" className="form-label">Price Low</label>
+                            <label htmlFor="priceLow" className="form-label">Price Low</label>
                             <div className="input-group has-validation">
                                 <span className="input-group-text" id="priceLowSymbol">$</span>
                                 <input
@@ -205,7 +202,7 @@ export const ProfessionalForm = () => {
                             </div>
                         </div>
                         <div className="col-md-2 position-relative">
-                            <label for="priceLow" className="form-label">Price Low</label>
+                            <label htmlFor="priceLow" className="form-label">Price Low</label>
                             <div className="input-group has-validation">
                                 <span className="input-group-text" id="priceLowSymbol">$</span>
                                 <input
