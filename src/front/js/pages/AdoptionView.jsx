@@ -1,40 +1,52 @@
-import React from "react";
-import { useContext } from "react";
-import { Context } from "../store/appContext";
-import { ChangeOfView } from "../component/secondView/ChangeOfView.jsx";
-import { ProfessionalView } from "../component/secondView/ProfessionalView.jsx";
 
-
+import React, { useEffect, useState } from 'react';
+import { PetProfileCard } from "../component/adoption/PetProfileCard.jsx";
+import { getPetToken } from "../helpers/getPetToken.js";
+import { getAnimals } from "../helpers/getAnimals.js";
+import { Link } from 'react-router-dom';
 
 export const AdoptionView = () => {
-	const { store, actions } = useContext(Context);
+    const [ isLoading, setIsLoading ] = useState( false );
+    const [ animals, setAnimals ] = useState( null );
 
-	return (
-		<>
-			<div className="containerSecond">
-				<div className="navbar">
-					<h1>
-						Esta es la pagina de adoption
-					</h1>
-				</div>
-				<div className="container-fluid text-center">
-					<div className="row-professional">
-						<div className="col-12">
-							<ChangeOfView /> {/*Select Professional*/}
-						</div>
-					</div>
-					<div className="row">
-						<div className="col-3">
-							Esta es la pagina de adoption
-						</div>
-						<div className="col-9">
-							<div className="selectView">
-								<ProfessionalView /> {/*Select View*/}
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</>
-	);
+
+    const getTokenAndAnimals = async () => {
+        setIsLoading( true );
+        const token = await getPetToken();
+        const animals = await getAnimals( token );
+        setAnimals( animals.animals );
+        console.log( animals.animals );
+        setIsLoading( false );
+    };
+
+    useEffect( () => {
+
+        getTokenAndAnimals();
+
+    }, [] );
+
+
+    return (
+        <>
+            { isLoading && <div className="container text-center">
+                <img className="card-img-top" style={ { width: "18rem" } } src="https://img.freepik.com/free-vector/cute-dog-cat-friend-cartoon_138676-2432.jpg?w=2000" alt="" />
+                <h4>Loading pets...</h4>
+            </div> }
+
+            <ul className="d-flex flex-wrap">
+
+                { animals !== null && animals.map( animal => (
+
+                    <li key={ animal.id }>
+                        <PetProfileCard
+                            animal={ animal }
+                        />
+                    </li>
+                ) ) }
+            </ul>
+
+
+
+        </>
+    );
 };
