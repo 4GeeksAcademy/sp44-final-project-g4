@@ -7,10 +7,12 @@ const getState = ( { getStore, getActions, setStore } ) => {
 		actions: {
 			fetchData: async ( urlKey, storageKey, ) => {
 				try {
-					if ( !localStorage.getItem( storageKey ) ) {
 
-						const host = "https://glowing-robot-jv4p56prx47fj6vp-3001.preview.app.github.dev"; // URL base
-						const url = `${ host }/api/professional/${ urlKey }`;
+					if(!localStorage.getItem(storageKey)){
+						
+						const host = "https://ideal-space-goggles-9r547pw47qq2p5vr-3001.app.github.dev"; // URL base
+						const url = `${host}/api/professional/${urlKey}`;
+
 						const request = {
 							method: 'GET',
 							redirect: 'follow'

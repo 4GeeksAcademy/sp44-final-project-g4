@@ -4,6 +4,8 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 import injectContext from "./store/appContext";
 
+import { Navbar } from "./component/Navbar.jsx"
+import { Footer } from "./component/footer/Footer.jsx"
 import { Home } from "./pages/Home.jsx";
 import { Navbar } from "./component/Navbar.jsx";
 
@@ -31,7 +33,9 @@ const Layout = () => {
                         <Route element={<h1>Not found!</h1>} /> */}
 
                     </Routes>
+
                     {/* <Footer /> */ }
+
                 </ScrollToTop>
             </BrowserRouter>
         </div>
