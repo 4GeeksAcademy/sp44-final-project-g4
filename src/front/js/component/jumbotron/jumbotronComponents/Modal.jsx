@@ -14,9 +14,11 @@ export const Modal = ({ showModal, handleClose }) => {
                     </div>
 
                     <div className="modal-body">
+
                         <div className="search">
                             <input type="text" className="search__input" placeholder="Please type your city..."/>
                                 <div className="search__icon">
+
                                     <ion-icon name="search"></ion-icon>
                                 </div>
                         </div>
@@ -30,7 +32,6 @@ export const Modal = ({ showModal, handleClose }) => {
                             Search
                         </button>
                     </div>
-
                 </div>
             </div>
         </div>
