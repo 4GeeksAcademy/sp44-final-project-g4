@@ -1,23 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 
-export const Profile = () => {
-    return(
+export const Profile = ( { user } ) => {
+
+    return (
         <>
             <div className="text-start border-bottom border-2">
                 <ul>
-                    <p>{professional.name} {professional.last_name}</p>
-                    <p>Company name: {professional.company_name}</p>
-                    <p>Email: {professional.email}</p>
-                    <p>Phone: {professional.phone_number}</p>
-                    <p>Address: {professional.addres}</p>
-                    <p>Zip code: {professional.zip_code}</p>
-                    <p>Price low: {professional.price_low}</p>
-                    <p>Price high: {professional.price_high}</p>
-                    <p>Services: {professional.services}</p>
-                    <p>Created on: {professional.created_at}</p>
+                    <p>Name: { user.name } </p>
+                    <p>Company name: { user.company_name } </p>
+                    <p>Email: { user.email } </p>
+                    <p>Phone: { user.phone }</p>
+                    <p>Address: { user.address }</p>
+                    <p>Zip code: { user.zip_code } </p>
+                    <p>Price low: { user.price_low } </p>
+                    <p>Price high:{ user.price_high } </p>
+                    <p>Services: { user.services } </p>
+                    <p>Member since: { user.create_at } </p>
                 </ul>
             </div>
         </>
-    )
-}
+    );
+};

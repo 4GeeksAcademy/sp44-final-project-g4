@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 
 
-export const Description =() => {
-    return(
+export const Description = () => {
+    const [ user, setUser ] = useState( '' );
+
+    useEffect( () => {
+        setUser( JSON.parse( localStorage.getItem( "user" ) ) );
+    }, [] );
+
+    return (
         <>
             <div className="card-body">
                 <p>Description:
-                    {professional.description}
+                    { user.description }
                 </p>
             </div>
         </>
-    )
-}
+    );
+};

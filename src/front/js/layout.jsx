@@ -7,10 +7,10 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/Navbar.jsx";
 import { Footer } from "./component/footer/Footer.jsx";
 import { Home } from "./pages/Home.jsx";
-import { UserView } from "./pages/UserView.jsx";
 import { SecondView } from "./pages/SecondView.jsx";
 import { Login } from "./pages/Login.jsx";
-
+import { ProfessionalProfile } from "./pages/ProfessionalProfile.jsx";
+import { UserView } from "./pages/UserView.jsx";
 
 
 //create your first component
@@ -32,7 +32,8 @@ const Layout = () => {
                         <Route element={ <Login /> } path="/login" />
                         <Route element={ <SecondView /> } path="/views" />
                         <Route element={ <UserView /> } path="/user-view" />
-
+                        <Route element={ <ProfessionalProfile /> } path="/pro-profile" />
+                        <Route element={ <UserView /> } path="/user-profile" />
                     </Routes>
 
                     {/* { <Footer /> } */ }

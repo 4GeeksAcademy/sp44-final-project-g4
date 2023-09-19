@@ -186,6 +186,9 @@ def login():
         return jsonify({"msg": "Missing Password."}), 401
 
     user = User.query.filter(User.email == email).first()
+    vet = VetModel.query.filter(VetModel.email == email).first()
+    groomer = GroomerModel.query.filter(GroomerModel.email == email).first()
+    walker = WalkerModel.query.filter(WalkerModel.email == email).first()
 
     if user:
         if bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8')):
@@ -195,7 +198,71 @@ def login():
                            userId=user.id,
                            email=user.email,
                            avatar=user.avatar,
-                           name=user.name
+                           name=user.name,
+                           last_name=user.last_name,
+                           created_at=user.created_at,
+                           type="user",
+                           phone=user.phone_number
+                           )
+    elif vet:
+        if bcrypt.hashpw(password.encode('utf-8'), vet.password.encode('utf-8')):
+            access_token = create_access_token(identity=email)
+            print(f'Welcome back {email}')
+            return jsonify(access_token=access_token,
+                           userId=vet.id,
+                           email=vet.email,
+                           avatar=vet.avatar,
+                           name=vet.name,
+                           type="vet",
+                           last_name=vet.last_name,
+                           phone=vet.phone_number,
+                           address=vet.address,
+                           zip_code=vet.zip_code,
+                           price_low=vet.price_low,
+                           price_high=vet.price_high,
+                           services=vet.services,
+                           company_name=vet.company_name,
+                           create_at=vet.created_at
+                           )
+    elif groomer:
+        if bcrypt.hashpw(password.encode('utf-8'), groomer.password.encode('utf-8')):
+            access_token = create_access_token(identity=email)
+            print(f'Welcome back {email}')
+            return jsonify(access_token=access_token,
+                           userId=groomer.id,
+                           email=groomer.email,
+                           avatar=groomer.avatar,
+                           name=groomer.name,
+                           type="groomer",
+                           last_name=groomer.last_name,
+                           phone=groomer.phone_number,
+                           address=groomer.address,
+                           zip_code=groomer.zip_code,
+                           price_low=groomer.price_low,
+                           price_high=groomer.price_high,
+                           services=groomer.services,
+                           company_name=groomer.company_name,
+                           create_at=groomer.created_at
+                           )
+    elif walker:
+        if bcrypt.hashpw(password.encode('utf-8'), walker.password.encode('utf-8')):
+            access_token = create_access_token(identity=email)
+            print(f'Welcome back {email}')
+            return jsonify(access_token=access_token,
+                           userId=walker.id,
+                           email=walker.email,
+                           avatar=walker.avatar,
+                           name=walker.name,
+                           type="walker",
+                           last_name=walker.last_name,
+                           phone=walker.phone_number,
+                           address=walker.address,
+                           zip_code=walker.zip_code,
+                           price_low=walker.price_low,
+                           price_high=walker.price_high,
+                           services=walker.services,
+                           company_name=walker.company_name,
+                           create_at=walker.created_at
                            )
     else:
         message_body = {

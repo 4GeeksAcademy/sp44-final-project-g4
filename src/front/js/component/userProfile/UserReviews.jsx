@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export const UserReviews = ()=> {
+export const UserReviews = () => {
     return (
         <>
             <ul>
@@ -17,5 +17,5 @@ export const UserReviews = ()=> {
                 </li>
             </ul>
         </>
-    )
-}
+    );
+};

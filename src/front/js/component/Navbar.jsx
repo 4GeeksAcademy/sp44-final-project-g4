@@ -33,18 +33,18 @@ export const Navbar = () => {
         <>
             { redirect && <Navigate to="/" replace /> }
 
-            <div className="d-flex justify-content-end bg-info">
+            <div className="project-blue d-flex justify-content-end ">
                 <div>
                     { isLogged !== null &&
-                        <div className="btn-group " role="group" aria-label="Basic example">
-                            <button onClick={ handleLogout } type="button" className="btn btn-outline-primary mt-2 me-2">Logout</button>
+                        <div className="btn-group" role="group" aria-label="Basic example">
+                            <button onClick={ handleLogout } type="button" className="btn  mt-2 me-2  bg-white">Logout</button>
                         </div>
-
                     }
+
 
                     { isLogged === null &&
                         <div className="btn-group" role="group" aria-label="Basic example">
-                            <Link className="btn btn-outline-primary mt-2 me-2" to="/login" relative="path">Login</Link>
+                            <Link className="btn  mt-2 me-2 bg-white" to="/login" relative="path">Login</Link>
                         </div>
                     }
                     {/* <Link className="btn btn-outline-primary mt-2 me-2" to="/login" relative="path">Login</Link> */ }

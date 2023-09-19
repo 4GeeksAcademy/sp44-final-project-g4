@@ -17,7 +17,6 @@ export const Home = () => {
 			<div className="container">
 
 				<Jumbotron />
-				<LowerView />
 				<div className="lowerView mt-5">
 					<LowerView />
 				</div>

@@ -29,11 +29,13 @@ export const signIn = async ( event, initialObject = {} ) => {
         const data = await response.json();
         console.log( data );
         if ( data[ "access_token" ] ) {
-            localStorage.setItem( "token", data[ "access_token" ] );
+            localStorage.setItem( "user", JSON.stringify( data ) );
             localStorage.setItem( "avatar", data[ "avatar" ] );
             localStorage.setItem( "email", data[ "email" ] );
-            localStorage.setItem( "userId", data[ "userId" ] );
-            localStorage.setItem( "name", data[ "name" ] );
+            localStorage.setItem( "email", data[ "id" ] );
+            localStorage.setItem( "type", data[ "type" ] );
+
+
 
 
 

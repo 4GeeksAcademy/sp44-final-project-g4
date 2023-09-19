@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UserAvatar } from "../component/userProfile/UserAvatar.jsx";
 import { UserProfile } from "../component/userProfile/UserProfile.jsx";
-import { UserDescription } from "../component/userProfile/UserDescription.jsx";
 import { UserReviews } from "../component/userProfile/UserReviews.jsx";
 import { useLocation } from "react-router-dom";
 import { Navbar } from "../component/Navbar.jsx";
@@ -20,9 +19,7 @@ export const ProfessionalProfile = () => {
                     <div className="col-9" style={ { paddingLeft: "0", paddingRight: "0" } }>
                         <UserProfile />
                     </div>
-                    <div className="col-3  border-end border-3">
-                        <UserDescription />
-                    </div>
+
                     <div className="col-9 mt-2">
                         <UserReviews />
                     </div>

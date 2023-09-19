@@ -1,14 +1,19 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
-
-
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap');
 html {
   height: 100vh;
+
 }
 
 body {
   height: 100%;
+  background: url("https://img.freepik.com/free-vector/gradient-3d-folds-background_23-2149181599.jpg?w=1380&t=st=1695151219~exp=1695151819~hmac=77d4eb12fade9fe901da965e50e245bd4f541121c7fbd81e34b071d84917f053");
+  font-family: 'Poppins', sans-serif;
+}
+
+.main-title{
+  font-family: 'Pacifico', cursive;
+  color: #00b6ac;
+  font-size: 25px;
 }
 .pet-background {
   background: url("https://img.freepik.com/free-vector/cute-playful-footprint-pattern-background-fauna-fun_1017-44713.jpg?w=1380&t=st=1694950178~exp=1694950778~hmac=c4ea9bffb1b022aceedef2d2bf9c234df9be86b7523c4aa270219c9c0321ee95");
@@ -64,7 +69,6 @@ body {
 
 .project-yellow{
 background: rgba(249, 214, 40, 0.74);
-border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
@@ -77,7 +81,6 @@ border: 1px solid rgba(249, 214, 40, 0.56);
 
 .project-blue{
 background: rgba(40, 145, 249, 0.74);
-border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);

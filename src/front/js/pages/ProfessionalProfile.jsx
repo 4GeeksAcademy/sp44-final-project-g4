@@ -8,17 +8,30 @@ import { Navbar } from "../component/Navbar.jsx";
 
 export const ProfessionalProfile = () => {
     const { state } = useLocation();
+    const [ user, setUser ] = useState( '' );
+
+    useEffect( () => {
+        console.log( localStorage.getItem( "user" ) );
+        setUser( JSON.parse( localStorage.getItem( "user" ) ) );
+
+    }, [] );
+
+    const handleClick = () => {
+        console.log( user );
+    };
+
     return (
         <>
             <Navbar />
+            <button onClick={ handleClick } >Click me</button>
             <div className="container text-center mb-3">
                 <h3> Professional Profile </h3>
                 <div className="row row-cols-2">
                     <div className="col-3  border-end border-3">
-                        <Avatar />
+                        <Avatar avatar={ user.avatar } />
                     </div>
                     <div className="col-9" style={ { paddingLeft: "0", paddingRight: "0" } }>
-                        <Profile />
+                        <Profile user={ user } />
                     </div>
                     <div className="col-3  border-end border-3">
                         <Description />
