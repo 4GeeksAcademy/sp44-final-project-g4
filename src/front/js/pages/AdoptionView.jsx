@@ -4,6 +4,7 @@ import { PetProfileCard } from "../component/adoption/PetProfileCard.jsx";
 import { getPetToken } from "../helpers/getPetToken.js";
 import { getAnimals } from "../helpers/getAnimals.js";
 import { Link } from 'react-router-dom';
+import { Navbar } from '../component/Navbar.jsx';
 
 export const AdoptionView = () => {
     const [ isLoading, setIsLoading ] = useState( false );
@@ -28,6 +29,7 @@ export const AdoptionView = () => {
 
     return (
         <>
+            <Navbar />
             { isLoading && <div className="container text-center">
                 <img className="card-img-top" style={ { width: "18rem" } } src="https://img.freepik.com/free-vector/cute-dog-cat-friend-cartoon_138676-2432.jpg?w=2000" alt="" />
                 <h4>Loading pets...</h4>

@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const signUp = async ( event, initialObject = {}, type, userImage ) => {
-    // Development, default picture.
     initialObject.avatar = userImage;
 
     const myHeaders = new Headers();

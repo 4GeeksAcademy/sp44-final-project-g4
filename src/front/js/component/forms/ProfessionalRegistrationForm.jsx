@@ -111,7 +111,9 @@ export const ProfessionalForm = () => {
                                     onChange={ onInputChange }
                                     type="password"
                                     className="form-control"
-                                    id="password" required />
+                                    id="password"
+                                    minlength="8"
+                                    required />
                                 <div className="invalid-tooltip">
                                     Please choose a unique and valid email.
                                 </div>

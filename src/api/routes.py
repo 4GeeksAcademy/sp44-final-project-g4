@@ -30,7 +30,6 @@ def handle_marshmallow_error(e):
 def signup(user_type):
     request_body = request.json
     email = request_body["email"]
-    
 
     if user_type == 'user':
         schema = UserSchema()
@@ -81,14 +80,15 @@ def signup(user_type):
         if VetModel.query.filter(VetModel.phone_number == phone_number).first():
             return {"msg": "Phone number already exist.",
                     "code": 501}
-        
-        address_vet =  request_body["address"] + ", New York, NY " + str(request_body["zip_code"]) + ", USA"
+
+        address_vet = request_body["address"] + \
+            ", New York, NY " + str(request_body["zip_code"]) + ", USA"
         geolocator = Nominatim(user_agent="the_addres_vet")
         location = geolocator.geocode(address_vet, timeout=None)
 
         latitude = location.latitude
         longitude = location.longitude
-        
+
         request_body["latitude"] = latitude
         request_body["longitude"] = longitude
 
@@ -114,8 +114,9 @@ def signup(user_type):
         if GroomerModel.query.filter(GroomerModel.phone_number == phone_number).first():
             return {"msg": "Phone number already exist.",
                     "code": 501}
-            
-        address_groomer = request_body["address"] + ", New York, NY " + str(request_body["zip_code"]) + ", USA"
+
+        address_groomer = request_body["address"] + \
+            ", New York, NY " + str(request_body["zip_code"]) + ", USA"
         geolocator = Nominatim(user_agent="the_addres_groomer")
         location = geolocator.geocode(address_groomer, timeout=None)
 
@@ -146,8 +147,9 @@ def signup(user_type):
         if WalkerModel.query.filter(WalkerModel.phone_number == phone_number).first():
             return {"msg": "Phone number already exist.",
                     "code": 501}
-            
-        address_walker =  request_body["address"] + ", New York, NY " + str(request_body["zip_code"]) + ", USA"
+
+        address_walker = request_body["address"] + \
+            ", New York, NY " + str(request_body["zip_code"]) + ", USA"
         geolocator = Nominatim(user_agent="the_addres_walker")
         location = geolocator.geocode(address_walker, timeout=None)
 
@@ -177,7 +179,7 @@ def signup(user_type):
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    
+
     if not email:
         return jsonify({"msg": "Missing Email."}), 401
     if not password:
@@ -189,14 +191,18 @@ def login():
         if bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8')):
             access_token = create_access_token(identity=email)
             print(f'Welcome back {email}')
-            return jsonify(access_token=access_token)
+            return jsonify(access_token=access_token,
+                           userId=user.id,
+                           email=user.email,
+                           avatar=user.avatar,
+                           name=user.name
+                           )
     else:
         message_body = {
             "msg": "User or Password Incorrect",
             "code": 501
         }
         return message_body
-
 
 
 # Need to protect route only for admin

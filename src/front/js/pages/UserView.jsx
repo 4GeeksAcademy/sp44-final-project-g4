@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navbar } from "../component/Navbar.jsx";
-import { UserForm } from "../component/forms/UserForm.jsx"
+
 
 
 export const UserView = () => {
-	const { store, actions } = useContext(Context);
+	const { store, actions } = useContext( Context );
 
 
 	const handleClose = () => {
@@ -14,27 +13,27 @@ export const UserView = () => {
 
 
 	// Define una variable de estado para cada campo de entrada
-	const [name, setName] = useState("");
-	const [userLastname, setUserLastName] = useState("");
-	const [mobileNumber, setMobileNumber] = useState("");
-	const [userEmail, setUserEmail] = useState("");
+	const [ name, setName ] = useState( "" );
+	const [ userLastname, setUserLastName ] = useState( "" );
+	const [ mobileNumber, setMobileNumber ] = useState( "" );
+	const [ userEmail, setUserEmail ] = useState( "" );
 
 	// ... Define el resto de las variables de estado para otros campos
 
-	const handleChange = (event) => {
+	const handleChange = ( event ) => {
 		// Actualiza el valor de la variable de estado correspondiente cuando cambia el campo de entrada
-		switch (event.target.name) {
+		switch ( event.target.name ) {
 			case "name":
-				setName(event.target.value);
+				setName( event.target.value );
 				break;
 			case "userLastname":
-				setUserLastName(event.target.value);
+				setUserLastName( event.target.value );
 				break;
 			case "mobileNumber":
-				setMobileNumber(event.target.value);
+				setMobileNumber( event.target.value );
 				break;
 			case "userEmail":
-				setUserEmail(event.target.value);
+				setUserEmail( event.target.value );
 				break;
 
 			// ... Actualiza las demás variables de estado
@@ -44,9 +43,9 @@ export const UserView = () => {
 	};
 
 	return (
-		<div className="container bg-white mt-5 mb-5" id="container-user-profile" style={{ justifyContent: "center" }}>
+		<div className="container bg-white mt-5 mb-5" id="container-user-profile" style={ { justifyContent: "center" } }>
 
-			<div className="page-content" id="page-content-user-profile" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+			<div className="page-content" id="page-content-user-profile" style={ { display: "flex", justifyContent: "center", alignItems: "center" } }>
 
 				<div className="col-xl-6 col-md-12">
 					<div className="card user-card-full" id="user-card-yulia">
@@ -63,7 +62,7 @@ export const UserView = () => {
 
 								</div>
 
-								<div className="btn-change-avatar" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+								<div className="btn-change-avatar" style={ { display: "flex", justifyContent: "center", alignItems: "center" } }>
 									<a className="btn custom-btn-jumbotron-home glow-on-hover btn-4  my-2" id='btn-jumbotron-home'
 										href="#"
 										role="button"
@@ -71,7 +70,7 @@ export const UserView = () => {
 										<h5>Change Avatar</h5></a>
 								</div>
 
-								<div className="btn-change-passwors-user-profile" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+								<div className="btn-change-passwors-user-profile" style={ { display: "flex", justifyContent: "center", alignItems: "center" } }>
 									<a className="btn custom-btn-jumbotron-home glow-on-hover btn-4 btn-lg" id='btn-jumbotron-home'
 										href="#"
 										role="button"
@@ -104,7 +103,7 @@ export const UserView = () => {
 											<h6 className="text-muted f-w-400">Jiménez</h6>
 										</div>
 
-										<div className="btn-change-personal-info" style={{ display: "flex", justifyContent: "center", alignItems: "center" }} id="change-personal-info-user">
+										<div className="btn-change-personal-info" style={ { display: "flex", justifyContent: "center", alignItems: "center" } } id="change-personal-info-user">
 											<a className="btn custom-btn-jumbotron-home glow-on-hover btn-4 btn-lg my-5" id='btn-jumbotron-home'
 												href="#"
 												role="button"

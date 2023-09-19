@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Jumbotron } from "../component/jumbotron/Jumbotron.jsx";
 import { LowerView } from "../component/lowerView/LowerView.jsx";
+import { Navbar } from "../component/Navbar.jsx";
 
 
 export const Home = () => {
@@ -12,9 +13,11 @@ export const Home = () => {
 
 	return (
 		<>
+			<Navbar />
 			<div className="container">
 
 				<Jumbotron />
+				<LowerView />
 				<div className="lowerView mt-5">
 					<LowerView />
 				</div>

@@ -2,6 +2,7 @@
 const getState = ( { getStore, getActions, setStore } ) => {
 	return {
 		store: {
+			loggedUser: []
 
 		},
 		actions: {
@@ -58,6 +59,10 @@ const getState = ( { getStore, getActions, setStore } ) => {
 
 					} );
 
+			},
+			logout: () => {
+				window.localStorage.clear();
+				setStore( { loggedUser: [] } );
 			}
 
 

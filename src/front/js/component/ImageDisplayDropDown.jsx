@@ -1,10 +1,10 @@
 import React from 'react';
 
-export const ImageDisplayDropDown = () => {
+export const ImageDisplayDropDown = ( { image } ) => {
     return (
         <>
-            <div className="dropdown bg-success text-end">
-                <img style={ { height: "60px", width: "60px", borderRadius: "50%" } } src="https://www.finedininglovers.com/es/sites/g/files/xknfdk1706/files/styles/article_1200_800_fallback/public/2022-04/fresas%C2%A9iStock.jpg?itok=iBcd_HLd" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" alt="" className="p-1" />
+            <div className="dropdown  text-end">
+                <img style={ { height: "60px", width: "60px", borderRadius: "50%" } } src={ image } id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" alt="" className="p-1" />
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a className="dropdown-item" href="#">View Profile</a></li>
                     <li><a className="dropdown-item" href="#">Favorites</a></li>

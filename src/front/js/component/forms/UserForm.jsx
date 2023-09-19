@@ -101,7 +101,8 @@ export const UserForm = () => {
                                 type="password"
                                 className="form-control"
                                 id="floatingPassword"
-                                placeholder="Password" />
+                                placeholder="Password"
+                                minlength="8" />
                             <label htmlFor="floatingPassword">Password</label>
                         </div>
 
