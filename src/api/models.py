@@ -219,7 +219,7 @@ class PostModel(db.Model):
     __tablename__ = "post"
     id = db.Column(db.BigInteger, primary_key=True)
     title = db.Column(db.String(300), unique=False, nullable=False)
-    body = db.Column(db.String(3000), unique=False, nullable=False)
+    body = db.Column(db.String(10000), unique=False, nullable=False)
     image = db.Column(db.String(3000), unique=False, nullable=False)
     category_enum = db.Enum('Salud', 'Bienestar',
                             'Belleza', name='category_enum')
@@ -233,14 +233,12 @@ class PostModel(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "Name": self.name,
-            "Surname": self.surname,
-            "Email": self.email,
-            "Address": self.address,
-            "Phone Number": self.phone_number,
-            "Description": self.description,
-            "Price low": self.price_low,
-            "Price high": self.price_high
+            "title": self.title,
+            "body": self.body,
+            "image": self.image,
+            "author": self.author,
+            "category": self.category,
+            "created": self.created_at            
         }
     
 class ReviewWalkers(db.Model):

@@ -302,7 +302,7 @@ def get_single_professional(id, professional_type):
 
 
 # Incluidos los 3 profesionales en GET y PUT y DELETE
-@api.route('/professional/<int:user_id>/<string:user_type>', methods=['GET', 'PUT', 'DELETE'])
+@api.route('/professional/<int:user_id>/<string:user_type>', methods=['PUT', 'DELETE'])
 def handle_proffesionals(user_type, user_id):
     if user_type == 'vet':
         if request.method == 'PUT':
@@ -365,7 +365,7 @@ def handle_proffesionals(user_type, user_id):
         return {"msg": "Walker Deleted"}
 
 
-# EndPoint para optener y crear los Posts
+# EndPoint para optener todos los Posts
 @api.route('/posts', methods=['GET'])
 def get_posts():
     if request.method == 'GET':
@@ -382,6 +382,23 @@ def get_posts():
             return "Not Found", 404
 
     return jsonify(response), 200
+
+
+@api.route('/posts/<int:id>', methods=['GET'])
+def get_post(id):
+    if request.method == 'GET':
+        post = db.get_or_404( PostModel, id)
+  
+        response_body = {"message": "All posts fetched successfully",
+                         "status": "ok",
+                        "results": post.serialize()}
+        
+        if response_body:
+            return response_body, 200
+        else:
+            return "Not Found", 404
+
+    return jsonify(response_body), 200
 
 
 # Incluidos los 3 profesionales en favoritos.

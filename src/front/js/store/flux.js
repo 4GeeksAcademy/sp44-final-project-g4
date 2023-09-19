@@ -4,10 +4,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			favorites: []
 		},
 		actions: {
-			
+
 			// Justo aqui es donde se van a definir todos los fecht (funciones) a utilizar, que a su vez modificaran las variables en demo
 			//luego llamare y ejecutare estas funciones en el useEffect del appContext
-				//modificar para el fetch de la base de datos
+			//modificar para el fetch de la base de datos
 			getPeople: async () => {
 				if (localStorage.getItem("peopleLocal") === null) {
 					const host = "https://serpapi.com/search.json?engine=google&q=Coffee";
@@ -38,8 +38,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			removeFavorites: (nameCharacter) => {
 				const FavoritesList = getStore().favorites;
-				const listRemove = FavoritesList.filter((favorite)=> favorite != nameCharacter);
-				setStore({favorites: listRemove});
+				const listRemove = FavoritesList.filter((favorite) => favorite != nameCharacter);
+				setStore({ favorites: listRemove });
 				localStorage.setItem("favorites", JSON.stringify(listRemove))
 			},
 
@@ -48,14 +48,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getMessage: async () => {
-				try{
-			 		// fetching data from the backend
+				try {
+					// fetching data from the backend
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
 					return data;
-				}catch(error){
+				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
 			},
@@ -72,7 +72,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			getPosts: async () => {
+				var requestOptions = {
+					method: 'GET',
+					redirect: 'follow'
+				};
+				if (localStorage.getItem("postsLocal") === null) {
+					const response = await fetch("https://orange-goldfish-9p6vxrpqj4gcpq6x-3001.preview.app.github.dev/api/posts", requestOptions)
+					if (response.ok) {
+						const posts = await response.json();
+						localStorage.setItem("postsLocal", JSON.stringify(posts))
+					} else {
+						console.log("ERROR" + response.status)
+					}
+				}
 			}
+
 		}
 	};
 };

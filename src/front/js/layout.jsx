@@ -10,6 +10,9 @@ import { Navbar } from "./component/Navbar.jsx";
 import { VetView } from './pages/vetView.jsx'
 import { NewView } from "./pages/NewView.jsx";
 import { Footer } from './component/footer/Footer.jsx'
+import { TheBlog } from "./pages/TheBlog.jsx";
+import { Article } from "./pages/Article.jsx";
+
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -24,9 +27,11 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
-                        <Route to="/list" element={<Home/>}/>
-                        <Route element={<Login/>} path="/login" />
+                        <Route to="/list" element={<Home />} />
+                        <Route element={<Login />} path="/login" />
                         <Route element={<Home />} path="/home" />
+                        <Route element={<TheBlog />} path="/blog" />
+                        <Route element={<Article />} path="/blog/:id" />
                         <Route element={<VetView />} path="/vet" />
                         <Route element={<NewView />} path="/view" />
                     </Routes>
