@@ -6,9 +6,8 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/Navbar.jsx";
 
-import { VetView } from './pages/vetView.jsx'
-import { NewView } from "./pages/NewView.jsx";
-import { Footer } from './component/footer/Footer.jsx'
+
+
 import { TheBlog } from "./pages/TheBlog.jsx";
 import { Article } from "./pages/Article.jsx";
 
@@ -35,10 +34,10 @@ const Layout = () => {
                 <ScrollToTop>
                     {/* <Navbar /> */ }
                     <Routes>
-                        <Route element={<TheBlog />} path="/blog" />
-                        <Route element={<Article />} path="/blog/:id" />
-                        <Route element={<VetView />} path="/vet" />
-                        <Route element={<NewView />} path="/view" />
+                        <Route element={ <TheBlog /> } path="/blog" />
+                        <Route element={ <Article /> } path="/blog/:id" />
+                        {/* <Route element={ <VetView /> } path="/vet" />
+                        <Route element={ <NewView /> } path="/view" /> */}
                         <Route element={ <Home /> } path="/" />
                         <Route element={ <Login /> } path="/login" />
                         <Route element={ <SecondView /> } path="/views" />
@@ -47,7 +46,7 @@ const Layout = () => {
                         <Route element={ <EditProfile /> } path="/edit-profile" />
                     </Routes>
 
-            
+
 
                 </ScrollToTop>
             </BrowserRouter>

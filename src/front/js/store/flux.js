@@ -62,6 +62,7 @@ const getState = ( { getStore, getActions, setStore } ) => {
 						console.log( data[ 2 ] );
 
 					} );
+			},
 
 			logout: () => {
 				localStorage.removeItem( "avatar" );
@@ -71,19 +72,19 @@ const getState = ( { getStore, getActions, setStore } ) => {
 				localStorage.removeItem( "user" );
 				setStore( { loggedUser: [] } );
 			},
-			
+
 			getPosts: async () => {
 				var requestOptions = {
 					method: 'GET',
 					redirect: 'follow'
 				};
-				if (localStorage.getItem("postsLocal") === null) {
-					const response = await fetch("https://orange-goldfish-9p6vxrpqj4gcpq6x-3001.preview.app.github.dev/api/posts", requestOptions)
-					if (response.ok) {
+				if ( localStorage.getItem( "postsLocal" ) === null ) {
+					const response = await fetch( "https://orange-goldfish-9p6vxrpqj4gcpq6x-3001.preview.app.github.dev/api/posts", requestOptions );
+					if ( response.ok ) {
 						const posts = await response.json();
-						localStorage.setItem("postsLocal", JSON.stringify(posts))
+						localStorage.setItem( "postsLocal", JSON.stringify( posts ) );
 					} else {
-						console.log("ERROR" + response.status)
+						console.log( "ERROR" + response.status );
 					}
 				}
 			}

@@ -26,9 +26,9 @@ const injectContext = PassedComponent => {
 			state.actions.getAllProfessionals()
 				.then( data => console.log( data ) );
 
-	
 
-		}, []);
+
+		}, [] );
 
 
 		// The initial value for the context is not null anymore, but the current state of this component,

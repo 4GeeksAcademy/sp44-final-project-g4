@@ -47,8 +47,7 @@ export const Jumbotron = () => {
                         </div>
                     </div> */}
                     <h6 className="lh-base"> <span className="main-title">FurryCare</span> is an online platform designed to unite passionate animal workes and committed pet owners in a virtual space dedicated to animal care and welfare. Mission: Our mission is to create an online community where vets, walkers and groomers professionals can offer their expertise and exceptional services, while pet lovers can find high quality care for their furry companions and even adopt a new furry friend.
-
-                        Translated with www.DeepL.com/Translator (free version)</h6>
+                    </h6>
                 </div>
 
                 <a className="btn custom-btn-jumbotron-home glow-on-hover btn-4 btn-lg my-5" id='btn-jumbotron-home'
