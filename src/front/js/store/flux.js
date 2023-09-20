@@ -38,6 +38,7 @@ const getState = ( { getStore, getActions, setStore } ) => {
 				}
 			},
 			getAllProfessionals: async () => {
+
 				Promise.all( [
 					fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/vet" ),
 					fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/groomer" ),
@@ -61,7 +62,11 @@ const getState = ( { getStore, getActions, setStore } ) => {
 
 			},
 			logout: () => {
-				window.localStorage.clear();
+				localStorage.removeItem( "avatar" );
+				localStorage.removeItem( "email" );
+				localStorage.removeItem( "id" );
+				localStorage.removeItem( "type" );
+				localStorage.removeItem( "user" );
 				setStore( { loggedUser: [] } );
 			}
 

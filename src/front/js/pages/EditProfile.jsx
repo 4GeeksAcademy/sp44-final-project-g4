@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SignUpComponent } from '../component/signIn/SignUpComponent.jsx';
 import { EditProfessionalForm } from "../component/forms/EditProfessionalForm.jsx";
 import { EditUserForm } from "../component/forms/EditUserForm.jsx";
 export const EditProfile = () => {
-    const [ logOption, setLogOption ] = useState( JSON.parse( localStorage.getItem( "user" ) ).type );
+    const [ logOption, setLogOption ] = useState( localStorage.getItem( "type" ) );
     console.log( logOption );
+
+    useEffect( () => {
+        setLogOption( localStorage.getItem( "type" ) );
+    }, [ logOption ] );
+
     return (
         <>
             <div className="container text-center">

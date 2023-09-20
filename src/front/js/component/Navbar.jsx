@@ -10,7 +10,7 @@ export const Navbar = () => {
     const [ profilePicture, setProfilePicture ] = useState( localStorage.getItem( "avatar" ) );
     const [ isLogged, setisLogged ] = useState( localStorage.getItem( "email" ) );
     const [ redirect, setRedirect ] = useState( false );
-    console.log( isLogged );
+
 
     const handleLogout = () => {
         setisLogged( null );
@@ -34,8 +34,8 @@ export const Navbar = () => {
             { redirect && <Navigate to="/" replace /> }
             <div className="project-blue d-flex justify-content-end ">
                 <div className="">
-                    <ul class=" d-flex justify-content-start list-unstyled ">
-                        <li class="nav-item active mt-3 me-3">
+                    <ul className=" d-flex justify-content-start list-unstyled ">
+                        <li className="nav-item active mt-3 me-3">
                             <div className="nav-item ">
 
                                 <Link className="text-white" to="/">Home </Link>
@@ -59,9 +59,9 @@ export const Navbar = () => {
                     }
                     {/* <Link className="btn btn-outline-primary mt-2 me-2" to="/login" relative="path">Login</Link> */ }
                 </div>
-                <div className="dropdown d-flex justify-content-end">
+                { isLogged !== null && <div className="dropdown d-flex justify-content-end">
                     <ImageDisplayDropDown image={ profilePicture } />
-                </div>
+                </div> }
             </div>
 
 

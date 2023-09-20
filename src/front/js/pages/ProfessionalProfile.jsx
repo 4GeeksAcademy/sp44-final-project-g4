@@ -15,6 +15,11 @@ export const ProfessionalProfile = () => {
         setUser( JSON.parse( localStorage.getItem( "user" ) ) );
 
     }, [] );
+    useEffect( () => {
+        console.log( localStorage.getItem( "user" ) );
+        setUser( JSON.parse( localStorage.getItem( "user" ) ) );
+
+    }, [ user ] );
 
     const handleClick = () => {
         console.log( user );

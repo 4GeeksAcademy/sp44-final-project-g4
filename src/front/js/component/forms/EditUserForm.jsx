@@ -1,38 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from "../hooks/useForm.jsx";
-import { signUp } from '../../helpers/signUp.js';
+import { useNavigate } from "react-router-dom";
+import { updateProfessionalProfile } from "../../helpers/updateProfessionalProfile.js";
 import { ImageUpload } from './ImageUpload.jsx';
 
 
 export const EditUserForm = () => {
-    const [ userImage, setUserImage ] = useState( '' );
+    const [ user, setuser ] = useState( JSON.parse( localStorage.getItem( "user" ) ) );
+    const [ userId, setUserId ] = useState( localStorage.getItem( "id" ) );
     const { formState, onResetForm, onInputChange, name, email, password, last_name, avatar, location } = useForm( {
-        name: '',
-        last_name: '',
-        email: '',
-        password: ''
+        name: user.name,
+        last_name: user.last_name,
+        email: user.email
     } );
+    const navigate = useNavigate();
 
 
-    const handleImage = ( url ) => {
-        setUserImage( url );
-        console.log( url );
-    };
 
-
-    const handleSubmit = async ( event ) => {
+    const handleSubmit = ( event ) => {
 
         event.preventDefault();
-        console.log( 'working' );
-        console.log( formState );
-        await signUp( event, formState, "user", userImage )
+
+        updateProfessionalProfile( event, formState, "user", userId )
             .then( data => {
                 console.log( data );
                 if ( data.code == 501 ) {
-
                     alert( data.message );
                 }
-                alert( data.message );
+                console.log( 'navigating' );
+                navigate( "/" );
 
                 // setLoginRedirect(true);
             } );
@@ -53,7 +49,6 @@ export const EditUserForm = () => {
                     <form onSubmit={ handleSubmit }>
                         <img className="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" />
                         <h1 className="h3 mb-3 fw-normal">Sign Up</h1>
-                        <ImageUpload getImageUrl={ handleImage } />
                         <div className="form-floating mb-2">
                             <input
                                 name="name"
@@ -93,20 +88,9 @@ export const EditUserForm = () => {
                             <label htmlFor="floatingInput">Email address</label>
 
                         </div>
-                        <div className="form-floating mb-2">
-                            <input
-                                name="password"
-                                value={ password }
-                                onChange={ onInputChange }
-                                type="password"
-                                className="form-control"
-                                id="floatingPassword"
-                                placeholder="Password"
-                                minlength="8" />
-                            <label htmlFor="floatingPassword">Password</label>
-                        </div>
 
-                        <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+
+                        <button className="w-100 btn btn-lg btn-primary" type="submit">Save Profile</button>
                     </form>
                 </main>
             </div>

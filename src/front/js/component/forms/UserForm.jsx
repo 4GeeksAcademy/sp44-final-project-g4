@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from "../hooks/useForm.jsx";
 import { signUp } from '../../helpers/signUp.js';
 import { ImageUpload } from './ImageUpload.jsx';
-
+import { Navigate } from "react-router-dom";
 
 export const UserForm = () => {
     const [ userImage, setUserImage ] = useState( '' );
+    const [ isDone, setIsDone ] = useState( false );
     const { formState, onResetForm, onInputChange, name, email, password, last_name, avatar, location } = useForm( {
         name: '',
         last_name: '',
         email: '',
         password: ''
     } );
+
 
 
     const handleImage = ( url ) => {
@@ -28,14 +30,14 @@ export const UserForm = () => {
         await signUp( event, formState, "user", userImage )
             .then( data => {
                 console.log( data );
-                if ( data.code == 501 ) {
-
-                    alert( data.message );
+                if ( data.code !== 200 ) {
+                    alert( data.msg );
+                } else {
+                    setIsDone( true );
                 }
-                alert( data.message );
 
-                // setLoginRedirect(true);
             } );
+
 
 
 
@@ -44,9 +46,9 @@ export const UserForm = () => {
 
     return (
         <>
-            {/* {loginRedirect && (
-                <Navigate replace to="/login" />
-            )} */}
+            { isDone && (
+                <Navigate to="/" replace={ true } />
+            ) }
             <div className="container w-50 ">
 
                 <main className="form-signin">
@@ -102,7 +104,7 @@ export const UserForm = () => {
                                 className="form-control"
                                 id="floatingPassword"
                                 placeholder="Password"
-                                minlength="8" />
+                                minLength="8" />
                             <label htmlFor="floatingPassword">Password</label>
                         </div>
 

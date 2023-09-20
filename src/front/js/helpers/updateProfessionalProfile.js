@@ -1,12 +1,6 @@
 import React from 'react';
 
-export const updateProfessionalProfile = async ( event, initialObject = {}, type, userImage, id ) => {
-    const profilePicture = JSON.parse( localStorage.getItem( "user" ) ).avatar;
-
-    if ( profilePicture === userImage ) {
-        initialObject.avatar = profilePicture;
-    }
-    initialObject.avatar = userImage;
+export const updateProfessionalProfile = async ( event, initialObject = {}, type, id ) => {
 
     const myHeaders = new Headers();
     myHeaders.append( "Content-Type", "application/json" );
@@ -29,8 +23,9 @@ export const updateProfessionalProfile = async ( event, initialObject = {}, type
         }
         const data = await response.json();
         console.log( data );
-        localStorage.removeItem( "user" );
+
         localStorage.setItem( "user", JSON.stringify( data.professional ) );
+        localStorage.setItem( "id", id );
         return data;
     } catch ( error ) {
         console.error( "An error occurred while fetching data:", error );

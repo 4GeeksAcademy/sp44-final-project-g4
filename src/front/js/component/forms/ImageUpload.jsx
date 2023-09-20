@@ -23,8 +23,8 @@ export const ImageUpload = ( { getImageUrl } ) => {
         <>
             <div className="container" onChange={ ( e ) => setImage( e.target.files[ 0 ] ) }>
                 <div className="mb-2">
-                    <label htmlFor="formFile" className="form-label">Default file input example</label>
                     <input className="form-control mb-2" type="file" id="formFile" />
+                    <label htmlFor="formFile" className="form-label text-danger me-2">Do not forget to click upload!!</label>
                     <button onClick={ submitImage } type="button" className="btn btn-outline-primary">Upload picture</button>
                 </div>
             </div>

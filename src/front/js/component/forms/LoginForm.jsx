@@ -22,7 +22,7 @@ export const LoginForm = () => {
                     alert( data.msg );
                 } else {
                     store.loggedUser.push( data );
-                    console.log( store.loggedUser );
+                    console.log( store );
                     navigate( "/" );
 
                 }

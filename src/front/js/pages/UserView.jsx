@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Navbar } from "../component/Navbar.jsx";
-
+import { Link } from "react-router-dom";
+Link;
 
 
 export const UserView = () => {
-	const [ user, setUser ] = useState( '' );
+	const [ user, setUser ] = useState( JSON.parse( localStorage.getItem( "user" ) ) );
 
 	useEffect( () => {
 		setUser( JSON.parse( localStorage.getItem( "user" ) ) );
@@ -65,11 +66,8 @@ export const UserView = () => {
 
 
 											<div className="btn-change-personal-info" style={ { display: "flex", justifyContent: "center", alignItems: "center" } } id="change-personal-info-user">
-												<a className="btn custom-btn-jumbotron-home glow-on-hover btn-4 btn-lg my-5" id='btn-jumbotron-home'
-													href="#"
-													role="button"
-													onClick="#">
-													<h5>Change personal info</h5></a>
+												<Link to="/edit-profile" state={ user } className="btn project-blue text-white" > Edit Profile
+												</Link>
 											</div>
 
 										</div>

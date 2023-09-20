@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from "../hooks/useForm.jsx";
 import { signUp } from '../../helpers/signUp.js';
 import { ImageUpload } from './ImageUpload.jsx';
+import { Navigate } from "react-router-dom";
+
 export const ProfessionalForm = () => {
     const [ type, setType ] = useState( '' );
+    const [ isDone, setIsDone ] = useState( false );
     const [ userImage, setUserImage ] = useState( '' );
     const { formState, onResetForm, onInputChange, name, email, password, last_name, description, price_low, phone_number, address, zip_code, company_name, services, price_high } = useForm( {
         name: '',
@@ -19,6 +22,8 @@ export const ProfessionalForm = () => {
         company_name: '',
         services: ''
     } );
+
+
 
     const handleImage = ( url ) => {
         setUserImage( url );
@@ -36,9 +41,10 @@ export const ProfessionalForm = () => {
         const userType = type.toLowerCase().trim();
         signUp( event, formState, userType, userImage )
             .then( data => {
-                // For development only.
-                alert( data.message );
+                setIsDone( true );
+
             } );
+
         return;
     };
 
@@ -46,6 +52,9 @@ export const ProfessionalForm = () => {
 
     return (
         <>
+            { isDone && (
+                <Navigate to="/" replace={ true } />
+            ) }
             <div className="row p-3 container m-3">
                 <h3>Professional Profile</h3>
                 <ImageUpload getImageUrl={ handleImage } />

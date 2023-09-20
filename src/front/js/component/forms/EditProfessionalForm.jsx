@@ -11,12 +11,11 @@ export const EditProfessionalForm = () => {
     const [ type, setType ] = useState( user.type );
     const navigate = useNavigate();
 
-    const [ userImage, setUserImage ] = useState( user.avatar );
-    const { formState, onResetForm, onInputChange, name, email, password, last_name, description, price_low, phone_number, address, zip_code, company_name, services, price_high } = useForm( {
+
+    const { formState, onResetForm, onInputChange, name, email, last_name, description, price_low, phone_number, address, zip_code, company_name, services, price_high } = useForm( {
         name: user.name,
         last_name: user.last_name,
         email: user.email,
-        password: '',
         phone_number: user.phone,
         description: user.description,
         price_low: user.price_low,
@@ -27,10 +26,7 @@ export const EditProfessionalForm = () => {
         services: user.services
     } );
 
-    const handleImage = ( url ) => {
-        setUserImage( url );
-        console.log( url );
-    };
+
 
     const handleType = ( { target } ) => {
         setType( target.value );
@@ -41,7 +37,7 @@ export const EditProfessionalForm = () => {
         event.preventDefault();
 
         const userType = type.toLowerCase().trim();
-        updateProfessionalProfile( event, formState, userType, userImage, user.userId )
+        updateProfessionalProfile( event, formState, userType, user.userId )
             .then( data => {
                 // For development only.
                 // alert( data.message );
@@ -56,7 +52,7 @@ export const EditProfessionalForm = () => {
         <>
             <div className="row p-3 container m-3">
                 <h3>Professional Profile</h3>
-                <ImageUpload getImageUrl={ handleImage } />
+
                 <div className="form-floating mb-2">
                     <input
                         name="professional-type"
@@ -110,23 +106,7 @@ export const EditProfessionalForm = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 position-relative">
-                            <label htmlFor="email" className="form-label">Password</label>
-                            <div className="input-group has-validation">
-                                <input
-                                    name="password"
-                                    value={ password }
-                                    onChange={ onInputChange }
-                                    type="password"
-                                    className="form-control"
-                                    id="password"
-                                    minLength="8"
-                                    required />
-                                <div className="invalid-tooltip">
-                                    Please choose a unique and valid email.
-                                </div>
-                            </div>
-                        </div>
+
                         <div className="col-md-2 position-relative">
                             <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
                             <input

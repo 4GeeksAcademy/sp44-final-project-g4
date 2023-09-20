@@ -32,7 +32,6 @@ const Layout = () => {
                         <Route element={ <Home /> } path="/" />
                         <Route element={ <Login /> } path="/login" />
                         <Route element={ <SecondView /> } path="/views" />
-                        <Route element={ <UserView /> } path="/user-view" />
                         <Route element={ <ProfessionalProfile /> } path="/pro-profile" />
                         <Route element={ <UserView /> } path="/user-profile" />
                         <Route element={ <EditProfile /> } path="/edit-profile" />

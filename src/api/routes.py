@@ -380,6 +380,16 @@ def get_single_professional(id, professional_type):
 # Incluidos los 3 profesionales en GET y PUT y DELETE
 @api.route('/professional/<int:user_id>/<string:user_type>', methods=['GET', 'PUT', 'DELETE'])
 def handle_proffesionals(user_type, user_id):
+    if user_type == 'user':
+        if request.method == 'PUT':
+            schema = UserSchema(partial=True)
+            user = User.query.get_or_404(user_id)
+            user = schema.load(request.json, instance=user)
+
+            db.session.add(user)
+            db.session.commit()
+
+            return {"msg": "User updated.", "professional": schema.dump(user)}
     if user_type == 'vet':
         if request.method == 'PUT':
             schema = VetSchema(partial=True)
