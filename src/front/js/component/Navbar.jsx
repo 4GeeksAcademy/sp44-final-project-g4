@@ -32,8 +32,18 @@ export const Navbar = () => {
     return (
         <>
             { redirect && <Navigate to="/" replace /> }
-
             <div className="project-blue d-flex justify-content-end ">
+                <div className="">
+                    <ul class=" d-flex justify-content-start list-unstyled ">
+                        <li class="nav-item active mt-3 me-3">
+                            <div className="nav-item ">
+
+                                <Link className="text-white" to="/">Home </Link>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
                 <div>
                     { isLogged !== null &&
                         <div className="btn-group" role="group" aria-label="Basic example">

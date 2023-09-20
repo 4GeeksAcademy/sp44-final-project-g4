@@ -222,7 +222,8 @@ def login():
                            price_high=vet.price_high,
                            services=vet.services,
                            company_name=vet.company_name,
-                           create_at=vet.created_at
+                           create_at=vet.created_at,
+                           description=vet.description
                            )
     elif groomer:
         if bcrypt.hashpw(password.encode('utf-8'), groomer.password.encode('utf-8')):
@@ -242,7 +243,8 @@ def login():
                            price_high=groomer.price_high,
                            services=groomer.services,
                            company_name=groomer.company_name,
-                           create_at=groomer.created_at
+                           create_at=groomer.created_at,
+                           description=groomer.description
                            )
     elif walker:
         if bcrypt.hashpw(password.encode('utf-8'), walker.password.encode('utf-8')):
@@ -262,7 +264,8 @@ def login():
                            price_high=walker.price_high,
                            services=walker.services,
                            company_name=walker.company_name,
-                           create_at=walker.created_at
+                           create_at=walker.created_at,
+                           description=walker.description
                            )
     else:
         message_body = {
@@ -386,7 +389,7 @@ def handle_proffesionals(user_type, user_id):
             db.session.add(vet)
             db.session.commit()
 
-            return {"msg": "User updated.", "vet": schema.dump(vet)}
+            return {"msg": "User updated.", "professional": schema.dump(vet)}
 
     if user_type == 'vet':
         if request.method == 'DELETE':
@@ -407,7 +410,7 @@ def handle_proffesionals(user_type, user_id):
             db.session.add(groomer)
             db.session.commit()
 
-            return {"msg": "User updated.", "vet": schema.dump(groomer)}
+            return {"msg": "User updated.", "professional": schema.dump(groomer)}
 
         if request.method == 'DELETE':
             groomer = GroomerModel.query.get_or_404(user_id)
@@ -427,7 +430,7 @@ def handle_proffesionals(user_type, user_id):
             db.session.add(walker)
             db.session.commit()
 
-            return {"msg": "User updated.", "vet": schema.dump(walker)}
+            return {"msg": "User updated.", "professional": schema.dump(walker)}
 
         if request.method == 'DELETE':
             walker = VetModel.query.get_or_404(user_id)

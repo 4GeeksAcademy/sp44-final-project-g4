@@ -11,6 +11,7 @@ import { SecondView } from "./pages/SecondView.jsx";
 import { Login } from "./pages/Login.jsx";
 import { ProfessionalProfile } from "./pages/ProfessionalProfile.jsx";
 import { UserView } from "./pages/UserView.jsx";
+import { EditProfile } from "./pages/EditProfile.jsx";
 
 
 //create your first component
@@ -34,6 +35,7 @@ const Layout = () => {
                         <Route element={ <UserView /> } path="/user-view" />
                         <Route element={ <ProfessionalProfile /> } path="/pro-profile" />
                         <Route element={ <UserView /> } path="/user-profile" />
+                        <Route element={ <EditProfile /> } path="/edit-profile" />
                     </Routes>
 
                     {/* { <Footer /> } */ }

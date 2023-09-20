@@ -7,16 +7,16 @@ export const Profile = ( { user } ) => {
         <>
             <div className="text-start border-bottom border-2">
                 <ul>
-                    <p>Name: { user.name } </p>
-                    <p>Company name: { user.company_name } </p>
-                    <p>Email: { user.email } </p>
-                    <p>Phone: { user.phone }</p>
-                    <p>Address: { user.address }</p>
-                    <p>Zip code: { user.zip_code } </p>
-                    <p>Price low: { user.price_low } </p>
-                    <p>Price high:{ user.price_high } </p>
-                    <p>Services: { user.services } </p>
-                    <p>Member since: { user.create_at } </p>
+                    <p><span className="main-title">Name: </span> { user.name } </p>
+                    <p><span className="main-title">Company Name: </span> { user.company_name } </p>
+                    <p><span className="main-title">Email: </span> { user.email } </p>
+                    <p><span className="main-title">Contact: </span> { user.phone }</p>
+                    <p><span className="main-title">Address: </span>{ user.address }</p>
+                    <p><span className="main-title">Zip Code: </span> { user.zip_code } </p>
+                    <p><span className="main-title">Price from: </span>{ user.price_low } </p>
+                    <p><span className="main-title">Price until </span>{ user.price_high } </p>
+                    <p><span className="main-title">Services </span>{ user.services } </p>
+                    <p><span className="main-title">Member since: </span> { user.create_at } </p>
                 </ul>
             </div>
         </>
