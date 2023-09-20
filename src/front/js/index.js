@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 // import ReactDOM from "react-dom";
 
 //include your index.scss file into the bundle
-import "../styles/index.css";
+//import "../styles/index.css";
 
 
 //import your own components

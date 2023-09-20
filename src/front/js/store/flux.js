@@ -6,6 +6,7 @@ const getState = ( { getStore, getActions, setStore } ) => {
 
 		},
 		actions: {
+
 			fetchData: async ( urlKey, storageKey, ) => {
 				try {
 
@@ -29,6 +30,7 @@ const getState = ( { getStore, getActions, setStore } ) => {
 							throw new Error( `Error: ${ response.status } - ${ response.statusText }` );
 						}
 
+
 					} else {
 						const data = JSON.parse( localStorage.getItem( storageKey ) );
 						return data;
@@ -37,8 +39,9 @@ const getState = ( { getStore, getActions, setStore } ) => {
 					throw new Error( `Error fetching ${ urlKey }: ${ error.message }` );
 				}
 			},
-			getAllProfessionals: async () => {
 
+
+			getAllProfessionals: async () => {
 				Promise.all( [
 					fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/vet" ),
 					fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/groomer" ),
@@ -60,7 +63,6 @@ const getState = ( { getStore, getActions, setStore } ) => {
 
 					} );
 
-			},
 			logout: () => {
 				localStorage.removeItem( "avatar" );
 				localStorage.removeItem( "email" );
@@ -68,13 +70,29 @@ const getState = ( { getStore, getActions, setStore } ) => {
 				localStorage.removeItem( "type" );
 				localStorage.removeItem( "user" );
 				setStore( { loggedUser: [] } );
+			},
+			
+			getPosts: async () => {
+				var requestOptions = {
+					method: 'GET',
+					redirect: 'follow'
+				};
+				if (localStorage.getItem("postsLocal") === null) {
+					const response = await fetch("https://orange-goldfish-9p6vxrpqj4gcpq6x-3001.preview.app.github.dev/api/posts", requestOptions)
+					if (response.ok) {
+						const posts = await response.json();
+						localStorage.setItem("postsLocal", JSON.stringify(posts))
+					} else {
+						console.log("ERROR" + response.status)
+					}
+				}
 			}
-
 
 
 			// VetSerpApip: fetch("https://api.serpapi.com/search?engine=google&q=bardo&location=madrid&language=es&api_key=1de844b2ccd1771a9620a23061c03a50113635222097504a9ae34cb79157bc36")
 			// .then(response => response.json())
 			// .then(data => console.log(data)),
+
 		}
 	};
 };
