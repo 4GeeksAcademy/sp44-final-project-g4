@@ -11,7 +11,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(917) 791-6207",
         "website": "https://heartofchelsea.com/",
-        "cid": "15657949097882720322"
+        "id": "15657949097882720322"
     },
     {
         "position": 2,
@@ -24,7 +24,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 274-1700",
         "website": "https://www.thrivepetcare.com/locations/new-york/new-york/reade-street-animal-hospital?utm_source=google&utm_medium=gmb",
-        "cid": "853585325820733673"
+        "id": "853585325820733673"
     },
     {
         "position": 3,
@@ -37,7 +37,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(917) 675-6270",
         "website": "http://www.yorkveterinarycenter.com/",
-        "cid": "7019422516436960787"
+        "id": "7019422516436960787"
     },
     {
         "position": 4,
@@ -50,7 +50,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 961-6779",
         "website": "https://bondvet.com/c/east-village-animal-hospital?utm_source=google&utm_medium=organic&utm_campaign=gbp-listing&utm_content=east-village",
-        "cid": "6757797729179726481"
+        "id": "6757797729179726481"
     },
     {
         "position": 5,
@@ -63,7 +63,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 463-8705",
         "website": "http://www.downtownveterinaryclinic.com/",
-        "cid": "8593744992640523864"
+        "id": "8593744992640523864"
     },
     {
         "position": 6,
@@ -76,7 +76,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 945-8115",
         "website": "https://bondvet.com/c/upper-east-side-animal-hospital?utm_source=google&utm_medium=organic&utm_campaign=gbp-listing&utm_content=upper-east-side",
-        "cid": "10303947931528041326"
+        "id": "10303947931528041326"
     },
     {
         "position": 7,
@@ -89,7 +89,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 706-4088",
         "website": "https://www.hudsonanimalhospitalnyc.com/",
-        "cid": "12404100073312451567"
+        "id": "12404100073312451567"
     },
     {
         "position": 8,
@@ -102,7 +102,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 374-0650",
         "website": "https://www.seaportanimalhospital.com/?utm_source=gmb&utm_medium=organic&y_source=1_MTE2Njg3NzAtNzE1LWxvY2F0aW9uLndlYnNpdGU%3D",
-        "cid": "14893294386760844613"
+        "id": "14893294386760844613"
     },
     {
         "position": 9,
@@ -115,7 +115,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 633-7400",
         "website": "https://www.westvillagevets.com/?utm_source=gmb&utm_medium=organic&y_source=1_MTE2Njg3NjgtNzE1LWxvY2F0aW9uLndlYnNpdGU%3D",
-        "cid": "18068061286564950564"
+        "id": "18068061286564950564"
     },
     {
         "position": 10,
@@ -128,7 +128,7 @@ export const vets = [
         "category": "Animal hospital",
         "phoneNumber": "(212) 257-6900",
         "website": "http://worthstreetvet.com/",
-        "cid": "3053250177717924569"
+        "id": "3053250177717924569"
     },
     {
         "position": 1,
@@ -141,7 +141,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 691-1100",
         "website": "http://www.gvah.com/",
-        "cid": "14147294670706702228"
+        "id": "14147294670706702228"
     },
     {
         "position": 2,
@@ -154,7 +154,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 477-2688",
         "website": "https://www.thrivepetcare.com/locations/new-york/new-york/st-marks-veterinary-hospital?utm_source=google&utm_medium=gmb",
-        "cid": "16211870491876308342"
+        "id": "16211870491876308342"
     },
     {
         "position": 3,
@@ -167,7 +167,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 633-7400",
         "website": "https://www.westvillagevets.com/?utm_source=gmb&utm_medium=organic&y_source=1_MTE2Njg3NjgtNzE1LWxvY2F0aW9uLndlYnNpdGU%3D",
-        "cid": "18068061286564950564"
+        "id": "18068061286564950564"
     },
     {
         "position": 4,
@@ -180,7 +180,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 925-6100",
         "website": "https://www.tribecavets.com/?utm_source=gmb&utm_medium=organic&y_source=1_MTE2Njg3NjctNzE1LWxvY2F0aW9uLndlYnNpdGU%3D",
-        "cid": "13804344256245585186"
+        "id": "13804344256245585186"
     },
     {
         "position": 5,
@@ -193,7 +193,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(917) 675-6270",
         "website": "http://www.yorkveterinarycenter.com/",
-        "cid": "7019422516436960787"
+        "id": "7019422516436960787"
     },
     {
         "position": 6,
@@ -206,7 +206,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(212) 945-8115",
         "website": "https://bondvet.com/c/upper-east-side-animal-hospital?utm_source=google&utm_medium=organic&utm_campaign=gbp-listing&utm_content=upper-east-side",
-        "cid": "10303947931528041326"
+        "id": "10303947931528041326"
     },
     {
         "position": 7,
@@ -219,7 +219,7 @@ export const vets = [
         "category": "Animal hospital",
         "phoneNumber": "(718) 797-6875",
         "website": "http://www.vhvetgroup.com/",
-        "cid": "9269184852795683164"
+        "id": "9269184852795683164"
     },
     {
         "position": 8,
@@ -232,7 +232,7 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(646) 692-0483",
         "website": "https://veterinarianmurrayhillny.com/?cp=6466920483",
-        "cid": "11825402884895444163"
+        "id": "11825402884895444163"
     },
     {
         "position": 9,
@@ -245,7 +245,7 @@ export const vets = [
         "category": "Animal hospital",
         "phoneNumber": "(212) 979-9870",
         "website": "https://www.villageveterinarian.com/?utm_source=google&utm_medium=organic&utm_campaign=gmb-listing-vvet",
-        "cid": "7086510852094407272"
+        "id": "7086510852094407272"
     },
     {
         "position": 10,
@@ -258,6 +258,6 @@ export const vets = [
         "category": "Veterinarian",
         "phoneNumber": "(929) 359-9297",
         "website": "https://healdumbo.vet/?utm_source=gmb&utm_medium=gmb&utm_campaign=panel",
-        "cid": "4443064421505281039"
+        "id": "4443064421505281039"
     }
 ];

@@ -9,25 +9,36 @@ import { walkers } from './jsonCalls/walkerCall-1';
 
 
 const MapComponent = ( { type } ) => {
+
+    const professionalList = useRef( [] );
+    const registeredProfessional = useRef( [] );
     const mapContainer = useRef( null );
     const map = useRef( null );
     const [ lng ] = useState( -74.00597 );
     const [ lat ] = useState( 40.71427 );
-    const [ zoom ] = useState( 12 );
+    const [ zoom ] = useState( 10 );
     const [ API_KEY ] = useState( '6EQmKaS0rvlVuV87v1aZ ' );
 
-    let professionalList;
-    let registeredProfessional;
+    useEffect( () => {
+        if ( type === "vet" ) {
+            professionalList.current = vets;
+            registeredProfessional.current = JSON.parse( localStorage.getItem( "vets" ) );
+        }
+        else if ( type === "walker" ) {
+            professionalList.current = walkers;
+            registeredProfessional.current = JSON.parse( localStorage.getItem( "walkers" ) );
+        }
+        else if ( type === "groomer" ) {
+            professionalList.current = groomers;
+            registeredProfessional.current = JSON.parse( localStorage.getItem( "groomers" ) );
+        }
+
+    }, [ type, mapContainer ] );
+
 
     useEffect( () => {
-        if ( map.current ) return; // stops map from intializing more than once
-        if ( type === "vets" ) professionalList = vets;
-        if ( type === "walkers" ) professionalList = walkers;
-        if ( type === "groomers" ) professionalList = groomers;
+        // if ( map.current ) return; // stops map from intializing more than once
 
-        if ( type === "vets" ) registeredProfessional = JSON.parse( localStorage.getItem( "vets" ) );
-        if ( type === "walkers" ) registeredProfessional = JSON.parse( localStorage.getItem( "walkers" ) );
-        if ( type === "groomers" ) registeredProfessional = JSON.parse( localStorage.getItem( "groomers" ) );
 
         // if(type === 'vet') {
 
@@ -42,10 +53,27 @@ const MapComponent = ( { type } ) => {
 
 
 
-        professionalList.forEach( professional => {
-            const popup = new maplibregl.Popup( { offset: 25 } ).setText(
-                `- ${ professional.title }
-                -${ professional.address }`
+        professionalList.current.forEach( professional => {
+            const popup = new maplibregl.Popup( { offset: 25 } ).setHTML(
+                `<div className="card text-center">
+                    <div className="card-header">
+                    <h3>
+                    ${ professional.title }
+                    </h3>
+                    </div>
+                    <div className="card-body">
+                    <div>
+                    <label htmlFor=""> <strong>Location</strong> </label>
+                    <p className="card-title">${ professional.address }</p>
+                    </div>
+                    <div>
+                    <label htmlFor=""> <strong>Contact</strong> </label>
+                    <p className="card-title">${ professional.phoneNumber }</p>
+                    </div>
+                    <div>
+                    <label htmlFor=""> <strong>Website</strong> </label>
+                    <p className="card-title">${ professional.website }</p>
+                </div>`
             );
             new maplibregl.Marker( { color: "#FF037637600" } )
                 .setLngLat( [ professional.longitude, professional.latitude ] )
@@ -54,10 +82,23 @@ const MapComponent = ( { type } ) => {
 
         } );
 
-        registeredProfessional.forEach( professional => {
-            const popup = new maplibregl.Popup( { offset: 25 } ).setText(
-                `- ${ professional.name }
-                -${ professional.address }`
+        registeredProfessional.current.forEach( professional => {
+            const popup = new maplibregl.Popup( { offset: 25 } ).setHTML(
+                `
+            <strong>Name:</strong> ${ professional.name, professional.last_name }
+            <br>
+            <strong>Location:</strong> ${ professional.address }
+            <br>
+            <strong>Company Name:</strong> ${ professional.company_name }
+            <br>
+            <strong>Brief:</strong>  ${ professional.description }
+            <br>
+            <strong>Email:</strong>:  ${ professional.email }
+            <br>
+            <strong>Contact:</strong>  ${ professional.phone_number }
+            <br>
+            <strong>Price from:</strong> ${ professional.price_high }$
+                `
             );
 
             new maplibregl.Marker( { color: "#FFC000" } )
@@ -68,7 +109,7 @@ const MapComponent = ( { type } ) => {
 
 
 
-    }, [ API_KEY, lng, lat ] );
+    }, [ type, API_KEY, lng, lat ] );
 
 
     return (

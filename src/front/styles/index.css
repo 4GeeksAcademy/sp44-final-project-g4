@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap');
 html {
   height: 100vh;
 
@@ -11,7 +12,7 @@ body {
 }
 
 .main-title{
-  font-family: 'Pacifico', cursive;
+  font-family: 'Kalam', cursive;
   color: #00b6ac;
   font-size: 25px;
 }
@@ -64,15 +65,22 @@ body {
 }
 
 .project-light {
-  background: #FFF8F0 !important;
-}
 
-.project-yellow{
-background: rgba(249, 214, 40, 0.74);
+background: rgba(255, 255, 255, 0.28);
+border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
-border: 1px solid rgba(249, 214, 40, 0.56);
+border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.project-yellow{
+background: rgba(193, 180, 0, 0.62);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(193, 180, 0, 0.3);
 }
 .icon-blue{
   color:#5b2dff !important;
@@ -332,6 +340,10 @@ border: 1px solid rgba(40, 145, 249, 0.56);
 
 .m-t-40 {
     margin-top: 20px;
+}
+
+.index-front{
+  z-index: 99999;
 }
 
 
