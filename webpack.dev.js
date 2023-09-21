@@ -51,7 +51,6 @@ module.exports = merge( common, {
     //     encoding: 'utf-8'           // Which encoding scheme to use on files
     // }),
 
-    new Dotenv( { systemvars: true } ),
 
     new webpack.HotModuleReplacementPlugin()
   ]
