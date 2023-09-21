@@ -107,7 +107,7 @@ class VetFavoriteModel(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "vet_id": self.vet_id,
+            "VetId": self.vet_id,
         }
 
 
@@ -179,14 +179,11 @@ class GroomerFavoritesModel(db.Model):
         return f'<groomerfavorites {self.id}>'
     
     def serialize(self):
-        return {
-            "title": self.title,
-            "body": self.body,
-            "date": self.created_at,
-            "rate": self.rate,
-            "user_id": self.user_id,
-            "vet_id": self.vet_id,
-        }
+        return {"id": self.id,
+                "userId": self.user_id,
+                "GroomerId": self.groomer_id,      
+                }
+    
 
 
 class WalkerModel(db.Model):
@@ -279,23 +276,11 @@ class FavoriteWalkers(db.Model):
 
     def serialize(self):
         return {"id": self.id,
-                "User ID": self.user_id,
-                "Walker ID": self.walker_id,
-                "User ID": self.user_id,
-                "Walker ID": self.walker_id
+                "userId": self.user_id,
+                "WalkerId": self.walker_id,      
                 }
     
-    def serialize(self):
-        return {
-            "title": self.title,
-            "body": self.body,
-            "date": self.date,
-            "image": self.image,
-            "category": self.category,
-            "author": self.author,
-            "category": self.category
-        }
-    
+   
 
 class PetModel(db.Model):
     id = db.Column(db.BigInteger, default= uuid.uuid4().int >> (128 - 32), primary_key=True) 

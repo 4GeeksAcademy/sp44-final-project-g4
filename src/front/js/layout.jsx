@@ -18,6 +18,7 @@ import { Login } from "./pages/Login.jsx";
 import { ProfessionalProfile } from "./pages/ProfessionalProfile.jsx";
 import { UserView } from "./pages/UserView.jsx";
 import { EditProfile } from "./pages/EditProfile.jsx";
+import { UserFavoriteView } from "./pages/UserFavoriteView.jsx";
 
 
 //create your first component
@@ -44,6 +45,7 @@ const Layout = () => {
                         <Route element={ <ProfessionalProfile /> } path="/pro-profile" />
                         <Route element={ <UserView /> } path="/user-profile" />
                         <Route element={ <EditProfile /> } path="/edit-profile" />
+                        <Route element={ <UserFavoriteView /> } path="/favorite" />
                     </Routes>
 
 

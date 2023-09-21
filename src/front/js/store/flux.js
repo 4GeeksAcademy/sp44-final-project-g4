@@ -2,7 +2,8 @@
 const getState = ( { getStore, getActions, setStore } ) => {
 	return {
 		store: {
-			loggedUser: []
+			loggedUser: [],
+			userFavorites: []
 
 		},
 		actions: {
@@ -87,6 +88,10 @@ const getState = ( { getStore, getActions, setStore } ) => {
 						console.log( "ERROR" + response.status );
 					}
 				}
+			},
+			addFavorite: ( user, professional ) => {
+
+
 			}
 
 

@@ -277,7 +277,7 @@ def login():
 
 # Need to protect route only for admin
 @api.route('/users', methods=['GET'])
-@jwt_required()
+# @jwt_required()
 def get_all_users():
     users = db.session.execute(
         db.select(User).order_by(User.name)).scalars()
@@ -473,12 +473,12 @@ def get_posts():
 @api.route('/posts/<int:id>', methods=['GET'])
 def get_post(id):
     if request.method == 'GET':
-        post = db.get_or_404( PostModel, id)
-  
+        post = db.get_or_404(PostModel, id)
+
         response_body = {"message": "All posts fetched successfully",
                          "status": "ok",
-                        "results": post.serialize()}
-        
+                         "results": post.serialize()}
+
         if response_body:
             return response_body, 200
         else:
@@ -489,7 +489,7 @@ def get_post(id):
 
 # Incluidos los 3 profesionales en favoritos.
 @api.route('/favorite/<int:user_id>/<string:user_type>', methods=['POST', 'GET'])
-@jwt_required()
+# @jwt_required()
 def get_user_favorites(user_id, user_type):
     if user_type == "vet":
         if request.method == 'GET':
@@ -508,7 +508,7 @@ def get_user_favorites(user_id, user_type):
         if request.method == 'POST':
             request_body = request.get_json()
             vet_favorites = VetFavoriteModel(**request_body)
-            db.session.add(VetFavoriteModel)
+            db.session.add(vet_favorites)
             db.session.commit()
 
             response_body = {"message": "Adding new vet favorites",
@@ -551,12 +551,12 @@ def get_user_favorites(user_id, user_type):
 
     if user_type == "groomer":
         if request.method == 'GET':
-            groomersFavorites: db.session.execute(db.select(
-                GroomerFavoritesModel).order_by(GroomerFavoritesModel.name)).scalars()
-            results = [item.serialize() for item in groomersFavorites]
+            favorites = db.session.execute(
+                db.select(GroomerFavoritesModel).order_by(GroomerFavoritesModel.id)).scalars()
+            result = [item.serialize() for item in favorites]
             response_body = {"message": "these are the groomer favorites endpoints",
-                             "results": results,
-                             "status": "ok"}
+                             "status": "OK",
+                             "response": result}
 
             if response_body:
                 return response_body, 200
@@ -565,7 +565,7 @@ def get_user_favorites(user_id, user_type):
 
         if request.method == 'POST':
             request_body = request.get_json()
-            groomersFavorites = GroomerFavoritesModel(** request_body)
+            groomersFavorites = GroomerFavoritesModel(**request_body)
             db.session.add(groomersFavorites)
             db.session.commit()
             print(request_body)

@@ -1,7 +1,8 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FavoriteBadge } from './FavoriteBadge.jsx';
 export const RegisteredProfessionalCard = ( { professionals } ) => {
-
+    const [ userId, setUserId ] = useState( localStorage.getItem( "id" ) );
     return (
         <>
             <ul className="d-flex flex-wrap flex-column">
@@ -16,9 +17,17 @@ export const RegisteredProfessionalCard = ( { professionals } ) => {
                                     <img src={ professional.avatar } className=" avatar-img img-fluid rounded-circle" alt="" style={ { width: "10rem" } } />
                                 </a>
                                 <h5 className="mb-3 pt-3">
-                                    <a href="#!.html" className="text-reset">{ professional.name } { professional.last_name }</a>
+                                    <a href="#!.html" className="text-reset">{ professional.name } { professional.last_name } </a>
                                 </h5>
-                                <h6 className="main-title">10% off with this professional!</h6>
+
+                                { localStorage.getItem( "email" ) &&
+                                    <FavoriteBadge
+                                        userId={ userId }
+                                        professionalId={ professional.id }
+                                        type={ localStorage.getItem( "professionalType" ) }
+                                    /> }
+
+                                <h6 className="main-title mt-2">10% off with this professional!</h6>
                                 {/* <span className="text-muted small d-block mb-4">Full stack developer</span> */ }
                                 <div className="row mx-0 border-top border-bottom">
                                     <div className="col-12 text-center border-end py-3">
@@ -45,24 +54,30 @@ export const RegisteredProfessionalCard = ( { professionals } ) => {
                                             <h6 className="">{ professional.company_name }</h6>
                                         </div>
                                     </li>
-                                    <li className="list-group-item px-3 d-flex justify-content-center project-blue">
-                                        <div className="me-2">
-                                            <h6 className="text-white">Contact:</h6>
-                                        </div>
-                                        <div>
-                                            <h6 className="">{ professional.phone_number }</h6>
-                                        </div>
+                                    { localStorage.getItem( "email" ) && <ul>
 
-                                    </li>
-                                    <li className="list-group-item px-3 d-flex justify-content-center ">
-                                        <div className="me-2">
-                                            <h6 className="text-muted">Email:</h6>
-                                        </div>
-                                        <div>
-                                            <h6 className="">{ professional.email }</h6>
-                                        </div>
+                                        <li className="list-group-item px-3 d-flex justify-content-center project-blue">
+                                            <div className="me-2">
+                                                <h6 className="text-white">Contact:</h6>
+                                            </div>
+                                            <div>
+                                                <h6 className="">{ professional.phone_number }</h6>
+                                            </div>
 
-                                    </li>
+                                        </li>
+                                        <li className="list-group-item px-3 d-flex justify-content-center ">
+                                            <div className="me-2">
+                                                <h6 className="text-muted">Email:</h6>
+                                            </div>
+                                            <div>
+                                                <h6 className="">{ professional.email }</h6>
+                                            </div>
+
+                                        </li>
+                                    </ul> }
+
+                                    { !localStorage.getItem( "email" ) && <Link to="/login" class="btn btn-outline-primary project-blue text-white">SignIn To See Contact</Link>
+                                    }
 
                                 </ul>
                             </div>
@@ -70,7 +85,7 @@ export const RegisteredProfessionalCard = ( { professionals } ) => {
 
                     </li>
                 ) ) }
-            </ul>
+            </ul >
         </>
     );
 };

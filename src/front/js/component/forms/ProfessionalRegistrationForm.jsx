@@ -57,6 +57,7 @@ export const ProfessionalForm = () => {
             ) }
             <div className="row p-3 container m-3">
                 <h3>Professional Profile</h3>
+                <h6 className="text-success">In order to signup you need to offer 10% off to customer on your services. In exchange, we will advertise your profile 100% free of charge!</h6>
                 <ImageUpload getImageUrl={ handleImage } />
                 <div className="form-floating mb-2">
                     <input

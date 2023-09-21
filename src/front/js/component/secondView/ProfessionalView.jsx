@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MapOfProfessional } from "./MapOfProfessional.jsx";
 import { ListOfProfessional } from "./ListOfProfessional.jsx";
 import { ChangeOfView } from "./ChangeOfView.jsx";
 
 
 
-export const ProfessionalView = () => {
-    const [ professionalType, setProfessinalType ] = useState( "vet" );
+export const ProfessionalView = ( { typeSearch } ) => {
+    const [ professionalType, setProfessinalType ] = useState( typeSearch );
+
 
     const handleProfessionalType = ( type ) => {
         setProfessinalType( type );
+        localStorage.setItem( "professionalType", type );
     };
+
+    useEffect( () => {
+    }, [] );
+
 
     return (
         <>
