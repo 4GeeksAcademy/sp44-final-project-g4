@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 import { Jumbotron } from "../component/jumbotron/Jumbotron.jsx";
 import { LowerView } from "../component/lowerView/LowerView.jsx";
 import { Navbar } from "../component/Navbar.jsx";
-
+import { SiteTitle } from "../component/SiteTitle.jsx";
 
 export const Home = () => {
 	const { store, actions } = useContext( Context );
@@ -15,6 +15,7 @@ export const Home = () => {
 		<>
 			<Navbar />
 			<div className="container">
+				<SiteTitle />
 
 				<Jumbotron />
 				<div className="lowerView mt-5">
