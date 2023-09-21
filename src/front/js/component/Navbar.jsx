@@ -37,8 +37,9 @@ export const Navbar = () => {
                     <ul className=" d-flex justify-content-start list-unstyled ">
                         <li className="nav-item active mt-3 me-3">
                             <div className="nav-item ">
-
-                                <Link className="text-white" to="/">Home </Link>
+                                <Link className="text-white me-3" to="/">Home </Link>
+                                <Link className="text-white me-3" to="/blog">Blog </Link>
+                                <Link className="text-white me-3" to="/adoption">Adoption </Link>
                             </div>
                         </li>
 

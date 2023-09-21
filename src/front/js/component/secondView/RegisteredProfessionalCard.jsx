@@ -14,13 +14,13 @@ export const RegisteredProfessionalCard = ( { professionals } ) => {
                             <div className="card-body p-0 text-center project-light">
 
                                 <a href="#!.html" className="avatar xl rounded-circle  p-1 position-relative mt-n5 d-block mx-auto">
-                                    <img src={ professional.avatar } className=" avatar-img img-fluid rounded-circle" alt="" style={ { width: "10rem" } } />
+                                    <img src={ professional.avatar || "https://img.freepik.com/free-vector/cute-dog-cat-friend-cartoon_138676-2432.jpg?w=2000" } className=" avatar-img img-fluid rounded-circle" alt="" style={ { width: "10rem" } } />
                                 </a>
                                 <h5 className="mb-3 pt-3">
                                     <a href="#!.html" className="text-reset">{ professional.name } { professional.last_name } </a>
                                 </h5>
 
-                                { localStorage.getItem( "email" ) &&
+                                { localStorage.getItem( "userToken" ) &&
                                     <FavoriteBadge
                                         userId={ userId }
                                         professionalId={ professional.id }
@@ -54,7 +54,7 @@ export const RegisteredProfessionalCard = ( { professionals } ) => {
                                             <h6 className="">{ professional.company_name }</h6>
                                         </div>
                                     </li>
-                                    { localStorage.getItem( "email" ) && <ul>
+                                    { localStorage.getItem( "userToken" ) && <ul>
 
                                         <li className="list-group-item px-3 d-flex justify-content-center project-blue">
                                             <div className="me-2">
@@ -76,7 +76,7 @@ export const RegisteredProfessionalCard = ( { professionals } ) => {
                                         </li>
                                     </ul> }
 
-                                    { !localStorage.getItem( "email" ) && <Link to="/login" class="btn btn-outline-primary project-blue text-white">SignIn To See Contact</Link>
+                                    { !localStorage.getItem( "userToken" ) && <Link to="/login" class="btn btn-outline-primary project-blue text-white">SignIn To See Contact</Link>
                                     }
 
                                 </ul>

@@ -48,6 +48,8 @@ class VetModel(db.Model):
     call_in = db.Column(db.Boolean(), nullable=True)
     latitude = db.Column(db.Float(), nullable=True)
     longitude = db.Column(db.Float(), nullable=True)
+    is_active = db.Column(db.Boolean(), default=False)
+
     
 
 
@@ -63,6 +65,8 @@ class VetReviewModel(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     rate_enum = db.Enum('1', '2', '3', '4', '5', name='rate_enum')
     rate = db.Column(rate_enum, nullable=False)
+    is_active = db.Column(db.Boolean(), default=False)
+
     # Relations
     user_id = db.Column(
         db.BigInteger, db.ForeignKey("user.id"), unique=False, nullable=False
@@ -99,6 +103,7 @@ class VetFavoriteModel(db.Model):
     # One to many
     vet = db.relationship("VetModel")
     user = db.relationship("User")
+    is_active = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
         return f'<Favorite Vet {self.id}>'
@@ -131,6 +136,7 @@ class GroomerModel(db.Model):
     call_in = db.Column(db.Boolean(), nullable=True)
     latitude = db.Column(db.Float(), nullable=True)
     longitude = db.Column(db.Float(), nullable=True)
+    is_active = db.Column(db.Boolean(), default=False)
    
 
     def __repr__(self):
@@ -148,6 +154,7 @@ class GroomerReviewsModel(db.Model):
     user = db.relationship("User")
     groomer_id = db.Column(db.Integer, db.ForeignKey('groomer.id'))
     groomer = db.relationship("GroomerModel")
+    is_active = db.Column(db.Boolean(), default=False)
     
     def __repr__(self):
         return f'<groomerreviews {self.id}>'
@@ -174,6 +181,7 @@ class GroomerFavoritesModel(db.Model):
     user = db.relationship("User")
     groomer_id = db.Column(db.Integer, db.ForeignKey('groomer.id'))
     groomer = db.relationship("GroomerModel")
+    is_active = db.Column(db.Boolean(), default=False)
     
     def __repr__(self):
         return f'<groomerfavorites {self.id}>'
@@ -206,6 +214,7 @@ class WalkerModel(db.Model):
     call_in = db.Column(db.Boolean(), nullable=True)
     latitude = db.Column(db.Float(), nullable=True)
     longitude = db.Column(db.Float(), nullable=True)
+    is_active = db.Column(db.Boolean(), default=False)
 
 
     def __repr__(self):
@@ -223,6 +232,7 @@ class PostModel(db.Model):
     author = db.Column(db.String(200), unique=False, nullable=False)
     category = db.Column(category_enum, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    is_active = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
         return f'<Post: {self.id} {self.email}>'
@@ -249,6 +259,7 @@ class ReviewWalkers(db.Model):
     walker = db.relationship("WalkerModel")
     user_id = db.Column(db.BigInteger, db.ForeignKey("user.id"))
     user = db.relationship("User")
+    is_active = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
         return '<Review %r' % {self.id}
@@ -270,6 +281,7 @@ class FavoriteWalkers(db.Model):
     user = db.relationship("User")
     walker_id = db.Column(db.BigInteger, db.ForeignKey("walker.id"))
     walker = db.relationship("WalkerModel")
+    is_active = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
         return '<Favorite Walkers %r' % {self.id}
@@ -292,6 +304,7 @@ class PetModel(db.Model):
     user_id = db.Column(db.BigInteger, db.ForeignKey('user.id'), nullable=False)
     picture = db.Column(db.String(255))
     user = db.relationship("User")
+    is_active = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
         return f'<Pet {self.name}>'

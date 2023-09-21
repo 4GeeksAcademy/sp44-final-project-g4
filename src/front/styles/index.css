@@ -7,7 +7,9 @@ html {
 
 body {
   height: 100%;
-  background: url("https://img.freepik.com/free-vector/gradient-3d-folds-background_23-2149181599.jpg?w=1380&t=st=1695151219~exp=1695151819~hmac=77d4eb12fade9fe901da965e50e245bd4f541121c7fbd81e34b071d84917f053");
+  background: url("https://img.freepik.com/free-vector/gradient-3d-folds-background_23-2149181599.jpg?w=1380&t=st=1695308247~exp=1695308847~hmac=73ed7df01888eaa63734ce829f6f20ebbc7ca5e5cc11aff1de8c102b8c0c3792");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -343,7 +345,7 @@ border: 1px solid rgba(40, 145, 249, 0.56);
 }
 
 .index-front{
-  z-index: 99999;
+  z-index: 999999999;
 }
 
 

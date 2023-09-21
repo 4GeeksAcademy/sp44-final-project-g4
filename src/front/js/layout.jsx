@@ -19,8 +19,7 @@ import { ProfessionalProfile } from "./pages/ProfessionalProfile.jsx";
 import { UserView } from "./pages/UserView.jsx";
 import { EditProfile } from "./pages/EditProfile.jsx";
 import { UserFavoriteView } from "./pages/UserFavoriteView.jsx";
-
-
+import { AdoptionView } from "./pages/AdoptionView.jsx";
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -46,10 +45,9 @@ const Layout = () => {
                         <Route element={ <UserView /> } path="/user-profile" />
                         <Route element={ <EditProfile /> } path="/edit-profile" />
                         <Route element={ <UserFavoriteView /> } path="/favorite" />
+                        <Route element={ <AdoptionView /> } path="/adoption" />
                     </Routes>
-
-
-
+                    <Footer />
                 </ScrollToTop>
             </BrowserRouter>
         </div>

@@ -29,18 +29,13 @@ export const signIn = async ( event, initialObject = {} ) => {
         const data = await response.json();
         console.log( data );
         if ( data[ "access_token" ] ) {
-            console.log( data );
+            console.log( "heyyyyyyy", data );
+            localStorage.setItem( "userToken", data.access_token );
             localStorage.setItem( "user", JSON.stringify( data ) );
             localStorage.setItem( "avatar", data[ "avatar" ] );
             localStorage.setItem( "email", data[ "email" ] );
             localStorage.setItem( "id", data[ "userId" ] );
             localStorage.setItem( "type", data[ "type" ] );
-
-
-
-
-
-            // Develoment, remove from localstore to try the funtion multiple times.
 
         }
 

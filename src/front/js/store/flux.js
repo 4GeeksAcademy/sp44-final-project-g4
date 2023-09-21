@@ -74,21 +74,6 @@ const getState = ( { getStore, getActions, setStore } ) => {
 				setStore( { loggedUser: [] } );
 			},
 
-			getPosts: async () => {
-				var requestOptions = {
-					method: 'GET',
-					redirect: 'follow'
-				};
-				if ( localStorage.getItem( "postsLocal" ) === null ) {
-					const response = await fetch( "https://orange-goldfish-9p6vxrpqj4gcpq6x-3001.preview.app.github.dev/api/posts", requestOptions );
-					if ( response.ok ) {
-						const posts = await response.json();
-						localStorage.setItem( "postsLocal", JSON.stringify( posts ) );
-					} else {
-						console.log( "ERROR" + response.status );
-					}
-				}
-			},
 			addFavorite: ( user, professional ) => {
 
 

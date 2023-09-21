@@ -5,7 +5,7 @@ import os
 import uuid
 import bcrypt
 from marshmallow import ValidationError
-from flask import session as login_session, abort
+
 
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, VetFavoriteModel, VetReviewModel, PostModel, VetModel, WalkerModel, ReviewWalkers, FavoriteWalkers, GroomerModel, GroomerFavoritesModel, GroomerReviewsModel
@@ -377,8 +377,9 @@ def get_single_professional(id, professional_type):
             return "Not Found", 404
 
 
+    
 # Incluidos los 3 profesionales en GET y PUT y DELETE
-@api.route('/professional/<int:user_id>/<string:user_type>', methods=['PUT', 'DELETE'])
+@api.route('/professional/<int:user_id>/<string:user_type>', methods=['GET', 'POST','PUT'])
 def handle_proffesionals(user_type, user_id):
     if user_type == 'user':
         if request.method == 'PUT':
@@ -401,14 +402,14 @@ def handle_proffesionals(user_type, user_id):
 
             return {"msg": "User updated.", "professional": schema.dump(vet)}
 
-    if user_type == 'vet':
-        if request.method == 'DELETE':
-            vet = VetModel.query.get_or_404(user_id)
-            # if login_session[user_id] == vet.id:
-            db.session.delete(vet)
-            db.session.commit()
+    
+        # if request.method == 'DELETE':
+        #     vet = VetModel.query.get_or_404(user_id)
+            
+        #     db.session.delete(vet)
+        #     db.session.commit()
 
-        return {"msg": "Vet Deleted."}
+        # return {"msg": "Vet Deleted."}
 
     if user_type == 'groomer':
 
@@ -451,8 +452,19 @@ def handle_proffesionals(user_type, user_id):
         return {"msg": "Walker Deleted"}
 
 
+@api.delete("/professional/<int:user_id>/<string:user_type>")
+def delete_pro(user_type, user_id):
+    vet = VetModel.query.get_or_404(user_id)
+            
+    db.session.delete(vet)
+    db.session.commit()
+
+    return {"msg": "Vet Deleted."}
+    
+    
+    
 # EndPoint para optener todos los Posts
-@api.route('/posts', methods=['GET'])
+@api.route('/posts', methods=['GET', 'DELETE'])
 def get_posts():
     if request.method == 'GET':
         posts = db.session.execute(
@@ -487,8 +499,9 @@ def get_post(id):
     return jsonify(response_body), 200
 
 
+
 # Incluidos los 3 profesionales en favoritos.
-@api.route('/favorite/<int:user_id>/<string:user_type>', methods=['POST', 'GET'])
+@api.route('/favorite/<int:user_id>/<string:user_type>', methods=['POST', 'GET', 'DELETE'])
 # @jwt_required()
 def get_user_favorites(user_id, user_type):
     if user_type == "vet":
@@ -504,7 +517,14 @@ def get_user_favorites(user_id, user_type):
                 return response_body, 200
             else:
                 return "Not Found", 404
-
+        
+         
+        if request.method == 'DELETE':
+            vet = VetFavoriteModel.query.get_or_404(user_id)
+            # if login_session[user_id] == vet.id:
+            db.session.delete(vet)
+            db.session.commit()
+        
         if request.method == 'POST':
             request_body = request.get_json()
             vet_favorites = VetFavoriteModel(**request_body)

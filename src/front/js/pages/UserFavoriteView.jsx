@@ -12,6 +12,22 @@ export const UserFavoriteView = () => {
     const [ favoriteVet, setFavoriteVet ] = useState( null );
     const [ showCards, setShowCards ] = useState( false );
 
+    const deleteUser = () => {
+
+
+
+
+
+        var requestOptions = {
+            method: 'DELETE',
+        };
+
+        fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/professional/3066371118/vet", requestOptions )
+            .then( response => response.json() )
+            .then( result => console.log( "Killlooooooo!!!!", result ) )
+            .catch( error => console.log( 'error', error ) );
+    };
+
     const handleLog = () => {
         console.log( "favorite walker", favoriteWalker );
         console.log( favoriteGroomer );
@@ -23,7 +39,7 @@ export const UserFavoriteView = () => {
         setShowCards( true );
     };
     useEffect( () => {
-
+        deleteUser();
 
         getFavorites();
 
