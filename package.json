@@ -7,8 +7,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "webpack-dev-server --config webpack.dev.js --port 3000",
-		"build": "webpack --config webpack.prod.js"
+		"start": "webpack-dev-server --config webpack.dev.js --port 3000"
 	},
 	"author": {
 		"name": "Alejandro Sanchez",
@@ -73,11 +72,17 @@
 		]
 	},
 	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^6.4.2",
+		"@fortawesome/free-brands-svg-icons": "^6.4.2",
+		"@fortawesome/free-regular-svg-icons": "^6.4.2",
+		"@fortawesome/free-solid-svg-icons": "^6.4.2",
+		"@fortawesome/react-fontawesome": "^0.2.0",
+		"babel-plugin-macros": "^3.1.0",
 		"maplibre-gl": "^3.3.1",
 		"prop-types": "^15.6.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-polyfills": "0.0.1",
-		"react-router-dom": "^6.3.0"
+		"react-router-dom": "^6.16.0"
 	}
 }

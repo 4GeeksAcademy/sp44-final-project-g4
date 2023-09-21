@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const SocialMediaComponent = () => {
     return (
@@ -12,19 +12,19 @@ export const SocialMediaComponent = () => {
                 <ul className='list-unstyled list-inline'>
                     <p className='list-inline-item'>Find Us:</p>
                     <li className='list-inline-item'>
-                        <a href="link de la red social" className='text-dark'><i className='fab fa-twitter'></i></a>
+                        <a href="link de la red social" className='text-dark' target="blank"><i className='fab fa-twitter'></i></a>
                     </li>
                     <li className='list-inline-item'>
-                        <a href="link de la red social" className='text-dark'><i className='fab fa-linkedin-in'></i></a>
+                        <a href="link de la red social" className='text-dark' target="blank"><i className='fab fa-linkedin-in'></i></a>
                     </li>
                     <li className='list-inline-item'>
-                        <a href="link de la red social" className='text-dark'><i className='fab fa-facebook'></i></a>
+                        <a href="link de la red social" className='text-dark' target="blank"><i className='fab fa-facebook'></i></a>
                     </li>
                     <li className='list-inline-item'>
-                        <a href="link de la red social" className='text-dark'><i className='fab fa-google-plus'></i></a>
+                        <a href="link de la red social" className='text-dark' target="blank"><i className='fab fa-google-plus'></i></a>
                     </li>
                 </ul>
             </div>
         </div>
-    )
-}
+    );
+};

@@ -5,7 +5,7 @@ import os
 import uuid
 import bcrypt
 from marshmallow import ValidationError
-from flask import session as login_session, abort
+
 
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, VetFavoriteModel, VetReviewModel, PostModel, VetModel, WalkerModel, ReviewWalkers, FavoriteWalkers, GroomerModel, GroomerFavoritesModel, GroomerReviewsModel
@@ -14,6 +14,7 @@ from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import create_access_token
+from geopy.geocoders import Nominatim
 
 api = Blueprint('api', __name__)
 
@@ -29,7 +30,6 @@ def handle_marshmallow_error(e):
 def signup(user_type):
     request_body = request.json
     email = request_body["email"]
-    
 
     if user_type == 'user':
         schema = UserSchema()
@@ -81,6 +81,17 @@ def signup(user_type):
             return {"msg": "Phone number already exist.",
                     "code": 501}
 
+        address_vet = request_body["address"] + \
+            ", New York, NY " + str(request_body["zip_code"]) + ", USA"
+        geolocator = Nominatim(user_agent="the_addres_vet")
+        location = geolocator.geocode(address_vet, timeout=None)
+
+        latitude = location.latitude
+        longitude = location.longitude
+
+        request_body["latitude"] = latitude
+        request_body["longitude"] = longitude
+
         vet = VetModel(**request_body)
         vet.password = hashed.decode('utf-8')
 
@@ -89,7 +100,9 @@ def signup(user_type):
 
         response_body = {"message": "New Vet Successfully Created",
                          "status": 200,
-                         "user": request_body["email"]}
+                         "user": request_body["email"],
+                         "latitud": request_body["latitude"],
+                         "logitud": request_body["longitude"]}
 
         return response_body
 
@@ -101,7 +114,17 @@ def signup(user_type):
         if GroomerModel.query.filter(GroomerModel.phone_number == phone_number).first():
             return {"msg": "Phone number already exist.",
                     "code": 501}
-            
+
+        address_groomer = request_body["address"] + \
+            ", New York, NY " + str(request_body["zip_code"]) + ", USA"
+        geolocator = Nominatim(user_agent="the_addres_groomer")
+        location = geolocator.geocode(address_groomer, timeout=None)
+
+        latitude = location.latitude
+        longitude = location.longitude
+        request_body["latitude"] = latitude
+        request_body["longitude"] = longitude
+
         groomer = GroomerModel(**request_body)
         groomer.password = hashed.decode('utf-8')
 
@@ -110,7 +133,9 @@ def signup(user_type):
 
         response_body = {"message": "New Groomer Successfully Created",
                          "status": 200,
-                         "user": request_body["email"]}
+                         "user": request_body["email"],
+                         "latitud": request_body["latitude"],
+                         "logitud": request_body["longitude"]}
 
         return response_body
 
@@ -122,7 +147,17 @@ def signup(user_type):
         if WalkerModel.query.filter(WalkerModel.phone_number == phone_number).first():
             return {"msg": "Phone number already exist.",
                     "code": 501}
-            
+
+        address_walker = request_body["address"] + \
+            ", New York, NY " + str(request_body["zip_code"]) + ", USA"
+        geolocator = Nominatim(user_agent="the_addres_walker")
+        location = geolocator.geocode(address_walker, timeout=None)
+
+        latitude = location.latitude
+        longitude = location.longitude
+        request_body["latitude"] = latitude
+        request_body["longitude"] = longitude
+
         walker = WalkerModel(**request_body)
         walker.password = hashed.decode('utf-8')
 
@@ -131,7 +166,9 @@ def signup(user_type):
 
         response_body = {"message": "New Walker Successfully Created",
                          "status": 200,
-                         "user": request_body["email"]}
+                         "user": request_body["email"],
+                         "latitud": request_body["latitude"],
+                         "logitud": request_body["longitude"]}
 
         return response_body
 
@@ -142,19 +179,94 @@ def signup(user_type):
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    
+
     if not email:
         return jsonify({"msg": "Missing Email."}), 401
     if not password:
         return jsonify({"msg": "Missing Password."}), 401
 
     user = User.query.filter(User.email == email).first()
+    vet = VetModel.query.filter(VetModel.email == email).first()
+    groomer = GroomerModel.query.filter(GroomerModel.email == email).first()
+    walker = WalkerModel.query.filter(WalkerModel.email == email).first()
 
     if user:
         if bcrypt.hashpw(password.encode('utf-8'), user.password.encode('utf-8')):
             access_token = create_access_token(identity=email)
             print(f'Welcome back {email}')
-            return jsonify(access_token=access_token)
+            return jsonify(access_token=access_token,
+                           userId=user.id,
+                           email=user.email,
+                           avatar=user.avatar,
+                           name=user.name,
+                           last_name=user.last_name,
+                           created_at=user.created_at,
+                           type="user",
+                           phone=user.phone_number
+                           )
+    elif vet:
+        if bcrypt.hashpw(password.encode('utf-8'), vet.password.encode('utf-8')):
+            access_token = create_access_token(identity=email)
+            print(f'Welcome back {email}')
+            return jsonify(access_token=access_token,
+                           userId=vet.id,
+                           email=vet.email,
+                           avatar=vet.avatar,
+                           name=vet.name,
+                           type="vet",
+                           last_name=vet.last_name,
+                           phone=vet.phone_number,
+                           address=vet.address,
+                           zip_code=vet.zip_code,
+                           price_low=vet.price_low,
+                           price_high=vet.price_high,
+                           services=vet.services,
+                           company_name=vet.company_name,
+                           create_at=vet.created_at,
+                           description=vet.description
+                           )
+    elif groomer:
+        if bcrypt.hashpw(password.encode('utf-8'), groomer.password.encode('utf-8')):
+            access_token = create_access_token(identity=email)
+            print(f'Welcome back {email}')
+            return jsonify(access_token=access_token,
+                           userId=groomer.id,
+                           email=groomer.email,
+                           avatar=groomer.avatar,
+                           name=groomer.name,
+                           type="groomer",
+                           last_name=groomer.last_name,
+                           phone=groomer.phone_number,
+                           address=groomer.address,
+                           zip_code=groomer.zip_code,
+                           price_low=groomer.price_low,
+                           price_high=groomer.price_high,
+                           services=groomer.services,
+                           company_name=groomer.company_name,
+                           create_at=groomer.created_at,
+                           description=groomer.description
+                           )
+    elif walker:
+        if bcrypt.hashpw(password.encode('utf-8'), walker.password.encode('utf-8')):
+            access_token = create_access_token(identity=email)
+            print(f'Welcome back {email}')
+            return jsonify(access_token=access_token,
+                           userId=walker.id,
+                           email=walker.email,
+                           avatar=walker.avatar,
+                           name=walker.name,
+                           type="walker",
+                           last_name=walker.last_name,
+                           phone=walker.phone_number,
+                           address=walker.address,
+                           zip_code=walker.zip_code,
+                           price_low=walker.price_low,
+                           price_high=walker.price_high,
+                           services=walker.services,
+                           company_name=walker.company_name,
+                           create_at=walker.created_at,
+                           description=walker.description
+                           )
     else:
         message_body = {
             "msg": "User or Password Incorrect",
@@ -163,10 +275,9 @@ def login():
         return message_body
 
 
-
 # Need to protect route only for admin
 @api.route('/users', methods=['GET'])
-@jwt_required()
+# @jwt_required()
 def get_all_users():
     users = db.session.execute(
         db.select(User).order_by(User.name)).scalars()
@@ -198,7 +309,7 @@ def get_all_proffesionals(professional_type):
     if professional_type == 'vet':
         vets = db.session.execute(
             db.select(VetModel).order_by(VetModel.name)).scalars()
-        schema = UserSchema(many=True)
+        schema = VetSchema(many=True)
         if schema:
             return {"results": schema.dump(vets),
                     "code": 200}
@@ -221,7 +332,7 @@ def get_all_proffesionals(professional_type):
     if professional_type == 'walker':
         walker = db.session.execute(
             db.select(WalkerModel).order_by(WalkerModel.name)).scalars()
-        schema = WalkerModel(many=True)
+        schema = WalkerSchema(many=True)
 
         if schema:
             return {"results": schema.dump(walker),
@@ -266,9 +377,20 @@ def get_single_professional(id, professional_type):
             return "Not Found", 404
 
 
+    
 # Incluidos los 3 profesionales en GET y PUT y DELETE
-@api.route('/professional/<int:user_id>/<string:user_type>', methods=['GET', 'PUT', 'DELETE'])
+@api.route('/professional/<int:user_id>/<string:user_type>', methods=['GET', 'POST','PUT'])
 def handle_proffesionals(user_type, user_id):
+    if user_type == 'user':
+        if request.method == 'PUT':
+            schema = UserSchema(partial=True)
+            user = User.query.get_or_404(user_id)
+            user = schema.load(request.json, instance=user)
+
+            db.session.add(user)
+            db.session.commit()
+
+            return {"msg": "User updated.", "professional": schema.dump(user)}
     if user_type == 'vet':
         if request.method == 'PUT':
             schema = VetSchema(partial=True)
@@ -278,16 +400,16 @@ def handle_proffesionals(user_type, user_id):
             db.session.add(vet)
             db.session.commit()
 
-            return {"msg": "User updated.", "vet": schema.dump(vet)}
+            return {"msg": "User updated.", "professional": schema.dump(vet)}
 
-    if user_type == 'vet':
-        if request.method == 'DELETE':
-            vet = VetModel.query.get_or_404(user_id)
-            # if login_session[user_id] == vet.id:
-            db.session.delete(vet)
-            db.session.commit()
+    
+        # if request.method == 'DELETE':
+        #     vet = VetModel.query.get_or_404(user_id)
+            
+        #     db.session.delete(vet)
+        #     db.session.commit()
 
-        return {"msg": "Vet Deleted."}
+        # return {"msg": "Vet Deleted."}
 
     if user_type == 'groomer':
 
@@ -299,7 +421,7 @@ def handle_proffesionals(user_type, user_id):
             db.session.add(groomer)
             db.session.commit()
 
-            return {"msg": "User updated.", "vet": schema.dump(groomer)}
+            return {"msg": "User updated.", "professional": schema.dump(groomer)}
 
         if request.method == 'DELETE':
             groomer = GroomerModel.query.get_or_404(user_id)
@@ -319,7 +441,7 @@ def handle_proffesionals(user_type, user_id):
             db.session.add(walker)
             db.session.commit()
 
-            return {"msg": "User updated.", "vet": schema.dump(walker)}
+            return {"msg": "User updated.", "professional": schema.dump(walker)}
 
         if request.method == 'DELETE':
             walker = VetModel.query.get_or_404(user_id)
@@ -330,8 +452,19 @@ def handle_proffesionals(user_type, user_id):
         return {"msg": "Walker Deleted"}
 
 
-# EndPoint para optener y crear los Posts
-@api.route('/posts', methods=['GET'])
+@api.delete("/professional/<int:user_id>/<string:user_type>")
+def delete_pro(user_type, user_id):
+    vet = VetModel.query.get_or_404(user_id)
+            
+    db.session.delete(vet)
+    db.session.commit()
+
+    return {"msg": "Vet Deleted."}
+    
+    
+    
+# EndPoint para optener todos los Posts
+@api.route('/posts', methods=['GET', 'DELETE'])
 def get_posts():
     if request.method == 'GET':
         posts = db.session.execute(
@@ -349,9 +482,27 @@ def get_posts():
     return jsonify(response), 200
 
 
+@api.route('/posts/<int:id>', methods=['GET'])
+def get_post(id):
+    if request.method == 'GET':
+        post = db.get_or_404(PostModel, id)
+
+        response_body = {"message": "All posts fetched successfully",
+                         "status": "ok",
+                         "results": post.serialize()}
+
+        if response_body:
+            return response_body, 200
+        else:
+            return "Not Found", 404
+
+    return jsonify(response_body), 200
+
+
+
 # Incluidos los 3 profesionales en favoritos.
-@api.route('/favorite/<int:user_id>/<string:user_type>', methods=['POST', 'GET'])
-@jwt_required()
+@api.route('/favorite/<int:user_id>/<string:user_type>', methods=['POST', 'GET', 'DELETE'])
+# @jwt_required()
 def get_user_favorites(user_id, user_type):
     if user_type == "vet":
         if request.method == 'GET':
@@ -366,11 +517,18 @@ def get_user_favorites(user_id, user_type):
                 return response_body, 200
             else:
                 return "Not Found", 404
-
+        
+         
+        if request.method == 'DELETE':
+            vet = VetFavoriteModel.query.get_or_404(user_id)
+            # if login_session[user_id] == vet.id:
+            db.session.delete(vet)
+            db.session.commit()
+        
         if request.method == 'POST':
             request_body = request.get_json()
             vet_favorites = VetFavoriteModel(**request_body)
-            db.session.add(VetFavoriteModel)
+            db.session.add(vet_favorites)
             db.session.commit()
 
             response_body = {"message": "Adding new vet favorites",
@@ -413,12 +571,12 @@ def get_user_favorites(user_id, user_type):
 
     if user_type == "groomer":
         if request.method == 'GET':
-            groomersFavorites: db.session.execute(db.select(
-                GroomerFavoritesModel).order_by(GroomerFavoritesModel.name)).scalars()
-            results = [item.serialize() for item in groomersFavorites]
+            favorites = db.session.execute(
+                db.select(GroomerFavoritesModel).order_by(GroomerFavoritesModel.id)).scalars()
+            result = [item.serialize() for item in favorites]
             response_body = {"message": "these are the groomer favorites endpoints",
-                             "results": results,
-                             "status": "ok"}
+                             "status": "OK",
+                             "response": result}
 
             if response_body:
                 return response_body, 200
@@ -427,7 +585,7 @@ def get_user_favorites(user_id, user_type):
 
         if request.method == 'POST':
             request_body = request.get_json()
-            groomersFavorites = GroomerFavoritesModel(** request_body)
+            groomersFavorites = GroomerFavoritesModel(**request_body)
             db.session.add(groomersFavorites)
             db.session.commit()
             print(request_body)

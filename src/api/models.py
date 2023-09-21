@@ -46,7 +46,10 @@ class VetModel(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     password = db.Column(db.String(1000), unique=False, nullable=False)
     call_in = db.Column(db.Boolean(), nullable=True)
-    
+    latitude = db.Column(db.Float(), nullable=True)
+    longitude = db.Column(db.Float(), nullable=True)
+    is_active = db.Column(db.Boolean(), default=False)
+
     
 
 
@@ -62,6 +65,8 @@ class VetReviewModel(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     rate_enum = db.Enum('1', '2', '3', '4', '5', name='rate_enum')
     rate = db.Column(rate_enum, nullable=False)
+    is_active = db.Column(db.Boolean(), default=False)
+
     # Relations
     user_id = db.Column(
         db.BigInteger, db.ForeignKey("user.id"), unique=False, nullable=False
@@ -98,6 +103,7 @@ class VetFavoriteModel(db.Model):
     # One to many
     vet = db.relationship("VetModel")
     user = db.relationship("User")
+    is_active = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
         return f'<Favorite Vet {self.id}>'
@@ -106,7 +112,7 @@ class VetFavoriteModel(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "vet_id": self.vet_id,
+            "VetId": self.vet_id,
         }
 
 
@@ -128,6 +134,9 @@ class GroomerModel(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     password = db.Column(db.String(1000), unique=False, nullable=False)
     call_in = db.Column(db.Boolean(), nullable=True)
+    latitude = db.Column(db.Float(), nullable=True)
+    longitude = db.Column(db.Float(), nullable=True)
+    is_active = db.Column(db.Boolean(), default=False)
    
 
     def __repr__(self):
@@ -145,6 +154,7 @@ class GroomerReviewsModel(db.Model):
     user = db.relationship("User")
     groomer_id = db.Column(db.Integer, db.ForeignKey('groomer.id'))
     groomer = db.relationship("GroomerModel")
+    is_active = db.Column(db.Boolean(), default=False)
     
     def __repr__(self):
         return f'<groomerreviews {self.id}>'
@@ -171,19 +181,17 @@ class GroomerFavoritesModel(db.Model):
     user = db.relationship("User")
     groomer_id = db.Column(db.Integer, db.ForeignKey('groomer.id'))
     groomer = db.relationship("GroomerModel")
+    is_active = db.Column(db.Boolean(), default=False)
     
     def __repr__(self):
         return f'<groomerfavorites {self.id}>'
     
     def serialize(self):
-        return {
-            "title": self.title,
-            "body": self.body,
-            "date": self.created_at,
-            "rate": self.rate,
-            "user_id": self.user_id,
-            "vet_id": self.vet_id,
-        }
+        return {"id": self.id,
+                "userId": self.user_id,
+                "GroomerId": self.groomer_id,      
+                }
+    
 
 
 class WalkerModel(db.Model):
@@ -204,6 +212,10 @@ class WalkerModel(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     password = db.Column(db.String(1000), unique=False, nullable=False)
     call_in = db.Column(db.Boolean(), nullable=True)
+    latitude = db.Column(db.Float(), nullable=True)
+    longitude = db.Column(db.Float(), nullable=True)
+    is_active = db.Column(db.Boolean(), default=False)
+
 
     def __repr__(self):
         return f'<Walker {self.name} {self.surname}'
@@ -213,13 +225,14 @@ class PostModel(db.Model):
     __tablename__ = "post"
     id = db.Column(db.BigInteger, primary_key=True)
     title = db.Column(db.String(300), unique=False, nullable=False)
-    body = db.Column(db.String(3000), unique=False, nullable=False)
+    body = db.Column(db.String(10000), unique=False, nullable=False)
     image = db.Column(db.String(3000), unique=False, nullable=False)
     category_enum = db.Enum('Salud', 'Bienestar',
                             'Belleza', name='category_enum')
     author = db.Column(db.String(200), unique=False, nullable=False)
     category = db.Column(category_enum, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    is_active = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
         return f'<Post: {self.id} {self.email}>'
@@ -227,14 +240,12 @@ class PostModel(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "Name": self.name,
-            "Surname": self.surname,
-            "Email": self.email,
-            "Address": self.address,
-            "Phone Number": self.phone_number,
-            "Description": self.description,
-            "Price low": self.price_low,
-            "Price high": self.price_high
+            "title": self.title,
+            "body": self.body,
+            "image": self.image,
+            "author": self.author,
+            "category": self.category,
+            "created": self.created_at            
         }
     
 class ReviewWalkers(db.Model):
@@ -248,6 +259,7 @@ class ReviewWalkers(db.Model):
     walker = db.relationship("WalkerModel")
     user_id = db.Column(db.BigInteger, db.ForeignKey("user.id"))
     user = db.relationship("User")
+    is_active = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
         return '<Review %r' % {self.id}
@@ -269,29 +281,18 @@ class FavoriteWalkers(db.Model):
     user = db.relationship("User")
     walker_id = db.Column(db.BigInteger, db.ForeignKey("walker.id"))
     walker = db.relationship("WalkerModel")
+    is_active = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
         return '<Favorite Walkers %r' % {self.id}
 
     def serialize(self):
         return {"id": self.id,
-                "User ID": self.user_id,
-                "Walker ID": self.walker_id,
-                "User ID": self.user_id,
-                "Walker ID": self.walker_id
+                "userId": self.user_id,
+                "WalkerId": self.walker_id,      
                 }
     
-    def serialize(self):
-        return {
-            "title": self.title,
-            "body": self.body,
-            "date": self.date,
-            "image": self.image,
-            "category": self.category,
-            "author": self.author,
-            "category": self.category
-        }
-    
+   
 
 class PetModel(db.Model):
     id = db.Column(db.BigInteger, default= uuid.uuid4().int >> (128 - 32), primary_key=True) 
@@ -303,6 +304,7 @@ class PetModel(db.Model):
     user_id = db.Column(db.BigInteger, db.ForeignKey('user.id'), nullable=False)
     picture = db.Column(db.String(255))
     user = db.relationship("User")
+    is_active = db.Column(db.Boolean(), default=False)
 
     def __repr__(self):
         return f'<Pet {self.name}>'
