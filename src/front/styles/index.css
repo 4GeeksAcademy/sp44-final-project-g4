@@ -7,9 +7,10 @@ html {
 
 body {
   height: 100%;
-  background: url("https://img.freepik.com/free-vector/gradient-3d-folds-background_23-2149181599.jpg?w=1380&t=st=1695308247~exp=1695308847~hmac=73ed7df01888eaa63734ce829f6f20ebbc7ca5e5cc11aff1de8c102b8c0c3792");
+  background: url("https://static.vecteezy.com/system/resources/previews/007/622/532/non_2x/abstract-3d-blue-dynamic-wave-flow-lines-pattern-on-white-background-vector.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
+  background-size: cover;
   font-family: 'Poppins', sans-serif;
 }
 

@@ -25,7 +25,7 @@ export const ImageDisplayDropDown = ( { image } ) => {
 
                     { userType !== 'user' && <li><Link to="/pro-profile" className="dropdown-item" href="#">View Profile</Link></li> }
                     <li className='index-front'><Link to="/user-profile" className="dropdown-item" href="#">View userProfile</Link></li>
-                    <li><a className="dropdown-item" href="#">Favorites</a></li>
+                    <li><Link to="/favorite" className="dropdown-item" >Favorites</Link></li>
 
                 </ul>
 

@@ -38,7 +38,10 @@ export const FavoriteBadge = ( { userId, professionalId, type } ) => {
         };
 
         fetch( `${ backend }favorite/${ userId }/${ type }`, requestOptions )
-            .then( response => response.text() )
+            .then( response => {
+                console.log( userId, professionalId, type );
+                return response.json();
+            } )
             .then( result => console.log( result ) )
             .catch( error => console.log( 'error', error ) );
     };
@@ -50,7 +53,7 @@ export const FavoriteBadge = ( { userId, professionalId, type } ) => {
                 <button
                     onClick={ handleFavorite }
                     type="button"
-                    className="btn btn-outline-warning"><i className="fa-solid fa-star fa-lg" style={ { color: "#f1d801" } }></i></button>
+                    className="btn btn-outline-warning mb-3"><i className="fa-solid fa-star fa-lg" style={ { color: "#f1d801" } }></i></button>
             </div>
 
         </>
