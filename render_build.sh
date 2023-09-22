@@ -7,9 +7,7 @@ npm run build
 
 pipenv install
 
-pipenv shell
 
-flask db stamp head 
 
 pipenv run migrate
 
