@@ -9,6 +9,4 @@ pipenv install
 
 
 
-pipenv run migrate
 
-pipenv run upgrade
