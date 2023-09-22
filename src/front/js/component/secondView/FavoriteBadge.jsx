@@ -1,6 +1,7 @@
 import React from 'react';
 
 export const FavoriteBadge = ( { userId, professionalId, type } ) => {
+    const backend = "https://sample-service-name-9dn1.onrender.com/api/";
 
     const handleFavorite = () => {
         const myHeaders = new Headers();
@@ -36,7 +37,7 @@ export const FavoriteBadge = ( { userId, professionalId, type } ) => {
             redirect: 'follow'
         };
 
-        fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/favorite/${ userId }/${ type }`, requestOptions )
+        fetch( `${ backend }favorite/${ userId }/${ type }`, requestOptions )
             .then( response => response.text() )
             .then( result => console.log( result ) )
             .catch( error => console.log( 'error', error ) );

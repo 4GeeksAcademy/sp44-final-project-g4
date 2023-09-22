@@ -5,6 +5,7 @@ import { Navbar } from "../component/Navbar.jsx";
 //import { ButtonList } from "../component/blog/ButtonList.jsx"
 
 export const TheBlog = () => {
+  const backend = "https://sample-service-name-9dn1.onrender.com/api/";
 
   const getPosts = async () => {
 
@@ -13,7 +14,7 @@ export const TheBlog = () => {
       redirect: 'follow'
     };
 
-    fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/posts", requestOptions )
+    fetch( `${ backend }posts`, requestOptions )
       .then( response => response.json() )
       .then( data => localStorage.setItem( "posts", JSON.stringify( data ) ) )
       .catch( error => console.log( 'error', error ) );
