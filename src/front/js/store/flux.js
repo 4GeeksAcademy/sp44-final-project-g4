@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (!localStorage.getItem(storageKey)) {
 
 						const host = backend; // URL base
-						const url = `${host}/api/professional/${urlKey}`;
+						const url = `${host}api/professional/${urlKey}`;
 
 						const request = {
 							method: 'GET',
@@ -45,9 +45,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getAllProfessionals: async () => {
 				Promise.all([
-					fetch(`${backend}/api/professional/vet`),
-					fetch(`${backend}/api/professional/groomer`),
-					fetch(`${backend}/api/professional/walker`)
+					fetch(`${backend}api/professional/vet`),
+					fetch(`${backend}api/professional/groomer`),
+					fetch(`${backend}api/professional/walker`)
 				])
 					.then(responses => {
 						return Promise.all(responses.map(response => response.json()));
