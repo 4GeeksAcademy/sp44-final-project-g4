@@ -45,9 +45,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getAllProfessionals: async () => {
 				Promise.all([
-					fetch(`/vet`),
-					fetch(`/groomer`),
-					fetch(`/walker`)
+					fetch(`${backend}/api/professional/vet`),
+					fetch(`${backend}/api/professional/groomer`),
+					fetch(`${backend}/api/professional/walker`)
 				])
 					.then(responses => {
 						return Promise.all(responses.map(response => response.json()));
