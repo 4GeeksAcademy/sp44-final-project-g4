@@ -14,6 +14,10 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.main-height{
+  margin-bottom: 7rem;
+}
+
 .main-title{
   font-family: 'Kalam', cursive;
   color: #00b6ac;
