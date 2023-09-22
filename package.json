@@ -8,7 +8,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack-dev-server --config webpack.dev.js --port 3000",
-		"build": "webpack --config webpack.prod.js"
+		"build": "react-scripts build"
 	},
 	"author": {
 		"name": "Alejandro Sanchez",
@@ -84,6 +84,7 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-polyfills": "0.0.1",
-		"react-router-dom": "^6.16.0"
+		"react-router-dom": "^6.16.0",
+		"react-scripts": "^5.0.1"
 	}
 }
