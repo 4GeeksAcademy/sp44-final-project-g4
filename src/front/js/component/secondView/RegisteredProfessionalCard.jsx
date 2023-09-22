@@ -4,9 +4,7 @@ import { FavoriteBadge } from './FavoriteBadge.jsx';
 export const RegisteredProfessionalCard = ( { professionals } ) => {
     const [ userId, setUserId ] = useState( localStorage.getItem( "id" ) );
 
-    useEffect( () => {
-        console.log( "heyyyyyy!!!!", professionals );
-    }, [ professionals ] );
+
 
     return (
         <>

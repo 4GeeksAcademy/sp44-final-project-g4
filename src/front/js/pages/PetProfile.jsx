@@ -1,10 +1,11 @@
 import { faAddressBook } from '@fortawesome/free-regular-svg-icons';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { Navbar } from '../component/Navbar';
+import { Navbar } from '../component/Navbar.jsx';
 
 export const PetProfile = () => {
     let { state } = useLocation();
+    console.log( state );
     const { contact, name, breeds, size, age, colors, attributes, tags, url, photos, environment } = state;
 
     return (
