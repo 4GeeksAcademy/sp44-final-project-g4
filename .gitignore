@@ -71,11 +71,11 @@ dist/*
 !.gitkeep
 !.htaccess
 !.eslintrc
-!.env.example
+
 .now
 
 # backend stuff
-.venv
+
 database.database
 database.db
 diagram.png
