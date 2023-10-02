@@ -2,11 +2,13 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 
 export const signUp = async ( event, initialObject = {}, type, userImage ) => {
+    const backend = "https://sample-service-name-9dn1.onrender.com/api/";
+
     initialObject.avatar = userImage;
 
     const myHeaders = new Headers();
     myHeaders.append( "Content-Type", "application/json" );
-    myHeaders.append( "Access-Control-Allow-Origin", "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev" );
+    myHeaders.append( "Access-Control-Allow-Origin", "https://sample-service-name-9dn1.onrender.com" );
 
 
     console.log( initialObject );
@@ -22,7 +24,7 @@ export const signUp = async ( event, initialObject = {}, type, userImage ) => {
     };
 
     try {
-        const res = await fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/signup/${ type }`, requestOptions );
+        const res = await fetch( `${ backend }signup/${ type }`, requestOptions );
 
         if ( !res.ok ) {
             throw new Error( "Failed to fetch data, status code: 400" + res.status );

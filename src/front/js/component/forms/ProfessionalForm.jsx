@@ -45,7 +45,7 @@ export const VetForm = () => {
 
                 <main className="form-signin">
                     <form onSubmit={ handleSubmit }>
-                        <img className="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" />
+                        <img className="mb-4" src="https://img.freepik.com/free-vector/cute-dog-cat-friend-cartoon_138676-2432.jpg?w=2000" alt="" width="72" height="57" />
                         <h1 className="h3 mb-3 fw-normal">Proffessional Sign Up</h1>
                         { type }
                         <div className="form-floating">

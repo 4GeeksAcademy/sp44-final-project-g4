@@ -1,6 +1,7 @@
 import React from 'react';
 
 export const updateProfessionalProfile = async ( event, initialObject = {}, type, id ) => {
+    const backend = "https://sample-service-name-9dn1.onrender.com/api/";
 
     const myHeaders = new Headers();
     myHeaders.append( "Content-Type", "application/json" );
@@ -17,7 +18,7 @@ export const updateProfessionalProfile = async ( event, initialObject = {}, type
     };
 
     try {
-        const response = await fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/${ id }/${ type }`, requestOptions );
+        const response = await fetch( `${ backend }professional/${ id }/${ type }`, requestOptions );
         if ( !response.ok ) {
             throw new Error( "Failed to fetch data, status code: " + response.status );
         }

@@ -6,6 +6,7 @@ import { WaitingSpinner } from '../component/WaitingSpinner.jsx';
 import { Navbar } from "../component/Navbar.jsx";
 
 export const UserFavoriteView = () => {
+    const backend = "https://sample-service-name-9dn1.onrender.com/api/";
     const [ userId, setuserId ] = useState( localStorage.getItem( "id" ) );
     const [ favoriteWalker, setFavoriteWalker ] = useState( null );
     const [ favoriteGroomer, setFavoriteGroomer ] = useState( null );
@@ -14,15 +15,11 @@ export const UserFavoriteView = () => {
 
     const deleteUser = () => {
 
-
-
-
-
         var requestOptions = {
             method: 'DELETE',
         };
 
-        fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/professional/3066371118/vet", requestOptions )
+        fetch( `${ backend }professional/3066371118/vet`, requestOptions )
             .then( response => response.json() )
             .then( result => console.log( "Killlooooooo!!!!", result ) )
             .catch( error => console.log( 'error', error ) );
@@ -61,9 +58,9 @@ export const UserFavoriteView = () => {
         };
 
         Promise.all( [
-            fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/favorite/${ userId }/walker`, requestOptions ),
-            fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/favorite/1694574930/groomer`, requestOptions ),
-            fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/favorite/${ userId }/vet`, requestOptions )
+            fetch( `${ backend }favorite/${ userId }/walker`, requestOptions ),
+            fetch( `${ backend }favorite/1694574930/groomer`, requestOptions ),
+            fetch( `${ backend }favorite/${ userId }/vet`, requestOptions )
         ] ).then( responses => {
             return Promise.all( responses.map( res => res.json() ) );
         } ).then( data => {
@@ -97,7 +94,7 @@ export const UserFavoriteView = () => {
                         redirect: 'follow'
                     };
 
-                    fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/${ fav }/walker`, requestOptions )
+                    fetch( `${ backend }professional/${ fav }/walker`, requestOptions )
                         .then( response => response.json() )
                         .then( result => {
                             const email = result.user.email;
@@ -120,7 +117,7 @@ export const UserFavoriteView = () => {
                         redirect: 'follow'
                     };
                     console.log( fav );
-                    fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/${ fav }/groomer`, requestOptions )
+                    fetch( `${ backend }professional/${ fav }/groomer`, requestOptions )
                         .then( response => response.json() )
                         .then( result => {
                             const email = result.groomer.email;
@@ -145,7 +142,7 @@ export const UserFavoriteView = () => {
                         redirect: 'follow'
                     };
                     console.log( fav );
-                    fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/${ fav }/vet`, requestOptions )
+                    fetch( `${ backend }professional/${ fav }/vet`, requestOptions )
                         .then( response => response.json() )
                         .then( result => {
                             // const email = result.groomer.email;

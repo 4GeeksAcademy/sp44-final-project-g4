@@ -1,3 +1,4 @@
+const backend = "https://sample-service-name-9dn1.onrender.com/";
 
 const getState = ( { getStore, getActions, setStore } ) => {
 	return {
@@ -13,8 +14,8 @@ const getState = ( { getStore, getActions, setStore } ) => {
 
 					if ( !localStorage.getItem( storageKey ) ) {
 
-						const host = "https://ideal-space-goggles-9r547pw47qq2p5vr-3001.app.github.dev"; // URL base
-						const url = `${ host }/api/professional/${ urlKey }`;
+						const host = backend; // URL base
+						const url = `${ host }api/professional/${ urlKey }`;
 
 						const request = {
 							method: 'GET',
@@ -44,9 +45,9 @@ const getState = ( { getStore, getActions, setStore } ) => {
 
 			getAllProfessionals: async () => {
 				Promise.all( [
-					fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/vet" ),
-					fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/groomer" ),
-					fetch( "https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/professional/walker" )
+					fetch( `${ backend }api/professional/vet` ),
+					fetch( `${ backend }api/professional/groomer` ),
+					fetch( `${ backend }api/professional/walker` )
 				] )
 					.then( responses => {
 						return Promise.all( responses.map( response => response.json() ) );
@@ -71,6 +72,7 @@ const getState = ( { getStore, getActions, setStore } ) => {
 				localStorage.removeItem( "id" );
 				localStorage.removeItem( "type" );
 				localStorage.removeItem( "user" );
+				localStorage.removeItem( "userToken" );
 				setStore( { loggedUser: [] } );
 			},
 
