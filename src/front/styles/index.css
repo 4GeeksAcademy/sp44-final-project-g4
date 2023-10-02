@@ -14,6 +14,24 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.main-light-blue-bg{
+  background: #F4F9F9;
+}
+
+.main-mild-blue-bg{
+  background: #CDF2F4;
+}
+
+.main-blue-bg {
+  background: #A5ECF3;
+}
+
+.main-grey-bg{
+  background: #ACACAC;
+}
+
+
+
 .main-height{
   margin-bottom: 7rem;
 }
