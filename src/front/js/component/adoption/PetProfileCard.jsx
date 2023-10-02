@@ -13,7 +13,7 @@ export const PetProfileCard = ( { animal } ) => {
 
     return (
         <>
-            <div className="container project-light">
+            <div className="container project-light m-2">
 
                 <div className="card m-3" style={ { width: "18rem" } }>
 

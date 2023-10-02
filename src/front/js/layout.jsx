@@ -4,7 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/Navbar.jsx";
+
 
 
 
@@ -20,6 +20,7 @@ import { UserView } from "./pages/UserView.jsx";
 import { EditProfile } from "./pages/EditProfile.jsx";
 import { UserFavoriteView } from "./pages/UserFavoriteView.jsx";
 import { AdoptionView } from "./pages/AdoptionView.jsx";
+import { PetProfile } from "./pages/PetProfile.jsx";
 //create your first component
 const Layout = () => {
     //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -46,6 +47,7 @@ const Layout = () => {
                         <Route element={ <EditProfile /> } path="/edit-profile" />
                         <Route element={ <UserFavoriteView /> } path="/favorite" />
                         <Route element={ <AdoptionView /> } path="/adoption" />
+                        <Route element={ <PetProfile /> } path="/petprofile" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>

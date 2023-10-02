@@ -1,6 +1,7 @@
 import React from 'react';
 
 export const FavoriteBadge = ( { userId, professionalId, type } ) => {
+    const backend = "https://sample-service-name-9dn1.onrender.com/api/";
 
     const handleFavorite = () => {
         const myHeaders = new Headers();
@@ -36,8 +37,11 @@ export const FavoriteBadge = ( { userId, professionalId, type } ) => {
             redirect: 'follow'
         };
 
-        fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/favorite/${ userId }/${ type }`, requestOptions )
-            .then( response => response.text() )
+        fetch( `${ backend }favorite/${ userId }/${ type }`, requestOptions )
+            .then( response => {
+                console.log( userId, professionalId, type );
+                return response.json();
+            } )
             .then( result => console.log( result ) )
             .catch( error => console.log( 'error', error ) );
     };
@@ -49,7 +53,7 @@ export const FavoriteBadge = ( { userId, professionalId, type } ) => {
                 <button
                     onClick={ handleFavorite }
                     type="button"
-                    className="btn btn-outline-warning"><i className="fa-solid fa-star fa-lg" style={ { color: "#f1d801" } }></i></button>
+                    className="btn btn-outline-warning mb-3"><i className="fa-solid fa-star fa-lg" style={ { color: "#f1d801" } }></i></button>
             </div>
 
         </>

@@ -10,7 +10,7 @@ export const Login = () => {
         <>
             <Navbar />
 
-            <div className="container text-center">
+            <div className="container text-center main-height">
                 {/* {logOption === "signup" && */ }
                 <button
                     className="btn btn-outline-primary m-1"
@@ -23,6 +23,10 @@ export const Login = () => {
             { logOption === "signin" && <SignInComponent /> }
             { logOption === "signup" && <SignUpComponent /> }
 
+
+            <div className="container text-center main-height">
+
+            </div>
         </>
     );
 };

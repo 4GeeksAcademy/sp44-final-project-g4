@@ -4,7 +4,7 @@ export const WaitingSpinner = () => {
     return (
         <>
             <div className="project-light text center p-3">
-                <h1 className="display-4">We are getting your favorite pofessionals...</h1>
+                <h1 className="display-4">We are getting your data...</h1>
                 <p className="lead main-title">Please wait a moment while we search for the perfect pet for you. We have thousands of adoptable animals in our adoption page, we're sure you will find the perfect match for your lifestyle and needs.</p>
 
 

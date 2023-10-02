@@ -22,11 +22,6 @@ export const ChangeOfView = ( { professionalType } ) => {
                         <button onClick={ ( e ) => professionalType( 'walker' ) } className="text-white  nav-link" id="walkerTab" data-bs-toggle="tab" data-bs-target="#walkerTab-pane" type="button" role="tab" aria-controls="walkerTab-pane" aria-selected="false">Walker</button>
 
                     </li>
-                    <li className="nav-item" role="presentation">
-
-                        <button onClick={ ( e ) => professionalType( 'adoption' ) } className="text-white  nav-link" id="adoptionTab" data-bs-toggle="tab" data-bs-target="#adoptionTab-pane" type="button" role="tab" aria-controls="adoptionTab-pane" aria-selected="false">Adoption</button>
-
-                    </li>
                 </ul>
             </div>
 

@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FavoriteBadge } from './FavoriteBadge.jsx';
 export const RegisteredProfessionalCard = ( { professionals } ) => {
     const [ userId, setUserId ] = useState( localStorage.getItem( "id" ) );
+
+
+
     return (
         <>
             <ul className="d-flex flex-wrap flex-column">

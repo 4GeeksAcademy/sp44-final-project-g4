@@ -2,6 +2,7 @@ import React from 'react';
 
 export const getProfile = async () => {
 
+
     try {
         const response = await fetch( "https://api.petfinder.com/v2/animals?type=dog&location=New York", requestOptions );
         if ( !response.ok ) {

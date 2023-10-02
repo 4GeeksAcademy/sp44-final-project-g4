@@ -1,6 +1,8 @@
 import React from 'react';
 
 export const getFavoritesIds = ( userId ) => {
+    const backend = "https://sample-service-name-9dn1.onrender.com/api/";
+
     const myHeaders = new Headers();
     myHeaders.append( "Content-Type", "application/json" );
     myHeaders.append( "Access-Control-Allow-Origin", "*" );
@@ -13,9 +15,9 @@ export const getFavoritesIds = ( userId ) => {
     };
 
     Promise.all( [
-        fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/favorite/${ userId }/walker`, requestOptions ),
-        fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/favorite/1694574930/groomer`, requestOptions ),
-        fetch( `https://miniature-trout-9rqg9vgq9jv2p959-3001.preview.app.github.dev/api/favorite/${ userId }/vet`, requestOptions )
+        fetch( `${ backend }favorite/${ userId }/walker`, requestOptions ),
+        fetch( `${ backend }favorite/1694574930/groomer`, requestOptions ),
+        fetch( `${ backend }favorite/${ userId }/vet`, requestOptions )
     ] ).then( responses => {
         return Promise.all( responses.map( res => res.json() ) );
     } ).then( data => {
