@@ -21,11 +21,11 @@ export const UserView = () => {
 
 				<div className="page-content  project-blue p-5" id="page-content-user-profile" style={ { display: "flex", justifyContent: "center", alignItems: "center" } }>
 
-					<div className="col-xl-6 col-md-12">
+					<div className="col-xl-12 col-md-12">
 						<div className="card user-card-full" id="user-card-yulia">
 							<div className="row m-l-0 m-r-0">
 								<div className="col-sm-4 bg-c-lite-green user-profile">
-									<div className="card-block text-center text-white">
+									<div className="card-block text-center">
 										<div className="m-b-25">
 											<img src={ user.avatar } className="img-radius" alt="User-Profile-Image" style={ { width: "5rem" } } />
 										</div>

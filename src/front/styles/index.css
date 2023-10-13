@@ -49,6 +49,10 @@ li {
   background: #A4EBF3;
 }
 
+.main-blue-bg-modal {
+  background: #ACACAC80;
+}
+
 .main-grey-bg {
   background: #ACACAC;
 }
@@ -68,8 +72,6 @@ li {
 }
 
 .main-title {
-  font-family: 'Kalam', cursive;
-  color: #00b6ac;
   font-size: 25px;
 }
 
@@ -77,17 +79,10 @@ li {
   background: url("https://img.freepik.com/free-vector/cute-playful-footprint-pattern-background-fauna-fun_1017-44713.jpg?w=1380&t=st=1694950178~exp=1694950778~hmac=c4ea9bffb1b022aceedef2d2bf9c234df9be86b7523c4aa270219c9c0321ee95");
 }
 
-.jumbotron {
-  background-image: url('https://images.unsplash.com/photo-1545529468-42764ef8c85f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 70%;
-  text-align: center;
-}
 
 .container-jumbotron {
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -99,6 +94,7 @@ li {
   background-image: url('https://images.unsplash.com/photo-1545529468-42764ef8c85f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 5px;
   background-position: 50% 70%;
   text-align: center;
 }
@@ -106,7 +102,7 @@ li {
 
 .container-jumbotron-home {
   background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -323,7 +319,7 @@ li {
 /* User View */
 
 
-#user-card-yulia {
+/*#user-card-yulia {
   border-radius: 5px;
   -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
   box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
@@ -341,11 +337,11 @@ li {
 
 .user-card-full .user-profile {
   border-radius: 5px 0 0 5px;
-}
+}*/
 
 .bg-c-lite-green {
-  background: -webkit-gradient(linear, left top, right top, from(#81ffd5), to(#75ffc6));
-  background: linear-gradient(to right, #7dfbff, #4be2ce);
+  background: -webkit-gradient(linear, left top, right top, from(#4b9aa980), to(#FFFFFF));
+  background: linear-gradient(to right, #4b9aa980, #FFFFFF);
 }
 
 .user-profile {
