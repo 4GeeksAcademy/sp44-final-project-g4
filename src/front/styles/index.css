@@ -33,6 +33,13 @@ li {
   background: #F4F9F9;
 }
 
+.main-light-blue-bg-modal-content {
+  background: #FE624440;
+}
+.main-light-blue-bg-jumbotron-title {
+  background: #F4F9F980;
+}
+
 .main-mild-blue-bg {
   background: #CDF2F4;
 }
@@ -136,14 +143,6 @@ li {
 }
 
 
-.project-blue {
-  background: rgba(40, 145, 249, 0.74);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(40, 145, 249, 0.56);
-}
-
 .project-purple {
   background: #5B2448 !important;
 }
@@ -157,10 +156,10 @@ li {
 }
 
 
-.custom-btn-jumbotron-home {
+/*.custom-btn-jumbotron-home {
   width: 230px;
   height: 50px;
-  color: #000000;
+  color: #ffffff;
   border-radius: 4px;
   font-weight: 600;
   background: transparent;
@@ -253,7 +252,7 @@ li {
 
 .btn-4 span:hover:after {
   width: 100%;
-}
+} */
 
 
 .cards-list-jumbotron-home {
@@ -261,6 +260,7 @@ li {
   z-index: 0;
   width: 100%;
   display: flex;
+  border-radius: 15px;
   justify-content: space-around;
   flex-wrap: wrap;
 }
@@ -290,9 +290,9 @@ li {
 }
 
 
-#card-jumbotron-home:hover {
+/*#card-jumbotron-home:hover {
   transform: scale(0.9, 0.9);
-}
+}*/
 
 
 @media all and (max-width: 500px) {
@@ -303,7 +303,6 @@ li {
 }
 
 #modal-jumbotron {
-  background-color: rgba(255, 248, 233, 0.7);
   margin-top: 70%;
 }
 
