@@ -21,10 +21,10 @@ export const UserView = () => {
 
 				<div className="page-content  project-blue p-5" id="page-content-user-profile" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
-					<div className="col-xl-12 col-md-12">
+					<div className="col-sm-12 col-md-12">
 						<div className="card user-card-full" id="user-card-yulia">
-							<div className="row">
-								<div className="col-sm-3 bg-c-lite-green user-profile">
+							<div className="row ">
+								<div className="col-sm-3 user-profile bg-c-lite-green">
 									<div className="card-block text-center">
 										<div className="m-b-25">
 											<img src={user.avatar} className="img-radius" alt="User-Profile-Image" style={{ width: "5rem" }} />
@@ -62,7 +62,7 @@ export const UserView = () => {
 											</div>
 
 
-											<div className="btn-change-personal-info" style={{ display: "flex", justifyContent: "center", alignItems: "center" }} id="change-personal-info-user">
+											<div className="btn-change-personal-info mt-4" style={{ justifyContent: "center", alignItems: "center" }} id="change-personal-info-user">
 												<Link to="/edit-profile" state={user} className="btn project-blue text-white" > Edit Profile
 												</Link>
 											</div>

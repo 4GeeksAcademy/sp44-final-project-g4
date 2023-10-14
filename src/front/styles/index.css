@@ -319,7 +319,7 @@ li {
 /* User View */
 
 
-/*#user-card-yulia {
+#user-card-yulia {
   border-radius: 5px;
   -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
   box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
@@ -337,11 +337,11 @@ li {
 
 .user-card-full .user-profile {
   border-radius: 5px 0 0 5px;
-}*/
+}
 
 .bg-c-lite-green {
-  background: -webkit-gradient(linear, left top, right top, from(#4b9aa980), to(#FFFFFF));
-  background: linear-gradient(to right, #4b9aa980, #FFFFFF);
+  background: -webkit-gradient(linear, left top, from(#CDF2F4), to(#F4F9F9));
+  background: linear-gradient(to right, #CDF2F4, #F4F9F9);
 }
 
 .user-profile {
