@@ -26,7 +26,7 @@ export const ProfessionalProfile = () => {
                 </div>
             </div>
             <div className="d-grid gap-2 d-md-flex justify-content-md-end" style={ { paddingRight: "7rem" } }>
-                <button type="button" className="btn btn-primary">Edit Profile</button>
+                <button type="button" className="main-btn">Edit Profile</button>
             </div>
         </>
     );

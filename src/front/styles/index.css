@@ -251,7 +251,7 @@ li {
 } */
 
 
-.cards-list-jumbotron-home {
+/*.cards-list-jumbotron-home {
   display: flex;
   z-index: 0;
   width: 100%;
@@ -259,7 +259,7 @@ li {
   border-radius: 15px;
   justify-content: space-around;
   flex-wrap: wrap;
-}
+}*/
 
 #card-jumbotron-home {
   display: flex;
@@ -345,15 +345,15 @@ li {
 }
 
 .user-profile {
-  padding: 10px 2;
+  padding: 5px;
 }
 
 .card-block {
-  padding: 1.25rem;
+  padding: 3rem;
 }
 
 .m-b-25 {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .img-radius {
