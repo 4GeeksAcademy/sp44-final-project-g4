@@ -11,7 +11,7 @@ import { CardAdoption } from "./cards/CardAdoption.jsx";
 export const LowerView = () => {
     return (
         <>
-            <div className="container text-center  mb-5">
+            <div className="container text-center  mb-5" style={{ maxWidth: "100rem" }}>
                 <div className="d-flex flex-wrap justify-content-center">
                     <div className="m-2"><CardVet /></div>
                     <div className="m-2"><CardGroomer /></div>
