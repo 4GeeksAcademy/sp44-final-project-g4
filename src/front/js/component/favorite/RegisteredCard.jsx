@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export const RegisteredCard = ( { professional } ) => {
     return (
         <>
@@ -11,7 +12,7 @@ export const RegisteredCard = ( { professional } ) => {
                     <div className="card-body p-0 text-center project-light">
 
                         <a href="#!.html" className="avatar xl rounded-circle  p-1 position-relative mt-n5 d-block mx-auto">
-                            <img src={ professional.avatar } className=" avatar-img img-fluid rounded-circle" alt="" style={ { width: "10rem" } } />
+                            <img src={ professional.avatar } className=" avatar-img img-fluid rounded-circle" alt="" style={ { width: "10rem"} } />
                         </a>
                         <h5 className="mb-3 pt-3">
                             <a href="#!.html" className="text-reset">{ professional.name } { professional.last_name } </a>
