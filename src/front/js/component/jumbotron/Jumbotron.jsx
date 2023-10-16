@@ -46,7 +46,7 @@ export const Jumbotron = () => {
                             <p className="jumbotron-card-p">Adopt a pet</p>
                         </div>
                     </div> */}
-                    <h6 className="lh-base"> <span className="main-title">FurryFriends</span> is an online platform designed to unite passionate animal workes and committed pet owners in a virtual space dedicated to animal care and welfare. <br />Mission: Our mission is to create an online community where vets, walkers and groomers professionals can offer their expertise and exceptional services, while pet lovers can find high quality care for their furry companions and even adopt a new furry friend.
+                    <h6 className="lh-base"> <span className="main-title" style={{ fontWeight: 'bold' }}  >FurryFriends</span> is an online platform designed to unite passionate animal workes and committed pet owners in a virtual space dedicated to animal care and welfare. <br />Mission: Our mission is to create an online community where vets, walkers and groomers professionals can offer their expertise and exceptional services, while pet lovers can find high quality care for their furry companions and even adopt a new furry friend.
                     </h6>
                 </div>
 

@@ -5,7 +5,7 @@ import mainLogo from '/workspaces/sp44-final-project-g4/src/front/img/logo-web.p
 export const SiteTitle = () => {
     return (
         <div className="logo-web">
-            <img src={mainLogo} alt="" style={{ width: "200px", height: "200px" }} />
+            <img src={mainLogo} alt="" style={{ width: "100px", height: "80px", padding: "10px", marginLeft: "10px" }} />
         </div>
     );
 };
