@@ -11,7 +11,7 @@ export const Jumbotron = () => {
 
     return (
 
-        <div className="jumbotron jumbotron-fluid px-2 py-5" id='jumbotron-home'>
+        <div className="jumbotron jumbotron-fluid px-2 py-5 mt-5" id='jumbotron-home'>
             <div className="container container-jumbotron-home py-3 px-4">
                 <div className="p-3 rounded main-light-blue-bg-jumbotron-title">
 
