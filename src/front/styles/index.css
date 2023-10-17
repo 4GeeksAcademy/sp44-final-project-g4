@@ -31,6 +31,7 @@ li {
 
 .main-light-blue-bg {
   background: #F4F9F9;
+
 }
 
 .main-light-blue-bg-modal-content {
@@ -72,7 +73,9 @@ li {
 }
 
 .main-title {
+
   font-size: 25px;
+  color: #FE6244;
 }
 
 .pet-background {
@@ -407,4 +410,18 @@ li {
 
 .index-front {
   z-index: 999999999;
+}
+
+
+
+
+
+
+.project-text-contrast {
+  color: #FE6244 !important;
+}
+
+.project-text-blue {
+  color: #4b9aa9;
+  font-family: 'Kalam', cursive;
 }
