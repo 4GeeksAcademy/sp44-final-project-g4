@@ -5,7 +5,7 @@ import { Navbar } from "../component/Navbar.jsx";
 //import { ButtonList } from "../component/blog/ButtonList.jsx"
 
 export const TheBlog = () => {
-  const backend = "https://sample-service-name-9dn1.onrender.com/api/";
+  const backend = "https://sample-service-name-3ajg.onrender.com/api/";
 
   const getPosts = async () => {
 
