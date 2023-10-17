@@ -6,7 +6,7 @@ export const Modal = ({ showModal, handleClose }) => {
 
             <div className="modal-dialog">
 
-                <div className="modal-content" id='modal-jumbotron'>
+                <div className="modal-content main-blue-bg-modal" id='modal-jumbotron'>
 
                     <div className="modal-header">
                         <h5 className="modal-title">Select your city</h5>

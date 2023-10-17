@@ -32,13 +32,13 @@ export const Navbar = () => {
 
     return (
         <>
-            <div className="container-fluid d-flex justify-content-between main-contrast ">
-                <div className="d-flex align-items-end">
+            <div className="container-fluid d-flex justify-content-between main-contrast">
+                <div className="d-flex align-items-end" >
                     <SiteTitle />
                 </div>
 
                 {redirect && <Navigate to="/" replace />}
-                <div className="d-flex justify-content-end align-items-center">
+                <div className="d-flex justify-content-end align-items-center" style={{ marginRight: "10px" }}>
                     <div className="">
                         <ul className=" d-flex justify-content-start list-unstyled ">
                             <li className="nav-item active mt-3 me-3">
