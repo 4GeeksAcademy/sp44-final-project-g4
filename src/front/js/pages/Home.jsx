@@ -7,7 +7,7 @@ import { LowerView } from "../component/lowerView/LowerView.jsx";
 import { Navbar } from "../component/Navbar.jsx";
 
 export const Home = () => {
-	const { store, actions } = useContext( Context );
+	const { store, actions } = useContext(Context);
 
 
 	return (
@@ -19,16 +19,6 @@ export const Home = () => {
 				<div className="lowerView mt-5">
 					<LowerView />
 				</div>
-
-
-
-				{/* 
-				<div className="jumbotron">
-					<Link to={ `/professionalprofile/` }>
-						<button className="btn-btn-secondary">Professional Profile</button>
-					</Link>
-
-				</div> */}
 
 			</div>
 		</>
