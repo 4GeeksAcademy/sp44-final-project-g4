@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { RegisteredCard } from '../component/favorite/RegisteredCard.jsx';
 import { UnregisterCard } from '../component/favorite/UnregisterCard.jsx';
-import { UnsignedProfessionalCard } from "../component/secondView/UnsignedProfessionalCard.jsx";
 import { WaitingSpinner } from '../component/WaitingSpinner.jsx';
 import { Navbar } from "../component/Navbar.jsx";
 
@@ -12,6 +11,12 @@ export const UserFavoriteView = () => {
     const [ favoriteGroomer, setFavoriteGroomer ] = useState( null );
     const [ favoriteVet, setFavoriteVet ] = useState( null );
     const [ showCards, setShowCards ] = useState( false );
+
+    const [ proffessionalType, setProffessional ] = useState( "vet" );
+
+    const onOptionChange = e => {
+        setProffessional( e.target.value );
+    };
 
     const deleteUser = () => {
 
@@ -169,44 +174,65 @@ export const UserFavoriteView = () => {
     return (
         <>
             <Navbar />
+
+            {/* subNavbar */ }
+            {/* <div className="App">
+                <h3>Select Proffessional Type</h3>
+
+                <input type="radio" name="vet" value="vet" id="vet"
+                    checked={ proffessionalType === "vet" }
+                    onChange={ onOptionChange }
+                />
+                <label htmlFor="regular">Vet</label>
+
+                <input type="radio" name="groomer" value="groomer" id="groomer"
+                    onChange={ onOptionChange }
+                    checked={ proffessionalType === "groomer" } />
+                <label htmlFor="medium">Groomer</label>
+
+                <input type="radio" name="walker" value="ewalker" id="walker"
+                    onChange={ onOptionChange }
+                    checked={ proffessionalType === "walker" } />
+                <label htmlFor="large">Walker</label>
+            </div> */}
+            {/* subNavbar */ }
+            <div className='container pt-3'>
+                <h1>Favorite Proffessionals</h1>
+            </div>
             { showCards !== true &&
                 <div className="container d-flex justify-content-center mt-5">
 
                     <WaitingSpinner />
                 </div>
             }
-            <ul>
-
-                { showCards === true && favoriteGroomer.map( ( sigleGroomer, index ) => {
-                    return ( <li key={ index }>
-                        <div className="container text-center mt-3">
-                            { sigleGroomer.latitude && <RegisteredCard professional={ sigleGroomer } /> }
-                            { !sigleGroomer.latitude && <UnregisterCard professional={ sigleGroomer } /> }
-                        </div>
-                    </li> );
-                } ) }
-            </ul>
-            <ul>
 
 
-                { showCards === true && favoriteWalker.map( ( sigleWalker, index ) => {
-                    return ( <li key={ index }>
-                        <div className="container text-center mt-3">
-                            { sigleWalker.latitude && <RegisteredCard professional={ sigleWalker } /> }
-                            { !sigleWalker.latitude && <UnregisterCard professional={ sigleWalker } /> }
-                        </div>
-                    </li> );
-                } ) }
-            </ul>
-            <ul>
+            <ul className="d-flex flex-wrap justify-content-center" >
 
                 { showCards === true && favoriteVet.map( ( sigleVet, index ) => {
                     return ( <li key={ index }>
                         <div className="container text-center mt-3">
                             { sigleVet.latitude && <RegisteredCard professional={ sigleVet } /> }
-                            { !sigleVet.latitude && <UnregisterCard professional={ sigleVet } /> }
                         </div>
                     </li> );
+                } ) }
+                { showCards === true && favoriteWalker.map( ( sigleWalker, index ) => {
+                    return (
+                        <li key={ index }>
+                            <div className="container text-center mt-3">
+                                { sigleWalker.latitude && <RegisteredCard professional={ sigleWalker } /> }
+                                { !sigleWalker.latitude && <UnregisterCard professional={ sigleWalker } /> }
+                            </div>
+                        </li> );
+                } ) }
+                { showCards === true && proffessionalType === "groomer" && favoriteGroomer.map( ( sigleGroomer, index ) => {
+                    return (
+                        <li key={ index }>
+                            <div className="container text-center mt-3">
+                                { sigleGroomer.latitude && <RegisteredCard professional={ sigleGroomer } /> }
+                                { !sigleGroomer.latitude && <UnregisterCard professional={ sigleGroomer } /> }
+                            </div>
+                        </li> );
                 } ) }
             </ul>
         </>

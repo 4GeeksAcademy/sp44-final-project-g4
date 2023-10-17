@@ -2,8 +2,8 @@ import React from 'react';
 
 export const SiteTitle = () => {
     return (
-        <div className="p-3 rounded project-light text-center">
-            <h1 className="card-title-jumbotron main-title " style={ { fontSize: "50px" } }><strong >FurryFriends NewYork</strong></h1>
+        <div className="p-3 rounded">
+            <p className="project-text-blue fs-1" style={ { fontSize: "30px" } }><strong >Furry Paws New York</strong></p>
         </div>
     );
 };
