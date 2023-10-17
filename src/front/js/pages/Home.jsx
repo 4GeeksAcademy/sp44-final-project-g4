@@ -15,7 +15,6 @@ export const Home = () => {
 			<Navbar />
 			<div className="container">
 
-
 				<Jumbotron />
 				<div className="lowerView mt-5">
 					<LowerView />

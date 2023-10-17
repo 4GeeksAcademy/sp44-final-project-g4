@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export const RegisteredCard = ( { professional } ) => {
     return (
         <>
@@ -9,7 +10,9 @@ export const RegisteredCard = ( { professional } ) => {
 
                     <div className="card-body p-0 text-center project-light">
 
+
                         <img src={ professional.avatar || defaultImage } className=" mt-2 .main-contrastavatar-img img-fluid rounded-circle" alt="" style={ { width: "7rem", height: "7rem" } } />
+
 
                         <h5 className="mb-3 pt-3">
                             <a href="#!.html" className="text-reset">{ professional.name } { professional.last_name } </a>
