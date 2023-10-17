@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { ImageDisplayDropDown } from './ImageDisplayDropDown.jsx';
 import { SiteTitle } from './SiteTitle.jsx';
 
+
 export const Navbar = () => {
     const { store, actions } = useContext(Context);
     const [profilePicture, setProfilePicture] = useState(localStorage.getItem("avatar"));

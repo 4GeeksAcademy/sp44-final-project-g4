@@ -408,3 +408,9 @@ li {
 .index-front {
   z-index: 999999999;
 }
+
+.small-text {
+  color: #000 !important; /* O el color que desees */
+  margin-right: 2px; /* O el margen derecho que desees */
+  font-size: 14px !important; /* O el tamaño de fuente que desees */
+}
