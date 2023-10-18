@@ -3,7 +3,7 @@ import React from 'react'
 
 export const DevelopersComponent = ({ image }) => {
     return (
-        <div className='col-md-12 mt-1 text-center'>
+        <div className='col-md-12 mt-2 text-center'>
             <p className='text-uppercase font-weight-bold text-center'><strong>Developed By:</strong></p>
             <hr className='mb-1' />
             <div className='text-center'>

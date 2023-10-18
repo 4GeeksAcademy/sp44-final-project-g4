@@ -19,7 +19,7 @@ export const Footer = () => {
                     <div className='col-12 col-md-4 mt-4'>
                     <InfographicComponent />
                     </div>
-                    <div className='col-12 col-md-4 mt-4'>
+                    <div className='col-12 col-md-4 mt-3'>
                     <DevelopersComponent />
                     </div>
                     

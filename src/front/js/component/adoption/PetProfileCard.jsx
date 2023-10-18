@@ -18,7 +18,7 @@ export const PetProfileCard = ( { animal } ) => {
         <>
             <div className="container m-2">
 
-                <div className="card m-3" style={ { width: "18rem" } }>
+                <div className="card m-3" style={ { width: "20rem" } }>
 
                     <img src={ typeof photos[ 0 ] == 'undefined' ? "https://img.freepik.com/free-vector/cute-dog-cat-friend-cartoon_138676-2432.jpg?w=2000" : photos[ 0 ].medium } className="card-img-top" alt="..." style={ { maxHeight: "20rem" } } />
 

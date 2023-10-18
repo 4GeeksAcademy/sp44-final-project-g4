@@ -33,7 +33,7 @@ export const TheBlog = () => {
       <Navbar />
       <div className="title d-flex justify-content-center md-4 lg-4 xl-4">
         <div className="project-light mt-3">
-          <h1 className="text-center main-title" style={ { fontSize: "70px" } }> Our Blog</h1>
+          <h1 className="text-center main-title" style={ { fontSize: "100px" } }> Our Blog</h1>
           <div className="container " >
 
             <img src="https://s1.eestatic.com/2022/05/13/curiosidades/mascotas/672192954_224281687_1706x960.jpg" alt="Our Blog" className="img-fluid rounded " style={ { width: "50rem" } } />
