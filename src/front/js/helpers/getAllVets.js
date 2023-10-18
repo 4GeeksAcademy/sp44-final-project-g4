@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const getAllVets = async () => {
-    const backend = "https://sample-service-name-9dn1.onrender.com/api/";
+    const backend = "https://sample-service-name-3ajg.onrender.com/api/";
 
     const myHeaders = new Headers();
     myHeaders.append( "Content-Type", "application/json" );

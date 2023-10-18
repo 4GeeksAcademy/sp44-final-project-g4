@@ -51,6 +51,7 @@ export const Navbar = () => {
                             </li>
                             <li className="nav-item">
                                 <Link className=" nav-link text-white me-3" to="/adoption">Adoption </Link>
+
                             </li>
 
                         </ul>
