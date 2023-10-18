@@ -4,40 +4,40 @@ import { FavoriteBadge } from './FavoriteBadge.jsx';
 
 
 
-export const RegisteredProfessionalCard = ( { professionals } ) => {
-    const [ userId, setUserId ] = useState( localStorage.getItem( "id" ) );
+export const RegisteredProfessionalCard = ({ professionals }) => {
+    const [userId, setUserId] = useState(localStorage.getItem("id"));
 
 
 
     return (
         <>
             <ul className="d-flex flex-wrap justify-content-center" >
-                { professionals !== null && professionals.map( ( professional ) => (
-                    <li key={ professional.id } className="mb-4 ms-2 me-2" >
+                {professionals !== null && professionals.map((professional) => (
+                    <li key={professional.id} className="mb-4 ms-2 me-2" >
 
-                        <div className="card overflow-hidden w-100 main-mild-blue-bg" style={ { maxWidth: "20rem" } }>
+                        <div className="card overflow-hidden w-100 main-mild-blue-bg" style={{ maxWidth: "20rem" }}>
 
                             <div className="card-body p-0 text-center project-light">
 
-                                <img src={ professional.avatar || defaultImage } className=" mt-2 .main-contrastavatar-img img-fluid rounded-circle" alt="" style={ { width: "7rem", height: "7rem" } } />
+                                <img src={professional.avatar} className=" mt-2 .main-contrastavatar-img img-fluid rounded-circle" alt="" style={{ width: "7rem", height: "7rem" }} />
 
                                 <h5 className="mb-3 pt-3">
-                                    <a href="#!.html" className="text-reset">{ professional.name } { professional.last_name } </a>
+                                    <a href="#!.html" className="text-reset">{professional.name} {professional.last_name} </a>
                                 </h5>
 
-                                { localStorage.getItem( "userToken" ) &&
+                                {localStorage.getItem("userToken") &&
                                     <FavoriteBadge
-                                        userId={ userId }
-                                        professionalId={ professional.id }
-                                        type={ localStorage.getItem( "professionalType" ) }
-                                    /> }
+                                        userId={userId}
+                                        professionalId={professional.id}
+                                        type={localStorage.getItem("professionalType")}
+                                    />}
 
                                 <h6 className="main-title mt-2">10% off with this professional!</h6>
-                                {/* <span className="text-muted small d-block mb-4">Full stack developer</span> */ }
+                                {/* <span className="text-muted small d-block mb-4">Full stack developer</span> */}
                                 <div className="row mx-0 border-top border-bottom ">
                                     <div className="col-12 text-center border-end py-3">
-                                        {/* <h5 className="mb-0">2345</h5> */ }
-                                        <small>{ professional.description }</small>
+                                        {/* <h5 className="mb-0">2345</h5> */}
+                                        <small>{professional.description}</small>
                                     </div>
 
                                 </div>
@@ -48,7 +48,7 @@ export const RegisteredProfessionalCard = ( { professionals } ) => {
                                             <h6 >Location:</h6>
                                         </div>
                                         <div>
-                                            <h6 className="">{ professional.address }, { professional.zip_code }</h6>
+                                            <h6 className="">{professional.address}, {professional.zip_code}</h6>
                                         </div>
                                     </li>
                                     <li className="list-group-item px-3 d-flex justify-content-center">
@@ -56,17 +56,17 @@ export const RegisteredProfessionalCard = ( { professionals } ) => {
                                             <h6 >Company</h6>
                                         </div>
                                         <div>
-                                            <h6 className="project-text-contrast">{ professional.company_name }</h6>
+                                            <h6 className="project-text-contrast">{professional.company_name}</h6>
                                         </div>
                                     </li>
-                                    { localStorage.getItem( "userToken" ) &&
+                                    {localStorage.getItem("userToken") &&
                                         <>
                                             <li className="list-group-item px-3 d-flex justify-content-center p-1">
                                                 <div className="me-2">
                                                     <h6>Email:</h6>
                                                 </div>
                                                 <div>
-                                                    <h6 className="project-text-contrast">{ professional.email }</h6>
+                                                    <h6 className="project-text-contrast">{professional.email}</h6>
                                                 </div>
 
                                             </li>
@@ -75,21 +75,21 @@ export const RegisteredProfessionalCard = ( { professionals } ) => {
                                                     <h6 className="text-white">Contact:</h6>
                                                 </div>
                                                 <div>
-                                                    <h6 className="">{ professional.phone_number }</h6>
+                                                    <h6 className="">{professional.phone_number}</h6>
                                                 </div>
 
                                             </li>
                                         </>
                                     }
 
-                                    { !localStorage.getItem( "userToken" ) && <Link to="/login" class="btn  btn-outline-primary project-blue text-white">SignIn To See Contact</Link>
+                                    {!localStorage.getItem("userToken") && <Link to="/login" class="btn  btn-outline-primary project-blue text-white">SignIn To See Contact</Link>
                                     }
                                 </ul>
                             </div>
                         </div>
 
                     </li>
-                ) ) }
+                ))}
             </ul >
             <hr />
         </>
