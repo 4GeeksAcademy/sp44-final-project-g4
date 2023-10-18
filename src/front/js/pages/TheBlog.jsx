@@ -5,7 +5,9 @@ import { Navbar } from "../component/Navbar.jsx";
 //import { ButtonList } from "../component/blog/ButtonList.jsx"
 
 export const TheBlog = () => {
+
   const backend = "https://fuzzy-space-broccoli-v9gjv4jgv552p79j-3001.app.github.dev/api/";
+
 
   const getPosts = async () => {
 
@@ -32,20 +34,23 @@ export const TheBlog = () => {
     <>
       <Navbar />
       <div className="title d-flex justify-content-center md-4 lg-4 xl-4">
+
         <div className="project-light mt-3">
           <h1 className="text-center main-title" style={{ fontSize: "70px" }}> Our Blog</h1>
           <div className="container " >
 
             <img src="https://s1.eestatic.com/2022/05/13/curiosidades/mascotas/672192954_224281687_1706x960.jpg" alt="Our Blog" className="img-fluid rounded " style={{ width: "50rem" }} />
+
           </div>
         </div>
       </div>
-      <h1 className="mt-2 text-center fs-2 fst-italic"><strong>Learn some tips and tricks about pet care</strong></h1>
-      <hr />
+      <div className="mx-5">
+        <hr className="mx-5" style={{ border: "1.5px solid" }} />
+      </div>
       {/*<div>
         <ButtonList />
       </div>*/}
-      <div className="d-flex justify-content-center mx-5">
+      <div className="d-flex justify-content-center">
         <ArticleList />
       </div>
 
