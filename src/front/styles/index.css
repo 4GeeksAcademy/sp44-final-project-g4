@@ -413,10 +413,6 @@ li {
 }
 
 
-
-
-
-
 .project-text-contrast {
   color: #FE6244 !important;
 }
@@ -424,4 +420,10 @@ li {
 .project-text-blue {
   color: #4b9aa9;
   font-family: 'Kalam', cursive;
+}
+
+.small-text {
+  color: #4b9aa9 !important; 
+  margin-right: 2px; 
+  font-size: 14px !important; 
 }
