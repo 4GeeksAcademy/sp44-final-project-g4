@@ -1,5 +1,5 @@
 
-const backend = "https://fuzzy-bassoon-qj95qr59vj7f9jq6-3001.app.github.dev/";
+const backend = "https://sample-service-name-4tb0.onrender.com/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {

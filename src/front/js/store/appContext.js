@@ -26,7 +26,7 @@ const injectContext = PassedComponent => {
 			state.actions.getAllProfessionals()
 				.then(data => console.log(data));
 
-			localStorage.setItem("url", "https://fuzzy-bassoon-qj95qr59vj7f9jq6-3001.app.github.dev/")
+			localStorage.setItem("url", "https://sample-service-name-4tb0.onrender.com/")
 
 		}, []);
 
