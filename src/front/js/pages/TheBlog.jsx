@@ -6,7 +6,7 @@ import { Navbar } from "../component/Navbar.jsx";
 
 export const TheBlog = () => {
 
-  const backend = "https://fuzzy-space-broccoli-v9gjv4jgv552p79j-3001.app.github.dev/api/";
+  const backend = localStorage.getItem("url") + "api/"
 
 
   const getPosts = async () => {
