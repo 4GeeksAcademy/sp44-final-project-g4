@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { RegisteredCard } from '../component/favorite/RegisteredCard.jsx';
 import { UnregisterCard } from '../component/favorite/UnregisterCard.jsx';
 import { WaitingSpinner } from '../component/WaitingSpinner.jsx';
 import { Navbar } from "../component/Navbar.jsx";
+import { Context } from '../store/appContext.js';
 
 export const UserFavoriteView = () => {
+    const { store, actions } = useContext(Context);
 
-    const backend = "https://fuzzy-space-broccoli-v9gjv4jgv552p79j-3001.app.github.dev/api/";
+    const backend = localStorage.getItem("url");
 
     const [userId, setuserId] = useState(localStorage.getItem("id"));
     const [favoriteWalker, setFavoriteWalker] = useState(null);
