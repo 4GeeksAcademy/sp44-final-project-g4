@@ -1,5 +1,5 @@
 
-const backend = "https://sample-service-name-4tb0.onrender.com/";
+const backend = "https://sample-service-name-qduh.onrender.com/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
