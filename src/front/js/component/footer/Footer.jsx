@@ -14,7 +14,7 @@ export const Footer = () => {
             <div className='container text-center text-md-start'>
                 <div className='row text-center text-md-start'>
                     {/* Aqui poner el componente con el logo de la web*/ }
-                    <SiteTitle />
+                    <LogoComponent />
                     <InfographicComponent />
                     <DevelopersComponent />
                 </div>

@@ -1,21 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-export const LogoComponent = ({ image }) => {
+export const SocialMediaComponent = () => {
     return (
-        <div className="col-md-4 col-lg-4 col-xl-4 mt-1 text-center align-items-center my-3 pt-3">
-
-            <div className="col-md-12 col-lg-4 mt-2 text-centerr d-flex justify-content-center align-items-center my-3 pt-3">
-
-                <img style={{ height: "80px", width: "80px", borderRadius: "10%" }} src={image} alt="" className="bg-black" />
-
-            </div>
-
-            <div className='text-center mb-3'>
+        <div>
+            <div className='text-center mb-1'>
                 <p>
                     Contact Us: <strong>contacto@mail.com</strong>
                 </p>
             </div>
-
             <div className='text-center '>
                 <ul className='list-unstyled list-inline'>
                     <p className='list-inline-item'>Find Us:</p>
@@ -33,7 +25,6 @@ export const LogoComponent = ({ image }) => {
                     </li>
                 </ul>
             </div>
-
         </div>
-    )
-}
+    );
+};
