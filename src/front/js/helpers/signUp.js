@@ -2,13 +2,17 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 
 export const signUp = async (event, initialObject = {}, type, userImage) => {
-    const backend = "https://sample-service-name-3ajg.onrender.com/api/";
+
+    const backend = "https://fuzzy-space-broccoli-v9gjv4jgv552p79j-3001.app.github.dev/api/";
+
 
     initialObject.avatar = userImage;
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Access-Control-Allow-Origin", "https://sample-service-name-3ajg.onrender.com");
+
+    myHeaders.append("Access-Control-Allow-Origin", "hhttps://fuzzy-space-broccoli-v9gjv4jgv552p79j-3001.app.github.dev");
+
 
 
     console.log(initialObject);

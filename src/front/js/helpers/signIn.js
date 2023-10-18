@@ -1,18 +1,20 @@
 
 
-export const signIn = async ( event, initialObject = {} ) => {
-    const backend = "https://sample-service-name-3ajg.onrender.com/api/";
+
+export const signIn = async (event, initialObject = {}) => {
+    const backend = "https://fuzzy-space-broccoli-v9gjv4jgv552p79j-3001.app.github.dev/api/";
+
 
     event.preventDefault();
 
 
 
     const myHeaders = new Headers();
-    myHeaders.append( "Content-Type", "application/json" );
+    myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify( {
+    const raw = JSON.stringify({
         ...initialObject
-    } );
+    });
 
     const requestOptions = {
         method: 'POST',
@@ -23,31 +25,31 @@ export const signIn = async ( event, initialObject = {} ) => {
 
 
     try {
-        const response = await fetch( `${ backend }login`, requestOptions );
+        const response = await fetch(`${backend}login`, requestOptions);
 
-        if ( !response.ok ) {
-            console.log( response );
+        if (!response.ok) {
+            console.log(response);
         }
         const data = await response.json();
-        console.log( data );
-        if ( data[ "access_token" ] ) {
-            console.log( "heyyyyyyy", data );
-            localStorage.setItem( "userToken", data.access_token );
-            localStorage.setItem( "user", JSON.stringify( data ) );
-            localStorage.setItem( "avatar", data[ "avatar" ] );
-            localStorage.setItem( "email", data[ "email" ] );
-            localStorage.setItem( "id", data[ "userId" ] );
-            localStorage.setItem( "type", data[ "type" ] );
+        console.log(data);
+        if (data["access_token"]) {
+            console.log("heyyyyyyy", data);
+            localStorage.setItem("userToken", data.access_token);
+            localStorage.setItem("user", JSON.stringify(data));
+            localStorage.setItem("avatar", data["avatar"]);
+            localStorage.setItem("email", data["email"]);
+            localStorage.setItem("id", data["userId"]);
+            localStorage.setItem("type", data["type"]);
 
         }
 
         return data;
 
-    } catch ( error ) {
-        console.error( "An error occurred while fetching data:", error );
+    } catch (error) {
+        console.error("An error occurred while fetching data:", error);
 
     } finally {
-        console.log( "Data fetch operation completed" );
+        console.log("Data fetch operation completed");
 
     }
 };

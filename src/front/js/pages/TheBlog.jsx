@@ -5,7 +5,9 @@ import { Navbar } from "../component/Navbar.jsx";
 //import { ButtonList } from "../component/blog/ButtonList.jsx"
 
 export const TheBlog = () => {
-  const backend = "https://sample-service-name-3ajg.onrender.com/api/";
+
+  const backend = "https://fuzzy-space-broccoli-v9gjv4jgv552p79j-3001.app.github.dev/api/";
+
 
   const getPosts = async () => {
 
@@ -32,10 +34,13 @@ export const TheBlog = () => {
     <>
       <Navbar />
       <div className="title d-flex justify-content-center md-4 lg-4 xl-4">
-        <div className="project-light my-4" style={{ borderRadius: "6%" }}>
-          <h1 className="main-title mt-2 text-center fs-2 fst-italic" style={{ fontSize: "70px" }}><strong>Learn some tips and tricks about pet care</strong></h1>
+
+        <div className="project-light mt-3">
+          <h1 className="text-center main-title" style={{ fontSize: "70px" }}> Our Blog</h1>
           <div className="container " >
-            <img src="https://s1.eestatic.com/2022/05/13/curiosidades/mascotas/672192954_224281687_1706x960.jpg" alt="Our Blog" className="img-fluid pb-2" style={{ width: "40rem", borderRadius: "7%" }} />
+
+            <img src="https://s1.eestatic.com/2022/05/13/curiosidades/mascotas/672192954_224281687_1706x960.jpg" alt="Our Blog" className="img-fluid rounded " style={{ width: "50rem" }} />
+
           </div>
         </div>
       </div>

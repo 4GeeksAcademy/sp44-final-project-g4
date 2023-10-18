@@ -5,7 +5,9 @@ import { WaitingSpinner } from '../component/WaitingSpinner.jsx';
 import { Navbar } from "../component/Navbar.jsx";
 
 export const UserFavoriteView = () => {
-    const backend = "https://sample-service-name-3ajg.onrender.com/api/";
+
+    const backend = "https://fuzzy-space-broccoli-v9gjv4jgv552p79j-3001.app.github.dev/api/";
+
     const [userId, setuserId] = useState(localStorage.getItem("id"));
     const [favoriteWalker, setFavoriteWalker] = useState(null);
     const [favoriteGroomer, setFavoriteGroomer] = useState(null);
