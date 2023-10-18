@@ -1,11 +1,11 @@
 import React from 'react'
 
-export const LogoComponent = ({ image }) => {
+export const LogoComponent = () => {
   return (
     <div className="col-md-4 col-lg-4 col-xl-4 mt-1 text-center align-items-center my-3 pt-3">
 
         <div className='text-center mb-3'>
-        <img style={{ height: "80px", width: "80px", borderRadius: "10%" }} src={image} alt="" className="bg-black" />
+        <p className="project-text-blue fs-1" style={ { fontSize: "30px" } }><strong >Furry Paws New York</strong></p>
         </div>         
 
         <div className='text-center mb-3'>
