@@ -11,12 +11,12 @@ import { CardAdoption } from "./cards/CardAdoption.jsx";
 export const LowerView = () => {
     return (
         <>
-            <div className="container text-center  mb-5 ps-0 pe-0" style={{ Width: "120rem" }}>
-                <div className="d-flex flex-wrap">
-                    <div className="ps-0 me-5"><CardVet /></div>
-                    <div className="me-5"><CardGroomer /></div>
-                    <div className="me-5"><CardWalker /></div>
-                    <div className="pe-0 me-0"><CardAdoption /></div>
+            <div className="container text-center" style={{ Width: "120rem" }}>
+                <div className="d-flex justify-content-center">
+                    <div className="me-5"><CardVet /></div>
+                    <div className="me-5 ms-4"><CardGroomer /></div>
+                    <div className="me-5 ms-4"><CardWalker /></div>
+                    <div className="ms-4"><CardAdoption /> </div>
                 </div>
             </div>
         </>
