@@ -1,5 +1,5 @@
 
-const backend = "https://ubiquitous-halibut-gj5vq9vxg6gc949r-3001.app.github.dev/";
+const backend = "https://sample-service-name-qduh.onrender.com/";
 
 
 const getState = ({ getStore, getActions, setStore }) => {
